@@ -1,0 +1,136 @@
+
+.contenedor{
+    height:auto;
+    position: absolute;
+    top: 20%;
+    width: 100%;
+    text-align: center;
+}
+
+.page{
+    margin: 20px 100px;
+    font-family: Google Sans, Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    text-align: left !important;
+}
+
+.tabs-container{
+    margin: 20px 100px;
+}
+
+.div-buscar{
+    margin: 0px 30px 20px 30px !important;
+    text-align: right;
+}
+
+.input-busqueda{
+    font-size: 11px !important;
+    margin-right: 10px;
+    width: 350px !important;
+}
+
+.btn-buscar{
+    margin-right: 10px;
+}
+
+.form-buscar{
+    margin: 0 0 0 auto !important;
+    display: inline !important;
+}
+
+.check-buscar label{
+    display: inline !important;
+}
+
+.check-buscar{
+    display: block !important;
+    margin-bottom: 9px;
+    padding-right: 8px;
+}
+
+.div-opciones label{
+    margin-right: 10px;
+}
+
+.div-opciones select{
+    border:none;
+    border-bottom: black 1px solid;
+    border-radius: 0%;
+    width: 170px !important;
+    margin-right: 45px !important;
+}
+
+.opciones-btn{
+    text-align: right;
+    padding-right: 40px !important;
+}
+
+.opciones-form{
+    padding-left: 20px !important;
+}
+
+.modal-header{
+    padding: 5px 10px !important;
+}
+
+.formRegistro{
+    padding: 0px 30px;
+}
+
+.formRegistrolabel{
+    display: block;
+    text-align: left;
+}
+
+.checkVigente{
+    margin-top: 25%;
+}
+
+.formRegistro .row{
+    margin-top: 10px;
+}
+
+.formModificar{
+    padding: 0px 30px;
+}
+
+.formModificarlabel{
+    display: block;
+    text-align: left;
+}
+
+table thead{
+    text-align:center;
+}
+
+.breadcrumb{
+    width: 80%;
+    margin-left: 8%;
+    background: none !important;
+    font-size: 18px;
+}
+
+.breadcrumb a:link{
+    padding: 5px 10px;
+    text-align: center;
+    border-radius: 5%;
+    text-decoration: none;
+}
+
+.breadcrumb a:hover {
+    background-color: rgb(235, 235, 235);
+    color: rgb(71, 71, 71);
+    
+}
+
+.alertError{
+    text-align: left;
+    color: rgb(199, 57, 57);
+    display: block;
+}
+
+.dataTables_info, .dataTables_paginate{
+    margin-top: 8px !important;
+    margin-bottom: 20px !important;
+}

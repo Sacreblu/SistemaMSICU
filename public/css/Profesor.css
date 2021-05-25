@@ -1,0 +1,340 @@
+.contenedor{
+    height:auto;
+    position: absolute;
+    top: 20%;
+    width: 100%;
+    text-align: center;
+}
+
+.breadcrumb{
+    width: 80%;
+    margin-left: 8%;
+    margin-bottom: 0 !important;
+    background: none !important;
+    font-size: 18px;
+}
+
+.breadcrumb a:link{
+    padding: 5px 10px;
+    text-align: center;
+    border-radius: 5%;
+    text-decoration: none;
+}
+
+.breadcrumb a:hover {
+    background-color: rgb(235, 235, 235);
+    color: rgb(71, 71, 71);
+    
+}
+
+.div-buscar{
+    margin: 0px 30px 20px 30px !important;
+    text-align: right;
+}
+
+.input-busqueda{
+    font-size: 11px !important;
+    margin-right: 10px;
+    width: 350px !important;
+}
+
+.btn-buscar{
+    margin-right: 10px;
+}
+
+.form-buscar{
+    margin: 0 0 0 auto !important;
+    display: inline !important;
+}
+
+.check-buscar, .check-buscar label{
+    display: inline !important;
+}
+
+.check-buscar {
+    margin: 0 5px !important;
+}
+
+.div-opciones label{
+    margin-right: 10px;
+}
+
+.div-opciones select{
+    border:none;
+    border-bottom: black 1px solid;
+    border-radius: 0%;
+    width: 170px !important;
+    margin-right: 45px !important;
+}
+
+.opciones-btn{
+    text-align: right;
+    padding-right: 60px !important;
+}
+
+.opciones-form{
+    padding-left: 100px !important;
+}
+
+table thead{
+    text-align:center;
+    font-size: 13px;
+}
+
+.modal-header{
+    padding: 5px 30px !important;
+}
+
+.btn-formRegistro{
+    text-align: right;
+    margin-right: 20px;
+}
+
+.active a{
+    width:auto !important;
+}
+
+.tabs-container{
+    margin: 20px 100px;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 22px;
+  }
+
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 3px;
+    bottom: 2px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  input:checked + .slider {
+    background-color: #1c8ae4;
+  }
+  
+  input:focus + .slider {
+    box-shadow: 0 0 1px #1c8ae4;
+  }
+  
+  input:checked + .slider:before {
+    -webkit-transform: translateX(15px);
+    -ms-transform: translateX(15px);
+    transform: translateX(15px);
+  }
+  
+  .switch input { 
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  .slider.round {
+    border-radius: 34px;
+  }
+  
+  .slider.round:before {
+    border-radius: 50%;
+  }
+
+  .divlabelcheck, .divcheck{
+      display: inline-block;
+  }
+
+  .divcheck{
+      padding-top: 20px;
+  }
+
+  .inputDnD .form-control-file {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      min-height: 6em;
+      outline: none;
+      visibility: hidden;
+      cursor: pointer;
+      background-color: #c61c23;
+      box-shadow: 0 0 5px solid currentColor;
+      color: #1961a3!important;
+    }
+
+.inputDnD .form-control-file:before{
+        content: attr(data-title);
+        position: absolute;
+        top: 0.5em;
+        left: 0;
+        width: 18em;
+        min-height: 4em;
+        line-height: 2em;
+        padding-top: .6em;
+        opacity: 1;
+        visibility: visible;
+        text-align: center;
+        border: 0.25em dashed currentColor;
+        transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
+        overflow: hidden;
+}
+
+.inputDnD .form-control-file:hover::before{
+    border-style: solid;
+    box-shadow: inset 0px 0px 0px 0.25em currentColor;
+    
+}
+
+.btn-xs{
+    padding: 1px 5px !important;
+    font-size: 12px !important;
+    line-height: 1.5 !important;
+    border-radius: 3px !important;
+}
+
+.form-check-label{
+    font-size: 13px !important;
+}
+
+.alertError{
+    text-align: left;
+    color: rgb(199, 57, 57);
+    display: block;
+}
+
+.Estudios-container{
+    text-align: left !important;
+    padding: 10px 60px;
+}
+
+.Estudios-control{
+    padding: 10px 20px;
+}
+
+.Estudios-control .btn:hover{
+    background-color: rgb(228, 228, 228);
+}
+
+.text-control{
+    font-size: 18px;
+    margin-right: 25px;
+    display: inline-block;
+}
+
+.Estudios-form{
+    border: 1px solid rgb(223, 223, 223);
+    border-radius: 5px;
+    padding: 10px 30px;
+    margin-bottom: 10px;
+}
+
+.Superacion-container{
+    text-align: left;
+    padding-top: 20px;
+}
+
+.Cursos-control{
+    padding: 10px 20px;
+}
+.Distincion-control{
+    padding: 10px 20px;
+}
+
+.Cursos-control .btn:hover{
+    background-color: rgb(228, 228, 228);
+}
+
+.Distincion-control .btn:hover{
+    background-color: rgb(228, 228, 228);
+}
+
+.Cursos-form{
+    border: 1px solid rgb(223, 223, 223);
+    border-radius: 5px;
+    padding: 10px 30px;
+    margin-bottom: 10px;
+}
+
+.Distinciones-form{
+    border: 1px solid rgb(223, 223, 223);
+    border-radius: 5px;
+    padding: 10px 30px;
+    margin-bottom: 10px;
+}
+
+.Trayectoria-container{
+    text-align: left !important;
+    padding: 10px 60px;
+}
+
+.Trayectoria-control{
+    padding: 10px 20px;
+}
+
+.Trayectoria-control .btn:hover{
+    background-color: rgb(228, 228, 228);
+}
+
+.Trayectoria-form{
+    border: 1px solid rgb(223, 223, 223);
+    border-radius: 5px;
+    padding: 10px 30px;
+    margin-bottom: 10px;
+}
+
+.Pertenencias-container{
+    text-align: left !important;
+    padding: 10px 60px;
+}
+
+.Pertenencias-control{
+    padding: 10px 20px;
+}
+
+.Pertenencias-control .btn:hover{
+    background-color: rgb(228, 228, 228);
+}
+
+.Pertenencias-form{
+    border: 1px solid rgb(223, 223, 223);
+    border-radius: 5px;
+    padding: 10px 30px;
+    margin-bottom: 10px;
+}
+
+.tablaProfesores{
+    font-size: 13px !important;
+}
+
+.btn-deshab{
+    color: white !important;
+    margin-left: 5px;
+}
+
+.modal-dialog{
+    max-width: 1000px !important;
+}
+
+.modal-body .tabs-container{
+    margin: 20px 40px !important;
+}
+
+.modal-body p{
+    margin: 0px !important;
+}
