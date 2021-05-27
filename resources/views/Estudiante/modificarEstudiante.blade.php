@@ -79,7 +79,7 @@
                                 <span class="alertError" id="alertNo_CVUEstModificar"></span>
                             </div>
                             <div class="form-group col-md-2" style="text-align: left;">
-                                <label for="Matricula">Matrrícula</label>
+                                <label for="Matricula">Matrícula</label>
                                 <input type="text" class="form-control" id="Matricula" name="Matricula">
                                 <span class="alertError" id="alertMatriculaEstModificar"></span>
                             </div>
@@ -160,7 +160,7 @@
                     <div class="Estudios-container">
                         <div class="Estudios-control">
                             <div class="text-control">
-                                Estudios y Grados Academicos
+                                Estudios y Grados Académicos
                             </div> 
                             <button class="btn btn-sm" onclick="añadirPreparacionAcademica()" title="Añadir un registro de Estudios"><i class="fas fa-plus"></i></button>
                             <button class="btn btn-sm" id="btnQuitar" onclick="quitarPreparacionAcademica()" title="Restar un registro de Estudios" disabled><i class="fas fa-minus"></i></button>

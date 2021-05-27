@@ -76,7 +76,7 @@
                                 <span class="alertError" id="alertNo_CVUEstRegistro"></span>
                             </div>
                             <div class="form-group col-md-2" style="text-align: left;">
-                                <label for="Matricula">Matrrícula</label>
+                                <label for="Matricula">Matrícula</label>
                                 <input type="text" class="form-control" id="Matricula" name="Matricula">
                                 <span class="alertError" id="alertMatriculaEstRegistro"></span>
                             </div>
