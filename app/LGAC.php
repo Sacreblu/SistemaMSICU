@@ -83,6 +83,13 @@ class LGAC extends Model
         return $lgac;
     }
 
+    public function getLGACs(){
+        $lgacs =LGAC::join('plan_estudios', 'l_g_a_c_s.Id_Plan', '=', 'plan_estudios.id')
+                ->select('l_g_a_c_s.id', 'l_g_a_c_s.Nombre', 'plan_estudios.Anio')
+                ->get();
+        return $lgacs;    
+    }
+
     public function ObtenerLGACs(){
         $lgac= LGAC::select('id', 'Nombre', 'Id_Plan')->orderBy('Nombre', 'ASC')->get();
         return $lgac;

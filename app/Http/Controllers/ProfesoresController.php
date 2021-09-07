@@ -380,12 +380,6 @@ class ProfesoresController extends Controller
             "Pertenencias" => $Pertenencias
         );
         return $array;
-
-        /*$array = array(
-            "id" => $planes[$i]->id,
-            "Nombre" => $planes[$i]->Nombre,
-            "LGACs" => $lgacs
-        );*/
     }
 
     public function VistaModificarProfesor($id){
@@ -395,5 +389,10 @@ class ProfesoresController extends Controller
         $informacion = $informacion->obtenerInformacionProfesor($request);
 
         return view('Profesor.modificarProfesor', compact('informacion'));
+    }
+
+    public function ObtenerProfesores(){
+        $profesores = new Profesores();
+        return $profesores->ObtenerProfesores();
     }
 }

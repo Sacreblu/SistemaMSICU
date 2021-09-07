@@ -34,7 +34,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Trabajos Recepcionales</a>
+                        <a class="nav-link" href="{{ url('/Trabajos_Recepcionales') }}">Trabajos Recepcionales</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Productos LGAC</a>

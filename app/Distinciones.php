@@ -28,7 +28,7 @@ class Distinciones extends Model
         }
         
         try {
-            mkdir(public_path().'/storage/Documentos/Distincion/'.$request->get('idProfesor').'/', 0700);
+            mkdir(public_path().'/storage/Documentos/Profesores/Distincion/'.$request->get('idProfesor').'/', 0700);
         } catch (\Throwable $th) {
             //throw $th;
         }
@@ -46,7 +46,7 @@ class Distinciones extends Model
         $extension = $archivo->getClientOriginalExtension();
         $fileName = $inicialesProf."-".$tipoDistincion."-".$periodo.'-'.$anio.'.'.$extension;
         $tmpPath = $archivo;
-        $newPath = public_path().'/storage/Documentos/Distincion/'.$request->get('idProfesor').'/'.$fileName;
+        $newPath = public_path().'/storage/Documentos/Profesores/Distincion/'.$request->get('idProfesor').'/'.$fileName;
         move_uploaded_file($tmpPath,$newPath);
 
         $datos = new Distinciones ([
@@ -55,7 +55,7 @@ class Distinciones extends Model
             'Periodo'=> $request->get('Periodo'),
             'Anio'=> $request->get('Anio'),
             'Descripcion'=> $request->get('Descripcion'),
-            'Ruta_Archivo'=> '/storage/Documentos/Distincion/'.$request->get('idProfesor').'/'.$fileName,
+            'Ruta_Archivo'=> '/storage/Documentos/Profesores/Distincion/'.$request->get('idProfesor').'/'.$fileName,
             'NombreArchivo'=> $fileName
         ]); 
         $datos->save();
@@ -109,12 +109,12 @@ class Distinciones extends Model
             $extension = $archivo->getClientOriginalExtension();
             $fileName = $inicialesProf."-".$tipoDistincion."-".$periodo.'-'.$anio.'.'.$extension;
             $tmpPath = $archivo;
-            $newPath = public_path().'/storage/Documentos/Distincion/'.$request->get('idProfesor').'/'.$fileName;
+            $newPath = public_path().'/storage/Documentos/Profesores/Distincion/'.$request->get('idProfesor').'/'.$fileName;
             move_uploaded_file($tmpPath,$newPath);
         }else{
             $extension = "pdf";
             $fileName = $inicialesProf."-".$tipoDistincion."-".$periodo.'-'.$anio.'.'.$extension;
-            $newPath = public_path().'/storage/Documentos/Distincion/'.$request->get('idProfesor').'/'.$fileName;
+            $newPath = public_path().'/storage/Documentos/Profesores/Distincion/'.$request->get('idProfesor').'/'.$fileName;
             rename(public_path().$Distincion->Ruta_Archivo,$newPath);
         }
 
@@ -123,7 +123,7 @@ class Distinciones extends Model
         $Distincion->Anio = $request->get('Anio');
         $Distincion->Periodo = $request->get('Periodo');
         $Distincion->Descripcion = $request->get('Descripcion');
-        $Distincion->Ruta_Archivo = '/storage/Documentos/Distincion/'.$request->get('idProfesor').'/'.$fileName;
+        $Distincion->Ruta_Archivo = '/storage/Documentos/Profesores/Distincion/'.$request->get('idProfesor').'/'.$fileName;
         $Distincion->NombreArchivo = $fileName;
         
         $Distincion->save();

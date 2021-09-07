@@ -34,7 +34,7 @@ class Organizaciones extends Model
         $inicialesProf = $inicialesProf . substr($profesor[0]->Apellido_M, 0, 1);
         
         try {
-            mkdir(public_path().'/storage/Documentos/Pertenencias/'.$request->get('idProfesor').'/', 0700);
+            mkdir(public_path().'/storage/Documentos/Profesores/Pertenencias/'.$request->get('idProfesor').'/', 0700);
         } catch (\Throwable $th) {
             //throw $th;
         }
@@ -42,7 +42,7 @@ class Organizaciones extends Model
         $extension = $archivo->getClientOriginalExtension();
         $fileName = $inicialesProf."-".$organizacion."-".$periodo.'-'.$anio.'.'.$extension;
         $tmpPath = $archivo;
-        $newPath = public_path().'/storage/Documentos/Pertenencias/'.$request->get('idProfesor').'/'.$fileName;
+        $newPath = public_path().'/storage/Documentos/Profesores/Pertenencias/'.$request->get('idProfesor').'/'.$fileName;
         move_uploaded_file($tmpPath,$newPath);
 
         $datos = new Organizaciones ([
@@ -51,7 +51,7 @@ class Organizaciones extends Model
             'Periodo'=> $periodo,
             'Anio'=> $anio,
             'Descripcion'=> $request->get('Descripcion'),
-            'Ruta_Archivo'=> '/storage/Documentos/Pertenencias/'.$request->get('idProfesor').'/'.$fileName,
+            'Ruta_Archivo'=> '/storage/Documentos/Profesores/Pertenencias/'.$request->get('idProfesor').'/'.$fileName,
             'NombreArchivo'=> $fileName
         ]); 
         $datos->save();
@@ -89,12 +89,12 @@ class Organizaciones extends Model
             $extension = $archivo->getClientOriginalExtension();
             $fileName = $inicialesProf."-".$organizacion."-".$periodo.'-'.$anio.'.'.$extension;
             $tmpPath = $archivo;
-            $newPath = public_path().'/storage/Documentos/Pertenencias/'.$request->get('idProfesor').'/'.$fileName;
+            $newPath = public_path().'/storage/Documentos/Profesores/Pertenencias/'.$request->get('idProfesor').'/'.$fileName;
             move_uploaded_file($tmpPath,$newPath);
         }else{
             $extension = "pdf";
             $fileName = $inicialesProf."-".$organizacion."-".$periodo.'-'.$anio.'.'.$extension;
-            $newPath = public_path().'/storage/Documentos/Pertenencias/'.$request->get('idProfesor').'/'.$fileName;
+            $newPath = public_path().'/storage/Documentos/Profesores/Pertenencias/'.$request->get('idProfesor').'/'.$fileName;
             rename(public_path().$Pertenencia->Ruta_Archivo,$newPath);
         }
 
@@ -103,7 +103,7 @@ class Organizaciones extends Model
         $Pertenencia->Anio = $request->get('Anio');
         $Pertenencia->Periodo = $request->get('Periodo');
         $Pertenencia->Descripcion = $request->get('Descripcion');
-        $Pertenencia->Ruta_Archivo = '/storage/Documentos/Pertenencias/'.$request->get('idProfesor').'/'.$fileName;
+        $Pertenencia->Ruta_Archivo = '/storage/Documentos/Profesores/Pertenencias/'.$request->get('idProfesor').'/'.$fileName;
         $Pertenencia->NombreArchivo = $fileName;
         
         $Pertenencia->save();

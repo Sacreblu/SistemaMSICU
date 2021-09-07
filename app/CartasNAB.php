@@ -29,7 +29,7 @@ class CartasNAB extends Model
         }
         $iniciales = $iniciales . substr($profesor[0]->Apellido_P, 0, 1);
         $iniciales = $iniciales . substr($profesor[0]->Apellido_M, 0, 1);
-        mkdir(public_path().'/storage/Documentos/CartasNAB/'.$request->get('idProfesor').'/', 0700);
+        mkdir(public_path().'/storage/Documentos/Profesores/CartasNAB/'.$request->get('idProfesor').'/', 0700);
 
         for ($i=0; $i < $lengthArray; $i++) {
             $versiion = $i+1;
@@ -37,7 +37,7 @@ class CartasNAB extends Model
             $extension = $archivos[$i]->getClientOriginalExtension();
             $fileName = 'CARTA-NAB-'.$iniciales.'-v'.$versiion.'.'.$extension;
             $tmpPath = $archivos[$i];
-            $newPath = public_path().'/storage/Documentos/CartasNAB/'.$request->get('idProfesor').'/'.$fileName;
+            $newPath = public_path().'/storage/Documentos/Profesores/CartasNAB/'.$request->get('idProfesor').'/'.$fileName;
             move_uploaded_file($tmpPath,$newPath);
             $vigente = "off";
             if ($i==$request->get('ArchivoVigente')) {
@@ -46,7 +46,7 @@ class CartasNAB extends Model
             $datos = new CartasNAB ([
                 'Id_Profesor'=> $request->get('idProfesor'),
                 'NombreArchivo'=> $fileName,
-                'Ruta_Archivo'=> '/storage/Documentos/CartasNAB/'.$request->get('idProfesor').'/'.$fileName,
+                'Ruta_Archivo'=> '/storage/Documentos/Profesores/CartasNAB/'.$request->get('idProfesor').'/'.$fileName,
                 'Vigente'=> $vigente,
                 'Fecha_Registro'=> $request->get('fechaRegistro')
             ]); 
@@ -59,7 +59,7 @@ class CartasNAB extends Model
     public function ModificarCartasNAB($request){
         CartasNAB::where('Id_Profesor', "=", $request->get('idProfesor'))->delete();
 
-        $files = glob(public_path().'/storage/Documentos/CartasNAB/'.$request->get('idProfesor').'/*.pdf'); //obtenemos todos los nombres de los ficheros
+        $files = glob(public_path().'/storage/Documentos/Profesores/CartasNAB/'.$request->get('idProfesor').'/*.pdf'); //obtenemos todos los nombres de los ficheros
         foreach($files as $file){
             if(is_file($file))
             unlink($file); //elimino el fichero
@@ -85,7 +85,7 @@ class CartasNAB extends Model
                 $extension = $archivos[$i]->getClientOriginalExtension();
                 $fileName = 'CARTA-NAB-'.$iniciales.'-v'.$version.'.'.$extension;
                 $tmpPath = $archivos[$i];
-                $newPath = public_path().'/storage/Documentos/CartasNAB/'.$request->get('idProfesor').'/'.$fileName;
+                $newPath = public_path().'/storage/Documentos/Profesores/CartasNAB/'.$request->get('idProfesor').'/'.$fileName;
                 move_uploaded_file($tmpPath,$newPath);
 
                 $vigente = "off";
@@ -110,7 +110,7 @@ class CartasNAB extends Model
                 $datos = new CartasNAB ([
                     'Id_Profesor'=> $request->get('idProfesor'),
                     'NombreArchivo'=> $fileName,
-                    'Ruta_Archivo'=> '/storage/Documentos/CartasNAB/'.$request->get('idProfesor').'/'.$fileName,
+                    'Ruta_Archivo'=> '/storage/Documentos/Profesores/CartasNAB/'.$request->get('idProfesor').'/'.$fileName,
                     'Vigente'=> $vigente,
                     'Fecha_Registro'=> $fechas
                 ]); 

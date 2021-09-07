@@ -41,7 +41,7 @@ class EstudiosProfesores extends Model
         $inicialesProf = $inicialesProf . substr($profesor[0]->Apellido_M, 0, 1);
         
         try {
-            mkdir(public_path().'/storage/Documentos/PreparacionAcademica/'.$request->get('idProfesor').'/', 0700);
+            mkdir(public_path().'/storage/Documentos/Profesores/PreparacionAcademica/'.$request->get('idProfesor').'/', 0700);
         } catch (\Throwable $th) {
             //throw $th;
         }
@@ -49,7 +49,7 @@ class EstudiosProfesores extends Model
         $extension = $archivo->getClientOriginalExtension();
         $fileName = $inicialesProf."-".$grados[$request->get('Id_Grado')-1]."-".$iniciales.'-'.$anio.'.'.$extension;
         $tmpPath = $archivo;
-        $newPath = public_path().'/storage/Documentos/PreparacionAcademica/'.$request->get('idProfesor').'/'.$fileName;
+        $newPath = public_path().'/storage/Documentos/Profesores/PreparacionAcademica/'.$request->get('idProfesor').'/'.$fileName;
         move_uploaded_file($tmpPath,$newPath);
 
         $datos = new EstudiosProfesores ([
@@ -59,7 +59,7 @@ class EstudiosProfesores extends Model
             'Universidad'=> $request->get('Universidad'),
             'Anio'=> $request->get('Anio'),
             'Lugar'=> $request->get('Lugar'),
-            'Ruta_Archivo'=> '/storage/Documentos/PreparacionAcademica/'.$request->get('idProfesor').'/'.$fileName,
+            'Ruta_Archivo'=> '/storage/Documentos/Profesores/PreparacionAcademica/'.$request->get('idProfesor').'/'.$fileName,
             'NombreArchivo'=> $fileName
         ]); 
         $datos->save();
@@ -115,12 +115,12 @@ class EstudiosProfesores extends Model
             $extension = $archivo->getClientOriginalExtension();
             $fileName = $inicialesProf."-".$grados[$request->get('Id_Grado')-1]."-".$iniciales.'-'.$anio.'.'.$extension;
             $tmpPath = $archivo;
-            $newPath = public_path().'/storage/Documentos/PreparacionAcademica/'.$request->get('idProfesor').'/'.$fileName;
+            $newPath = public_path().'/storage/Documentos/Profesores/PreparacionAcademica/'.$request->get('idProfesor').'/'.$fileName;
             move_uploaded_file($tmpPath,$newPath);
         }else{
             $extension = "pdf";
             $fileName = $inicialesProf."-".$grados[$request->get('Id_Grado')-1]."-".$iniciales.'-'.$anio.'.'.$extension;
-            $newPath = public_path().'/storage/Documentos/PreparacionAcademica/'.$request->get('idProfesor').'/'.$fileName;
+            $newPath = public_path().'/storage/Documentos/Profesores/PreparacionAcademica/'.$request->get('idProfesor').'/'.$fileName;
             rename(public_path().$Estudios->Ruta_Archivo,$newPath);
         }
 
@@ -130,7 +130,7 @@ class EstudiosProfesores extends Model
         $Estudios->Universidad = $request->get('Universidad');
         $Estudios->Anio = $request->get('Anio');
         $Estudios->Lugar = $request->get('Lugar');
-        $Estudios->Ruta_Archivo = '/storage/Documentos/PreparacionAcademica/'.$request->get('idProfesor').'/'.$fileName;
+        $Estudios->Ruta_Archivo = '/storage/Documentos/Profesores/PreparacionAcademica/'.$request->get('idProfesor').'/'.$fileName;
         $Estudios->NombreArchivo = $fileName;
         
         $Estudios->save();

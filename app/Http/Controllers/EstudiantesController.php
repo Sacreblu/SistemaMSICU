@@ -40,6 +40,16 @@ class EstudiantesController extends Controller
         return $array;
     }
 
+    public function ObtenerEstudiantes(){
+        $estudiantes = new Estudiantes();
+        return $estudiantes->ObtenerEstudiantes();
+    }
+
+    public function getEstudiante(Request $request){
+        $estudiante = new Estudiantes();
+        return $estudiante->getEstudiante($request);
+    }
+
     public function registrarEstudianteVista(){
         return view('Estudiante.registrarEstudiante');
     }

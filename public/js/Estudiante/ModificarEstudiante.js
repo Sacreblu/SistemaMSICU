@@ -661,6 +661,7 @@ function ModificarDatosGenerales() {
 			console.log(resultado);
 			alert("Los cambios han sido guardados");
 			
+			location.href="/Estudiantes";
 
 		},
 		error: function (XMLHttpRequest, textStatus, errorThrown) {

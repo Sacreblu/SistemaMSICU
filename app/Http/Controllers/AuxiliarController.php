@@ -70,6 +70,11 @@ class AuxiliarController extends Controller
         return $arrayPlanes;
     }
 
+    public function getLGACs(){
+        $lgacs = new LGAC();
+        return $lgacs -> getLGACs();
+    }
+
     public function CartasNAB(Request $request){
         $files = glob(public_path().'/storage/tmp/crts/*'); //obtenemos todos los nombres de los ficheros
         foreach($files as $file){

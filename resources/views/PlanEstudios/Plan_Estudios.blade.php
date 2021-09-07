@@ -400,7 +400,7 @@
                     <table id="LGACTabla" class="table table-hover">
                         <thead>
                         <tr >
-                            <th style="min-width: 550px !important">Nombre</th>
+                            <th style="min-width: 350px !important">Nombre</th>
                             <th>Plan de Estudios</th>
                             <th>Estado</th>
                             <th>Opciones</th>

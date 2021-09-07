@@ -49,6 +49,7 @@ Route::post('/Profesores/BusquedaProfesor', 'ProfesoresController@BusquedaProfes
 Route::post('/Profesores/FiltradoTablaProfesores', 'ProfesoresController@FiltradoProfesor');
 Route::post('/Profesores/DeshabilitarProfesor', 'ProfesoresController@DeshabilitarProfesor');
 Route::post('/Profesores/obtenerInformacionProfesor', 'ProfesoresController@obtenerInformacionProfesor');
+Route::post('/Profesores/ObtenerProfesores', 'ProfesoresController@ObtenerProfesores');
 
 Route::post('/Profesores/Registrar_Profesor/ValidarDatosGeneralesProfesor', 'ProfesoresController@ValidarDatosGeneralesProfesor');
 Route::post('/Profesores/Registrar_Profesor/ValidarPreparacionAcademicaProfesor', 'ProfesoresController@ValidarPreparacionAcademicaProfesor');
@@ -93,6 +94,8 @@ Route::get('/Estudiantes/Modificar_Estudiante/{id}', 'EstudiantesController@Vist
 Route::post('/Estudiantes/BusquedaEstudiante', 'EstudiantesController@BusquedaEstudiante');
 Route::post('/Estudiantes/FiltradoTablaEstudiantes', 'EstudiantesController@FiltradoEstudiante');
 Route::post('/Estudiantes/obtenerInformacionEstudiante', 'EstudiantesController@obtenerInformacionEstudiante');
+Route::post('/Estudiantes/ObtenerEstudiantes', 'EstudiantesController@ObtenerEstudiantes');
+Route::post('/Estudiantes/getEstudiante', 'EstudiantesController@getEstudiante');
 
 Route::post('/Estudiantes/Registrar_Estudiante/ValidarDatosGeneralesEstudiante', 'EstudiantesController@ValidarDatosGeneralesEstudiante');
 Route::post('/Estudiantes/Registrar_Estudiante/ValidarPreparacionAcademicaEstudiante', 'EstudiantesController@ValidarPreparacionAcademicaEstudiante');
@@ -107,6 +110,23 @@ Route::post('/Estudiantes/Modificar_Estudiante/ModificarEstudiante/{id}', 'Estud
 Route::post('/Estudiantes/Modificar_Estudiante/EliminarPreparacionAcademica', 'EstudiantesController@EliminarPreparacionAcademica');
 Route::post('/Estudiantes/Modificar_Estudiante/ModificarPreparacionAcademica', 'EstudiantesController@ModificarPreparacionAcademica');
 
+//Trabajos Recepcionales
+
+Route::get('/Trabajos_Recepcionales/Registrar_Trabajo_Recepcional', 'TrabajosRecepcionalesController@registrarTesisVista');
+Route::get('/Trabajos_Recepcionales', 'TrabajosRecepcionalesController@mostrarTesis');
+Route::get('/Trabajos_Recepcionales/Modificar_Trabajo/{id}', 'TrabajosRecepcionalesController@VistaModificarTrabajo');
+
+Route::post('/Trabajos_Recepcionales/FiltradoTablaTesis', 'TrabajosRecepcionalesController@FiltradoTesis');
+Route::post('/Trabajos_Recepcionales/BusquedaTesis', 'TrabajosRecepcionalesController@BusquedaTesis');
+Route::post('/Trabajos_Recepcionales/obtenerInformacionTesis', 'TrabajosRecepcionalesController@obtenerInformacionTesis');
+
+Route::post('/Trabajos_Recepcionales/Registrar_Trabajo_Recepcional/ValidarDatosGeneralesTesis', 'TrabajosRecepcionalesController@ValidarDatosGeneralesTesis');
+Route::post('/Trabajos_Recepcionales/Modificar_Trabajo_Recepcional/ValidarDatosGeneralesTesis/{id}', 'TrabajosRecepcionalesController@ValidarDatosGeneralesTesisModificar');
+
+Route::post('/Trabajos_Recepcionales/Registrar_Trabajo_Recepcional/RegistrarDG', 'TrabajosRecepcionalesController@RegistrarDG');
+Route::post('/Trabajos_Recepcionales/Modificar_Trabajo_Recepcional/ModificarDG/{id}', 'TrabajosRecepcionalesController@ModificarDG');
+Route::post('/Trabajos_Recepcionales/EliminarTesis', 'TrabajosRecepcionalesController@EliminarTesis');
+
 
 //Controlador Auxiliar
 Route::post('/Auxiliar/TipoContratacion', 'AuxiliarController@TipoContrataciones');
@@ -117,6 +137,7 @@ Route::post('/Auxiliar/Grados', 'AuxiliarController@Grados');
 Route::post('/Auxiliar/TipoSuperacion', 'AuxiliarController@TipoSuperacion');
 Route::post('/Auxiliar/TipoTrayectoria', 'AuxiliarController@TipoTrayectoria');
 Route::post('/Auxiliar/LGACsByPlan', 'AuxiliarController@LGACsByPlan');
+Route::post('/Auxiliar/getLGACs', 'AuxiliarController@getLGACs');
 Route::post('/Auxiliar/CartasNAB', 'AuxiliarController@CartasNAB');
 Route::post('/Auxiliar/QuitarCartaNAB', 'AuxiliarController@QuitarCartaNAB');
 Route::post('/Auxiliar/ArchivosEvidencia', 'AuxiliarController@ArchivosEvidencia');

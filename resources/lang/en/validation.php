@@ -148,6 +148,13 @@ return [
             'max' => 'El nombre es demasiado largo',
             'unique' => 'El nombre ya está registrado',
         ],
+        'Autor' => [
+            'required' => 'El autor es requerido',
+            'string' => 'El autor tiene que ser un texto'
+        ],
+        'IdAutor' => [
+            'required' => 'El autor debe estar registrado como un estudiante'
+        ],
         'Anio' => [
             'required' => 'El año es requerido',
             'numeric' => 'El año tiene que ser un numero',
@@ -236,6 +243,28 @@ return [
         'ArchivoCartaLib' => [
             'required_if' => 'Si el estado es Egresado, es necesario cargar la carta de liberación'
         ],
+        'MesPublicacion' => [
+            'required_if' => 'Debe seleccionar el mes'
+        ],
+        'AnioPublicacion' => [
+            'required_if' => 'Debe seleccionar el año'
+        ],
+        'ArchivoTesis' => [
+            'required_if' => 'Es necesario cargar el archivo de tesis'
+        ],
+        'ArchivoActaDeExamen' => [
+            'required_if' => 'Es necesario cargar el acta de examen'
+        ],
+        'DireccionRepositorio' => [
+            'required_if' => 'Es necesario registrar la dirección del repositorio',
+            'url' => 'La dirección URL debe ser valida',
+            'max' => 'La dirección URL es demasiado larga'
+        ],
+        'DireccionDocumento' => [
+            'required_if' => 'Es necesario registrar la dirección del documento en el repositorio',
+            'url' => 'La dirección URL debe ser valida',
+            'max' => 'La dirección URL es demasiado larga'
+        ],
         'Periodo' => [
             'required' => 'El periodo es requerido',
             'string' => 'El periodo tiene que ser un texto',
@@ -250,6 +279,56 @@ return [
             'required' => 'El nombre de la organizacion es requerido',
             'string' => 'El nombre de la organizacion tiene que ser un texto',
             'max' => 'El nombre de la organizacion es demasiado largo'
+        ],
+        'Director' => [
+            'required' => 'Es necesario definir al Director',
+            'different' => 'El profesor no puede asignarse a más de un tipo de colaboración'
+        ],
+        'IdDirector' => [
+            'required' => 'El profesor debe estar registrado en la base de datos'
+        ],
+        'ArchivoEvDirector' => [
+            'required_if' => 'La evidencia de evaluación es requerida'
+        ],
+        'Codirector' => [
+            'different' => 'El profesor no puede asignarse a más de un tipo de colaboración',
+            'required_with' => 'El Codirector es requerido si se carga su evaluación'
+        ],
+        'IdCodirector' => [
+            'required_with' => 'El profesor debe estar registrado en la base de datos'
+        ],
+        'ArchivoEvCodirector' => [
+            'required_with' => 'La evidencia de evaluación es requerida'
+        ],
+        'JuradoP' => [
+            'required_if' => 'Es necesario definir al Jurado Presidente',
+            'different' => 'El profesor no puede asignarse a más de un tipo de colaboración'
+        ],
+        'IdJuradoP' => [
+            'required_if' => 'El profesor debe estar registrado en la base de datos'
+        ],
+        'ArchivoEvJuradoP' => [
+            'required_if' => 'La evidencia de evaluación es requerida'
+        ],
+        'JuradoS' => [
+            'required_if' => 'Es necesario definir al Jurado Secretario',
+            'different' => 'El profesor no puede asignarse a más de un tipo de colaboración'
+        ],
+        'IdJuradoS' => [
+            'required_if' => 'El profesor debe estar registrado en la base de datos'
+        ],
+        'ArchivoEvJuradoS' => [
+            'required_if' => 'La evidencia de evaluación es requerida'
+        ],
+        'JuradoV' => [
+            'required_if' => 'Es necesario definir al Jurado Vocal',
+            'different' => 'El profesor no puede asignarse a más de un tipo de colaboración'
+        ],
+        'IdJuradoV' => [
+            'required_if' => 'El profesor debe estar registrado en la base de datos'
+        ],
+        'ArchivoEvJuradoV' => [
+            'required_if' => 'La evidencia de evaluación es requerida'
         ],
     ],
 

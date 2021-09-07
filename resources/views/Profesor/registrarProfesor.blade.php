@@ -215,64 +215,6 @@
                                     <button class="btn btn-sm" id="btnQuitarSuperacion" onclick="quitarSuperacionAcademica()" title="Quitar un registro de Curso" disabled><i class="fas fa-minus"></i></button>
                                 </div>
                                 <div id="Cursos">
-                                    <!--<div class="Cursos-form card" id="CardSA0'">
-                                        <form class="form-group" action="" name="CursoForm">
-                                            <div class="form-group">
-                                                <label style="display:block;">Tipo de Documento</label>
-                                                <div class="form-check-inline">
-                                                    <label class="form-check-label" for="Curso0">
-                                                        <input type="radio" class="form-check-input" id="Curso0" name="Tipo_Documento" value="2" checked onclick="SuperacionOtro(this, '0')">Curso
-                                                    </label>
-                                                </div>
-                                                <div class="form-check-inline">
-                                                    <label class="form-check-label" for="Certificado0">
-                                                        <input type="radio" class="form-check-input" id="Certificado0" name="Tipo_Documento" value="1" onclick="SuperacionOtro(this, '0')">Certificado
-                                                    </label>
-                                                </div>
-                                                <div class="form-check-inline">
-                                                        <input type="radio" class="form-check-input col-md-1" id="Otro0" name="Tipo_Documento" value="0" onclick="SuperacionOtro(this, '0')">
-                                                        <input class="form-control form-control-sm col-md-10" type="text" disabled placeholder="Otro" id="TextOtro0">
-                                                </div>
-                                            </div>
-                                            <div class="form-row">
-                                                <div class="form-group col-md-4">
-                                                    <select class="form-control" id="AnioSuperacion" name="Anio">
-                                                        <option value="">Año</option>
-                                                    </select>
-                                                </div>
-                                                <div class="form-group col-md-8">
-                                                    <input type="text" class="form-control" id="Periodo0'" name="Periodo" placeholder="Periodo">
-                                                    <span class="alertError" id="alertSuperacionPeriodo0ProfRegistro"></span>
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <textarea class="form-control" id="Descripcion0" rows="3" placeholder="Descripción" name="Descripcion"></textarea>
-                                                <span class="alertError" id="alertSuperacionDescripcion0ProfRegistro"></span>
-                                            </div>
-                                            <label>Archivo Evidencia</label>
-                                            <span class="alertError" id="alertSuperacionArchivoProfRegistro"></span>
-                                            <div class="container p-y-1 col-md-9">
-                                                <div class="row m-b-1">
-                                                    <div class="col-sm-12">
-                                                        <div class="form-group inputDnD">
-                                                            <label class="sr-only" for="inputFile">File Upload</label>
-                                                            <input type="file" name="Archivo" class="form-control-file text-primary font-weight-bold" id="ArchivoSuperacion0" accept="application/pdf" onchange="" data-title="Arrastre y suelte el archivo">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="container col-md-12">
-                                                <label>Vista Previa de Archivos Cargados</label>  
-                                                <table class="table table-sm">
-                                                    <thead>
-                                                        <tr><th>Archivos</th></tr>
-                                                    </thead>
-                                                    <tbody id="VistaPrevSuperacion0">
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </form>
-                                    </div>-->
                                 </div>
                             </div>
                             <div class="col-md-6" style="padding: 0 10px;">
@@ -284,64 +226,6 @@
                                     <button class="btn btn-sm" id="btnQuitarDistincion" onclick="quitarDistincion()" title="Quitar un registro de Distinción" disabled><i class="fas fa-minus"></i></button>
                                 </div>
                                 <div id="Distinciones">
-                                    <!--<div class="Distinciones-form card" id="CardDistincion0'">
-                                        <form class="form-group" action="" name="DistincionForm">
-                                            <div class="form-group">
-                                                <label style="display:block;">Tipo de Documento</label>
-                                                <div class="form-check-inline">
-                                                    <label class="form-check-label" for="Prodep0">
-                                                        <input type="radio" class="form-check-input" id="Prodep0" name="Tipo_Documento" value="PRODEP" checked onclick="DistincionOtro(this, '0')">PRODEP
-                                                    </label>
-                                                </div>
-                                                <div class="form-check-inline">
-                                                    <label class="form-check-label" for="SNI0">
-                                                        <input type="radio" class="form-check-input" id="sni0" name="Tipo_Documento" value="SNI" onclick="DistincionOtro(this, '0')">SNI
-                                                    </label>
-                                                </div>
-                                                <div class="form-check-inline">
-                                                        <input type="radio" class="form-check-input col-md-1" id="DistincionOtro0" name="Tipo_Documento" value="0" onclick="DistincionOtro(this, '0')">
-                                                        <input class="form-control form-control-sm col-md-10" type="text" disabled placeholder="Otro" id="TextDistincionOtro0">
-                                                </div>
-                                            </div>
-                                            <div class="form-row">
-                                                <div class="form-group col-md-4">
-                                                    <select class="form-control" id="AnioDistincion0" name="Anio">
-                                                        <option value="">Año</option>
-                                                    </select>
-                                                </div>
-                                                <div class="form-group col-md-8">
-                                                    <input type="text" class="form-control" id="PeriodoDistincion0'" name="Periodo" placeholder="Periodo">
-                                                    <span class="alertError" id="alertSuperacionPeriodo0ProfRegistro"></span>
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <textarea class="form-control" id="DescriocionDistincion0" rows="3" placeholder="Descripción" name="Descripcion"></textarea>
-                                                <span class="alertError" id="alertDistincionDescripcion0ProfRegistro"></span>
-                                            </div>
-                                            <label>Archivo Evidencia</label>
-                                            <span class="alertError" id="alertSuperacionArchivoProfRegistro"></span>
-                                            <div class="container p-y-1 col-md-9">
-                                                <div class="row m-b-1">
-                                                    <div class="col-sm-12">
-                                                        <div class="form-group inputDnD">
-                                                            <label class="sr-only" for="inputFile">File Upload</label>
-                                                            <input type="file" name="Archivo" class="form-control-file text-primary font-weight-bold" id="ArchivoDistincion0" accept="application/pdf" onchange="" data-title="Arrastre y suelte el archivo">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="container col-md-12">
-                                                <label>Vista Previa de Archivos Cargados</label>  
-                                                <table class="table table-sm">
-                                                    <thead>
-                                                        <tr><th>Archivos</th></tr>
-                                                    </thead>
-                                                    <tbody id="VistaPrevDistincion0">
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </form>
-                                    </div>-->
                                 </div>
                             </div>
                         </div>

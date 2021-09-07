@@ -85,4 +85,9 @@ class Generaciones extends Model
         $generaciones= Generaciones::select('id', 'Generacion', 'Id_Plan')->orderBy('Generacion', 'DESC')->get();
         return $generaciones;
     }
+
+    public function getAnioGen($idgen){
+        $gen = Generaciones::select('Anio_Inicio')->where('id', '=', $idgen)->first();
+        return $gen->Anio_Inicio;
+    }
 }

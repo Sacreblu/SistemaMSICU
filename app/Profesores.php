@@ -159,4 +159,9 @@ class Profesores extends Model
         
         $profesor->save();
     }
+
+    public function ObtenerProfesores(){
+        $profesores = Profesores::select('Nombre', 'Apellido_P', 'Apellido_M', 'id')->get();
+        return $profesores;
+    }
 }

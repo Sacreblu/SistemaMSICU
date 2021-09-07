@@ -76,6 +76,21 @@ class Estudiantes extends Model
         return $estudiantes;
     }
 
+    public function ObtenerEstudiantes(){
+        $estudiantes = Estudiantes::select('Nombre', 'Apellido_P', 'Apellido_M', 'id')->get();
+        return $estudiantes;
+    }
+
+    public function getEstudiante($request){
+        $estudiante = Estudiantes::join('generaciones', 'estudiantes.Id_Generacion', '=', 'generaciones.id')
+                ->join('l_g_a_c_s', 'estudiantes.Id_LGAC', '=', 'l_g_a_c_s.id')
+                ->select('estudiantes.Id_LGAC', 'l_g_a_c_s.Nombre as NombreLGAC', 'estudiantes.Id_Generacion', 'generaciones.Generacion as NombreGen')
+                ->where('estudiantes.id', '=', $request->get('idEstudiante'))
+                ->get();
+        
+        return $estudiante;
+    }
+
     public function RegistrarDatosGenerales($request){
         $estado = $request->get('Estado');
         $NombreCarta = null;
@@ -115,7 +130,7 @@ class Estudiantes extends Model
             }
 
             $extension = $archivo->getClientOriginalExtension();
-            $fileName = $inicialesEstudiante."-CARTA-LIBERACION".$extension;
+            $fileName = $inicialesEstudiante."-CARTA-LIBERACION.".$extension;
             $tmpPath = $archivo;
             $newPath = public_path().'/storage/Documentos/Estudiantes/CartasLiberacion/'.$idEstudiante.'/'.$fileName;
             move_uploaded_file($tmpPath,$newPath);

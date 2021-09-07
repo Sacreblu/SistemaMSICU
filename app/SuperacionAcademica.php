@@ -51,7 +51,7 @@ class SuperacionAcademica extends Model
         $inicialesProf = $inicialesProf . substr($profesor[0]->Apellido_M, 0, 1);
 
         try {
-            mkdir(public_path().'/storage/Documentos/SuperacionAcademica/'.$request->get('idProfesor').'/', 0700);
+            mkdir(public_path().'/storage/Documentos/Profesores/SuperacionAcademica/'.$request->get('idProfesor').'/', 0700);
         } catch (\Throwable $th) {
             //throw $th;
         }
@@ -59,7 +59,7 @@ class SuperacionAcademica extends Model
         $extension = $archivo->getClientOriginalExtension();
         $fileName = $inicialesProf."-".$tipoDocumento."-".$iniciales.'-'.$anio.'.'.$extension;
         $tmpPath = $archivo;
-        $newPath = public_path().'/storage/Documentos/SuperacionAcademica/'.$request->get('idProfesor').'/'.$fileName;
+        $newPath = public_path().'/storage/Documentos/Profesores/SuperacionAcademica/'.$request->get('idProfesor').'/'.$fileName;
         move_uploaded_file($tmpPath,$newPath);
 
         $datos = new SuperacionAcademica ([
@@ -69,7 +69,7 @@ class SuperacionAcademica extends Model
             'Periodo'=> $request->get('Periodo'),
             'Anio'=> $request->get('Anio'),
             'Descripcion'=> $request->get('Descripcion'),
-            'Ruta_Archivo'=> '/storage/Documentos/SuperacionAcademica/'.$request->get('idProfesor').'/'.$fileName,
+            'Ruta_Archivo'=> '/storage/Documentos/Profesores/SuperacionAcademica/'.$request->get('idProfesor').'/'.$fileName,
             'NombreArchivo'=> $fileName
         ]); 
         $datos->save();
@@ -121,12 +121,12 @@ class SuperacionAcademica extends Model
             $extension = $archivo->getClientOriginalExtension();
             $fileName = $inicialesProf."-".$tipoDocumento."-".$iniciales.'-'.$anio.'.'.$extension;
             $tmpPath = $archivo;
-            $newPath = public_path().'/storage/Documentos/SuperacionAcademica/'.$request->get('idProfesor').'/'.$fileName;
+            $newPath = public_path().'/storage/Documentos/Profesores/SuperacionAcademica/'.$request->get('idProfesor').'/'.$fileName;
             move_uploaded_file($tmpPath,$newPath);
         }else{
             $extension = "pdf";
             $fileName = $inicialesProf."-".$tipoDocumento."-".$iniciales.'-'.$anio.'.'.$extension;
-            $newPath = public_path().'/storage/Documentos/SuperacionAcademica/'.$request->get('idProfesor').'/'.$fileName;
+            $newPath = public_path().'/storage/Documentos/Profesores/SuperacionAcademica/'.$request->get('idProfesor').'/'.$fileName;
             rename(public_path().$Superacion->Ruta_Archivo,$newPath);
         }
 
@@ -136,7 +136,7 @@ class SuperacionAcademica extends Model
         $Superacion->Anio = $request->get('Anio');
         $Superacion->Periodo = $request->get('Periodo');
         $Superacion->Descripcion = $request->get('Descripcion');
-        $Superacion->Ruta_Archivo = '/storage/Documentos/SuperacionAcademica/'.$request->get('idProfesor').'/'.$fileName;
+        $Superacion->Ruta_Archivo = '/storage/Documentos/Profesores/SuperacionAcademica/'.$request->get('idProfesor').'/'.$fileName;
         $Superacion->NombreArchivo = $fileName;
         
         $Superacion->save();

@@ -51,7 +51,7 @@ class TrayectoriaProfesional extends Model
         $inicialesProf = $inicialesProf . substr($profesor[0]->Apellido_M, 0, 1);
         
         try {
-            mkdir(public_path().'/storage/Documentos/TrayectoriaProfesional/'.$request->get('idProfesor').'/', 0700);
+            mkdir(public_path().'/storage/Documentos/Profesores/TrayectoriaProfesional/'.$request->get('idProfesor').'/', 0700);
         } catch (\Throwable $th) {
             //throw $th;
         }
@@ -59,7 +59,7 @@ class TrayectoriaProfesional extends Model
         $extension = $archivo->getClientOriginalExtension();
         $fileName = $inicialesProf."-".$tipoDocumento."-".$iniciales.'-'.$anio.'.'.$extension;
         $tmpPath = $archivo;
-        $newPath = public_path().'/storage/Documentos/TrayectoriaProfesional/'.$request->get('idProfesor').'/'.$fileName;
+        $newPath = public_path().'/storage/Documentos/Profesores/TrayectoriaProfesional/'.$request->get('idProfesor').'/'.$fileName;
         move_uploaded_file($tmpPath,$newPath);
 
         $datos = new TrayectoriaProfesional ([
@@ -69,7 +69,7 @@ class TrayectoriaProfesional extends Model
             'Periodo'=> $request->get('Periodo'),
             'Anio'=> $request->get('Anio'),
             'Descripcion'=> $request->get('Descripcion'),
-            'Ruta_Archivo'=> '/storage/Documentos/TrayectoriaProfesional/'.$request->get('idProfesor').'/'.$fileName,
+            'Ruta_Archivo'=> '/storage/Documentos/Profesores/TrayectoriaProfesional/'.$request->get('idProfesor').'/'.$fileName,
             'NombreArchivo'=> $fileName
         ]); 
         $datos->save();
@@ -122,12 +122,12 @@ class TrayectoriaProfesional extends Model
             $extension = $archivo->getClientOriginalExtension();
             $fileName = $inicialesProf."-".$tipoDocumento."-".$iniciales.'-'.$anio.'.'.$extension;
             $tmpPath = $archivo;
-            $newPath = public_path().'/storage/Documentos/TrayectoriaProfesional/'.$request->get('idProfesor').'/'.$fileName;
+            $newPath = public_path().'/storage/Documentos/Profesores/TrayectoriaProfesional/'.$request->get('idProfesor').'/'.$fileName;
             move_uploaded_file($tmpPath,$newPath);
         }else{
             $extension = "pdf";
             $fileName = $inicialesProf."-".$tipoDocumento."-".$iniciales.'-'.$anio.'.'.$extension;
-            $newPath = public_path().'/storage/Documentos/TrayectoriaProfesional/'.$request->get('idProfesor').'/'.$fileName;
+            $newPath = public_path().'/storage/Documentos/Profesores/TrayectoriaProfesional/'.$request->get('idProfesor').'/'.$fileName;
             rename(public_path().$Trayectoria->Ruta_Archivo,$newPath);
         }
 
@@ -137,7 +137,7 @@ class TrayectoriaProfesional extends Model
         $Trayectoria->Anio = $request->get('Anio');
         $Trayectoria->Periodo = $request->get('Periodo');
         $Trayectoria->Descripcion = $request->get('Descripcion');
-        $Trayectoria->Ruta_Archivo = '/storage/Documentos/TrayectoriaProfesional/'.$request->get('idProfesor').'/'.$fileName;
+        $Trayectoria->Ruta_Archivo = '/storage/Documentos/Profesores/TrayectoriaProfesional/'.$request->get('idProfesor').'/'.$fileName;
         $Trayectoria->NombreArchivo = $fileName;
         
         $Trayectoria->save();
