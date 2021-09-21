@@ -7,6 +7,7 @@ use App\TiposColaboraciones;
 use App\Paises;
 use App\LGAC;
 use App\GradosAcademicos;
+use App\Sectores;
 use App\DocumentosSuperacion;
 use App\TiposTrayectorias;
 use App\PlanEstudios;
@@ -50,6 +51,11 @@ class AuxiliarController extends Controller
     public function TipoTrayectoria(Request $request){
         $tipos = new TiposTrayectorias();
         return $tipos->Tipos();
+    }
+    
+    public function Sectores(Request $request){
+        $sectores = new Sectores();
+        return $sectores->Tipos();
     }
 
     public function LGACsByPlan(){

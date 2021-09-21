@@ -234,6 +234,11 @@ return [
             'string' => 'El lugar tiene que ser un texto',
             'max' => 'El lugar es demasiado largo'
         ],
+        'Ciudad' => [
+            'required' => 'La ciudad es requerido',
+            'string' => 'La ciudad tiene que ser un texto',
+            'max' => 'La ciudad es demasiado largo'
+        ],
         'Archivo' => [
             'required' => 'El archivo evidencia es requerido'
         ],
@@ -329,6 +334,14 @@ return [
         ],
         'ArchivoEvJuradoV' => [
             'required_if' => 'La evidencia de evaluación es requerida'
+        ],
+        'FechaComienzo' => [
+            'required' => 'La fecha de comienzo es requerida',
+            'before' => 'La fecha de comienzo debe ser anterior a la fecha de conclusión'
+        ],
+        'FechaConclusion' => [
+            'required' => 'La fecha de conclusion es requerida',
+            'after' => 'La fecha de conclusión debe ser posterior a la fecha de comienzo'
         ],
     ],
 

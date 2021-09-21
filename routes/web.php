@@ -127,6 +127,21 @@ Route::post('/Trabajos_Recepcionales/Registrar_Trabajo_Recepcional/RegistrarDG',
 Route::post('/Trabajos_Recepcionales/Modificar_Trabajo_Recepcional/ModificarDG/{id}', 'TrabajosRecepcionalesController@ModificarDG');
 Route::post('/Trabajos_Recepcionales/EliminarTesis', 'TrabajosRecepcionalesController@EliminarTesis');
 
+//Convenios de Movilidad
+Route::get('/Convenios_Movilidad/Registrar_Convenios_Movilidad', 'ConveniosMovilidadController@registrarConveniosVista');
+Route::get('/Convenios_Movilidad/Modificar_Convenios_Movilidad/{id}', 'ConveniosMovilidadController@VistaModificarConvenio');
+Route::get('/Convenios_Movilidad', 'ConveniosMovilidadController@mostrarConvenios');
+
+Route::post('/Convenios_Movilidad/FiltradoTablaConvenios', 'ConveniosMovilidadController@FiltradoConvenios');
+Route::post('/Convenios_Movilidad/BusquedaConvenios', 'ConveniosMovilidadController@BusquedaConvenios');
+Route::post('/Convenios_Movilidad/obtenerInformacionConvenios', 'ConveniosMovilidadController@obtenerInformacionConvenio');
+
+Route::post('/Convenios_Movilidad/Registrar_Convenios_Movilidad/ValidarDatosGeneralesConvenio', 'ConveniosMovilidadController@ValidarDatosGeneralesConvenio');
+Route::post('/Convenios_Movilidad/Modificar_Convenios_Movilidad/ValidarDatosGeneralesConvenio/{id}', 'ConveniosMovilidadController@ValidarDatosGeneralesConvenioModificar');
+
+Route::post('/Convenios_Movilidad/Registrar_Convenios_Movilidad/RegistrarDG', 'ConveniosMovilidadController@RegistrarDG');
+Route::post('/Convenios_Movilidad/Modificar_Convenios_Movilidad/ModificarDG/{id}', 'ConveniosMovilidadController@ModificarDG');
+Route::post('/Convenios_Movilidad/EliminarConvenio', 'ConveniosMovilidadController@EliminarConvenio');
 
 //Controlador Auxiliar
 Route::post('/Auxiliar/TipoContratacion', 'AuxiliarController@TipoContrataciones');
@@ -136,6 +151,7 @@ Route::post('/Auxiliar/Paises', 'AuxiliarController@Paises');
 Route::post('/Auxiliar/Grados', 'AuxiliarController@Grados');
 Route::post('/Auxiliar/TipoSuperacion', 'AuxiliarController@TipoSuperacion');
 Route::post('/Auxiliar/TipoTrayectoria', 'AuxiliarController@TipoTrayectoria');
+Route::post('/Auxiliar/Sectores', 'AuxiliarController@Sectores');
 Route::post('/Auxiliar/LGACsByPlan', 'AuxiliarController@LGACsByPlan');
 Route::post('/Auxiliar/getLGACs', 'AuxiliarController@getLGACs');
 Route::post('/Auxiliar/CartasNAB', 'AuxiliarController@CartasNAB');
