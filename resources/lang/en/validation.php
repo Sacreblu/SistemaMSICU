@@ -340,8 +340,22 @@ return [
             'before' => 'La fecha de comienzo debe ser anterior a la fecha de conclusión'
         ],
         'FechaConclusion' => [
-            'required' => 'La fecha de conclusion es requerida',
             'after' => 'La fecha de conclusión debe ser posterior a la fecha de comienzo'
+        ],
+        'NombreCongreso' => [
+            'required_if' => 'El nombre del congreso es requerido',
+            'string' => 'El nombre tiene que ser un texto',
+            'max' => 'El nombre excede el maximo de caracteres'
+        ],
+        'Acronimo' => [
+            'required_if' => 'El acrónimo del congreso es requerido',
+            'string' => 'El acrónimo tiene que ser un texto',
+            'max' => 'El acrónimo excede el maximo de caracteres'
+        ],
+        'Dependencia' => [
+            'required_if' => 'La dependencia es requerida',
+            'string' => 'La dependencia tiene que ser un texto',
+            'max' => 'La dependencia excede el maximo de caracteres'
         ],
     ],
 

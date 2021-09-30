@@ -50,12 +50,15 @@ class ConveniosMovilidadController extends Controller
 
     public function ValidarDatosGeneralesConvenio(Request $request){
         $validator = Validator::make($request->all(), [
-                'Nombre'=>'required|string',
+                'Sector'  => 'required',
+                'NombreCongreso'=>'nullable|required_if:Sector,==,5|string|max:80',
                 'FechaComienzo'=>'required|before:FechaConclusion',
-                'FechaConclusion'=>'required|after:FechaComienzo',
+                'FechaConclusion'=>'nullable|after:FechaComienzo',
                 'Ciudad' => 'required|string|max:30',
                 'Pais'=>'required|string|max:20',
-                'Institucion'=>'required|string|max:50'
+                'Institucion'=>'required|string|max:100',
+                'Acronimo'=>'nullable|required_if:Sector,==,5|string|max:20',
+                'Dependencia'=>'nullable|required_if:Sector,==,4|string|max:50'
             ]);
         if($validator->fails()){
             return $validator->errors();
@@ -66,12 +69,15 @@ class ConveniosMovilidadController extends Controller
 
     public function ValidarDatosGeneralesConvenioModificar(Request $request, $id){
         $validator = Validator::make($request->all(), [
-                'Nombre'=>'required|string',
+                'Sector'  => 'required',
+                'NombreCongreso'=>'nullable|required_if:Sector,==,5|string|max:80',
                 'FechaComienzo'=>'required|before:FechaConclusion',
-                'FechaConclusion'=>'required|after:FechaComienzo',
+                'FechaConclusion'=>'nullable|after:FechaComienzo',
                 'Ciudad' => 'required|string|max:30',
                 'Pais'=>'required|string|max:20',
-                'Institucion'=>'required|string|max:50'
+                'Institucion'=>'required|string|max:100',
+                'Acronimo'=>'nullable|required_if:Sector,==,5|string|max:20',
+                'Dependencia'=>'nullable|required_if:Sector,==,4|string|max:50'
             ]);
         if($validator->fails()){
             return $validator->errors();

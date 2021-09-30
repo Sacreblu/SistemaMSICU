@@ -16,11 +16,14 @@ class CreateConveniosMovilidadsTable extends Migration
         Schema::create('convenios_movilidads', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->id('id');
-            $table->char('Nombre_Convenio', 30)->nullable($value = false);
+            $table->char('Nombre_Clave', 30)->nullable($value = false);
+            $table->char('Dependencia', 50)->nullable();
+            $table->char('NombreCongreso', 80)->nullable();
+            $table->char('AcronimoCongreso', 20)->nullable();
             $table->bigInteger('Sector')->unsigned();
             $table->date('Fecha_Inicio');
-            $table->date('Fecha_Conclusion');
-            $table->char('Institucion_Organizacion', 50)->nullable($value = false);
+            $table->date('Fecha_Conclusion')->nullable();
+            $table->char('Institucion_Organizacion', 100)->nullable($value = false);
             $table->char('Ciudad', 30)->nullable($value = false);
             $table->bigInteger('Pais')->unsigned(); 
             $table->text('Ruta_Evidencia', 350)->nullable();

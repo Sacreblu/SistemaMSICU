@@ -14,6 +14,7 @@ function initializeConvenio() {
 	
 	getPaises();
 	getSectores();
+	setInformacion();
 
 }
 
@@ -31,6 +32,32 @@ function limpiarTMP() {
 			console.log(errorThrown);
 		}
 	});
+}
+
+function setInformacion() {
+	var valor = informacion.idSector;
+	
+	switch (valor) {
+		case 5:
+			$('#divDependencia').css("display","none");
+			$('#divNombre').css("display","block");
+			$('#divAcronimo').css("display","block");
+
+			$('#NombreCongreso').val(informacion.NombreCongreso);
+			$('#Acronimo').val(informacion.AcronimoCongreso);
+			break;
+		case 4:
+			$('#divNombre').css("display","none");
+			$('#divAcronimo').css("display","none");
+			$('#divDependencia').css("display","block");
+			$('#Dependencia').val(informacion.Dependencia);
+			break;
+		default:
+			$('#divNombre').css("display","none");
+			$('#divAcronimo').css("display","none");
+			$('#divDependencia').css("display","none");
+			break;
+	}
 }
 
 function getPaises() {
@@ -89,6 +116,28 @@ function getSectores() {
 	});
 }
 
+function ControladorMovilidad(){
+	var valor = $('#Sector').val();
+	
+	switch (valor) {
+		case "5":
+			$('#divDependencia').css("display","none");
+			$('#divNombre').css("display","block");
+			$('#divAcronimo').css("display","block");
+			break;
+		case "4":
+			$('#divNombre').css("display","none");
+			$('#divAcronimo').css("display","none");
+			$('#divDependencia').css("display","block");
+			break;
+		default:
+			$('#divNombre').css("display","none");
+			$('#divAcronimo').css("display","none");
+			$('#divDependencia').css("display","none");
+			break;
+	}
+}
+
 //FUNCIONES PARA ARCHIVO Convenio
 function ControladorConvenio(){
 	var Archivo = document.getElementById('ArchivoConvenio').files;
@@ -145,7 +194,9 @@ function ValidarDatosG(){
 		contentType: false,
 		processData: false,
 		success: function(resultado){
-			$("#alertNombreModificar").html("");
+			$("#alertNombreCongresoModificar").html("");
+			$("#alertDependenciaModificar").html("");
+			$("#alertAcronimoModificar").html("");
 			$("#alertFechaComienzoModificar").html("");
 			$("#alertFechaConclusionModificar").html("");
 			$("#alertCiudadModificar").html("");

@@ -28,7 +28,7 @@ class TrabajosRecepcionales extends Model
                         ->join('generaciones', 'trabajos_recepcionales.Id_Generacion', '=', 'generaciones.id')
                         ->join('l_g_a_c_s', 'trabajos_recepcionales.Id_LGAC', '=', 'l_g_a_c_s.id')
                         ->join('plan_estudios', 'l_g_a_c_s.Id_Plan', '=', 'plan_estudios.id')
-                        ->select('trabajos_recepcionales.id', 'trabajos_recepcionales.Titulo', 'estudiantes.Nombre', 'estudiantes.Apellido_P', 'estudiantes.Apellido_M', 'generaciones.Generacion', 'l_g_a_c_S.Nombre as NombreLGAC', 'plan_estudios.Anio', 'trabajos_recepcionales.Estado')
+                        ->select('trabajos_recepcionales.id', 'trabajos_recepcionales.Titulo', 'estudiantes.Nombre', 'estudiantes.Apellido_P', 'estudiantes.Apellido_M', 'generaciones.Generacion', 'l_g_a_c_s.Nombre as NombreLGAC', 'plan_estudios.Anio', 'trabajos_recepcionales.Estado')
                         ->orderBy('Apellido_P', 'DESC')->get();
         return $tesis;
     }
@@ -42,7 +42,7 @@ class TrabajosRecepcionales extends Model
                     ->join('generaciones', 'trabajos_recepcionales.Id_Generacion', '=', 'generaciones.id')
                     ->join('l_g_a_c_s', 'trabajos_recepcionales.Id_LGAC', '=', 'l_g_a_c_s.id')
                     ->join('plan_estudios', 'l_g_a_c_s.Id_Plan', '=', 'plan_estudios.id')
-                    ->select('trabajos_recepcionales.id', 'trabajos_recepcionales.Titulo', 'estudiantes.Nombre', 'estudiantes.Apellido_P', 'estudiantes.Apellido_M', 'generaciones.Generacion', 'l_g_a_c_S.Nombre as NombreLGAC', 'plan_estudios.Anio', 'trabajos_recepcionales.Estado')
+                    ->select('trabajos_recepcionales.id', 'trabajos_recepcionales.Titulo', 'estudiantes.Nombre', 'estudiantes.Apellido_P', 'estudiantes.Apellido_M', 'generaciones.Generacion', 'l_g_a_c_s.Nombre as NombreLGAC', 'plan_estudios.Anio', 'trabajos_recepcionales.Estado')
                     ->orderBy('Apellido_P', 'DESC')->get();
                 break;
             default:
@@ -50,7 +50,7 @@ class TrabajosRecepcionales extends Model
                     ->join('generaciones', 'trabajos_recepcionales.Id_Generacion', '=', 'generaciones.id')
                     ->join('l_g_a_c_s', 'trabajos_recepcionales.Id_LGAC', '=', 'l_g_a_c_s.id')
                     ->join('plan_estudios', 'l_g_a_c_s.Id_Plan', '=', 'plan_estudios.id')
-                    ->select('trabajos_recepcionales.id', 'trabajos_recepcionales.Titulo', 'estudiantes.Nombre', 'estudiantes.Apellido_P', 'estudiantes.Apellido_M', 'generaciones.Generacion', 'l_g_a_c_S.Nombre as NombreLGAC', 'plan_estudios.Anio', 'trabajos_recepcionales.Estado')
+                    ->select('trabajos_recepcionales.id', 'trabajos_recepcionales.Titulo', 'estudiantes.Nombre', 'estudiantes.Apellido_P', 'estudiantes.Apellido_M', 'generaciones.Generacion', 'l_g_a_c_s.Nombre as NombreLGAC', 'plan_estudios.Anio', 'trabajos_recepcionales.Estado')
                     ->where('trabajos_recepcionales.Estado', '=', $mostrar)
                     ->orderBy('Apellido_P', 'DESC')->get();
                 break;
@@ -67,7 +67,7 @@ class TrabajosRecepcionales extends Model
                 ->join('generaciones', 'trabajos_recepcionales.Id_Generacion', '=', 'generaciones.id')
                 ->join('l_g_a_c_s', 'trabajos_recepcionales.Id_LGAC', '=', 'l_g_a_c_s.id')
                 ->join('plan_estudios', 'l_g_a_c_s.Id_Plan', '=', 'plan_estudios.id')
-                ->select('trabajos_recepcionales.id', 'trabajos_recepcionales.Titulo', 'estudiantes.Nombre', 'estudiantes.Apellido_P', 'estudiantes.Apellido_M', 'generaciones.Generacion', 'l_g_a_c_S.Nombre as NombreLGAC', 'plan_estudios.Anio', 'trabajos_recepcionales.Estado')
+                ->select('trabajos_recepcionales.id', 'trabajos_recepcionales.Titulo', 'estudiantes.Nombre', 'estudiantes.Apellido_P', 'estudiantes.Apellido_M', 'generaciones.Generacion', 'l_g_a_c_s.Nombre as NombreLGAC', 'plan_estudios.Anio', 'trabajos_recepcionales.Estado')
                 ->where($opcion, 'like', '%'.$text.'%')
                 ->orderBy('Apellido_P', 'DESC')->get();
             }else{
@@ -75,7 +75,7 @@ class TrabajosRecepcionales extends Model
                 ->join('generaciones', 'trabajos_recepcionales.Id_Generacion', '=', 'generaciones.id')
                 ->join('l_g_a_c_s', 'trabajos_recepcionales.Id_LGAC', '=', 'l_g_a_c_s.id')
                 ->join('plan_estudios', 'l_g_a_c_s.Id_Plan', '=', 'plan_estudios.id')
-                ->select('trabajos_recepcionales.id', 'trabajos_recepcionales.Titulo', 'estudiantes.Nombre', 'estudiantes.Apellido_P', 'estudiantes.Apellido_M', 'generaciones.Generacion', 'l_g_a_c_S.Nombre as NombreLGAC', 'plan_estudios.Anio', 'trabajos_recepcionales.Estado')
+                ->select('trabajos_recepcionales.id', 'trabajos_recepcionales.Titulo', 'estudiantes.Nombre', 'estudiantes.Apellido_P', 'estudiantes.Apellido_M', 'generaciones.Generacion', 'l_g_a_c_s.Nombre as NombreLGAC', 'plan_estudios.Anio', 'trabajos_recepcionales.Estado')
                 ->where('estudiantes.Nombre', 'like', '%'.$text.'%')
                 ->orWhere('estudiantes.Apellido_P', 'like', '%'.$text.'%')
                 ->orWhere('estudiantes.Apellido_M', 'like', '%'.$text.'%')
@@ -86,7 +86,7 @@ class TrabajosRecepcionales extends Model
                     ->join('generaciones', 'trabajos_recepcionales.Id_Generacion', '=', 'generaciones.id')
                     ->join('l_g_a_c_s', 'trabajos_recepcionales.Id_LGAC', '=', 'l_g_a_c_s.id')
                     ->join('plan_estudios', 'l_g_a_c_s.Id_Plan', '=', 'plan_estudios.id')
-                    ->select('trabajos_recepcionales.id', 'trabajos_recepcionales.Titulo', 'estudiantes.Nombre', 'estudiantes.Apellido_P', 'estudiantes.Apellido_M', 'generaciones.Generacion', 'l_g_a_c_S.Nombre as NombreLGAC', 'plan_estudios.Anio', 'trabajos_recepcionales.Estado')
+                    ->select('trabajos_recepcionales.id', 'trabajos_recepcionales.Titulo', 'estudiantes.Nombre', 'estudiantes.Apellido_P', 'estudiantes.Apellido_M', 'generaciones.Generacion', 'l_g_a_c_s.Nombre as NombreLGAC', 'plan_estudios.Anio', 'trabajos_recepcionales.Estado')
                     ->orderBy('Apellido_P', 'DESC')->get();
         }
             
@@ -99,7 +99,7 @@ class TrabajosRecepcionales extends Model
                 ->join('generaciones', 'trabajos_recepcionales.Id_Generacion', '=', 'generaciones.id')
                 ->join('l_g_a_c_s', 'trabajos_recepcionales.Id_LGAC', '=', 'l_g_a_c_s.id')
                 ->join('plan_estudios', 'l_g_a_c_s.Id_Plan', '=', 'plan_estudios.id')
-                ->select('trabajos_recepcionales.id', 'trabajos_recepcionales.Id_Autor', 'estudiantes.Nombre', 'estudiantes.Apellido_P', 'estudiantes.Apellido_M', 'trabajos_recepcionales.Titulo', 'trabajos_recepcionales.Id_Generacion', 'generaciones.Generacion', 'trabajos_recepcionales.Id_LGAC', 'l_g_a_c_S.Nombre as NombreLGAC', 'plan_estudios.Anio', 'trabajos_recepcionales.Estado', 'Direccion_Repositorio', 'Direccion_Documento', 'Mes_Publicacion', 'Anio_Publicacion', 'Ruta_Archivo_Tesis', 'Nombre_Archivo_Tesis', 'Ruta_Acta_Examen', 'Nombre_Acta_Examen')
+                ->select('trabajos_recepcionales.id', 'trabajos_recepcionales.Id_Autor', 'estudiantes.Nombre', 'estudiantes.Apellido_P', 'estudiantes.Apellido_M', 'trabajos_recepcionales.Titulo', 'trabajos_recepcionales.Id_Generacion', 'generaciones.Generacion', 'trabajos_recepcionales.Id_LGAC', 'l_g_a_c_s.Nombre as NombreLGAC', 'plan_estudios.Anio', 'trabajos_recepcionales.Estado', 'Direccion_Repositorio', 'Direccion_Documento', 'Mes_Publicacion', 'Anio_Publicacion', 'Ruta_Archivo_Tesis', 'Nombre_Archivo_Tesis', 'Ruta_Acta_Examen', 'Nombre_Acta_Examen')
                 ->where('trabajos_recepcionales.id', '=', $idTesis)->first();
         return $tesis;
     }

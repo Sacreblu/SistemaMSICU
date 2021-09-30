@@ -16,7 +16,7 @@ class CreateSectoresTable extends Migration
         Schema::create('sectores', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->id('id');
-            $table->char('Sector', 25);
+            $table->char('Sector', 50);
             $table->timestamps();
         });
     }

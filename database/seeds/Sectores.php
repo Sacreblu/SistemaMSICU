@@ -11,7 +11,7 @@ class Sectores extends Seeder
      */
     public function run()
     {
-        $sector = array('Evento Académico', 'Productivo', 'Social', 'Gubernamental', 'Estancia Académica', 'Congreso');
+        $sector = array('Practica de Movilidad en el Sector Social', 'Practica de Movilidad en el Sector Productivo', 'Practica de Movilidad en el Sector Gubernamental', 'Estancia Académica', 'Congreso');
         for ($i=0; $i < count($sector); $i++) { 
             DB::table('sectores')->insert([
                 'Sector' => $sector[$i]

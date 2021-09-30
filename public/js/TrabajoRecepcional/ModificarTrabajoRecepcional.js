@@ -375,13 +375,16 @@ function setColaboraciones(){
 	}
 	
 	if(informacion[0].DatosGenerales.Estado != "EnProceso"){
-		$("#NombreArchivoEvDirector").val(informacion[0].Colaboraciones.Nombre_Ev_Director);
-		var evDirector = '<tr>';
-			evDirector += '<td style="vertical-align:middle; text-align:center"><a href="'+informacion[0].Colaboraciones.Ruta_Ev_Director+'" target="_blank" rel="noopener noreferrer">'+informacion[0].Colaboraciones.Nombre_Ev_Director+'</a></td>';
-		evDirector += '</tr>';
-		$("#EvDirectorGuardado").html(evDirector);
+		if (informacion[0].Colaboraciones.Ruta_Ev_Director!=null) {
+			$("#NombreArchivoEvDirector").val(informacion[0].Colaboraciones.Nombre_Ev_Director);
+			var evDirector = '<tr>';
+				evDirector += '<td style="vertical-align:middle; text-align:center"><a href="'+informacion[0].Colaboraciones.Ruta_Ev_Director+'" target="_blank" rel="noopener noreferrer">'+informacion[0].Colaboraciones.Nombre_Ev_Director+'</a></td>';
+			evDirector += '</tr>';
+			$("#EvDirectorGuardado").html(evDirector);
+		}
+		
 
-		if(informacion[0].Colaboraciones.Codirector!=null){
+		if(informacion[0].Colaboraciones.Codirector!=null & informacion[0].Colaboraciones.Ruta_Ev_Codirector!=null){
 			$("#NombreArchivoEvCodirector").val(informacion[0].Colaboraciones.Nombre_Ev_Codirector);
 			var evCodirector = '<tr>';
 				evCodirector += '<td style="vertical-align:middle; text-align:center"><a href="'+informacion[0].Colaboraciones.Ruta_Ev_Codirector+'" target="_blank" rel="noopener noreferrer">'+informacion[0].Colaboraciones.Nombre_Ev_Codirector+'</a></td>';

@@ -25,15 +25,19 @@
             <div class="form-row" style="padding: 0 30px">
                 <div class="col-md-6">
                     <div class="form-group" style="text-align: left;">
-                        <label style="display:block;">Sector</label>
-                        <div id="setSectores">
-
-                        </div>
+                        <label for="Sector">Tipo de Movilidad</label>
+                        <select class="form-control" id="Sector" name="Sector">
+                            <Option value="1">Practica de Movilidad en el Sector Social</Option>
+                            <Option value="2">Practica de Movilidad en el Sector Productivo</Option>
+                            <Option value="3">Practica de Movilidad en el Sector Gubernamental</Option>
+                            <Option value="4">Estancia Académica</Option>
+                            <Option value="5">Congreso</Option>
+                        </select>
                     </div>
-                    <div class="form-group" style="text-align: left;">
-                        <label for="Nombre">Nombre del Convenio</label>
-                        <input type="text" class="form-control" id="Nombre" name="Nombre" value="{{$informacion->Nombre_Convenio}}">
-                        <span class="alertError" id="alertNombreModificar"></span>
+                    <div id="divNombre" class="form-group" style="text-align: left; display:none">
+                        <label for="NombreCongreso">Nombre Completo del Congreso</label>
+                        <input type="text" class="form-control" id="NombreCongreso" name="NombreCongreso">
+                        <span class="alertError" id="alertNombreCongresoModificar"></span>
                     </div>
                     <div class="row">
                         <div class="form-group col-md-6" style="text-align: left;">
@@ -65,6 +69,16 @@
                         <label for="Institucion">Institución u Organización</label>
                         <input type="text" class="form-control" id="Institucion" value="{{$informacion->Institucion_Organizacion}}" name="Institucion">
                         <span class="alertError" id="alertInstitucionModificar"></span>
+                    </div>
+                    <div id="divAcronimo" class="form-group" style="text-align: left; display:none">
+                        <label for="Acronimo">Acrónimo del Congreso</label>
+                        <input type="text" class="form-control" id="Acronimo" name="Acronimo">
+                        <span class="alertError" id="alertAcronimoRegistro"></span>
+                    </div>
+                    <div id="divDependencia" class="form-group" style="text-align: left; display:none">
+                        <label for="Dependencia">Dependencia de la Institución</label>
+                        <input type="text" class="form-control" id="Dependencia" name="Dependencia">
+                        <span class="alertError" id="alertDependenciaRegistro"></span>
                     </div>
                     <br>
                     <div class="container">

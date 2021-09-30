@@ -70,7 +70,7 @@ function filtradoConvenio(){
 			var tabla="";
 			for (let i = 0; i < longArray; i++) {
 				tabla = tabla + '<tr>';
-				tabla = tabla + '<td style="vertical-align:middle; text-align:center" onclick="verInformacionConvenio(\''+resultado[0].id+'\')">' + resultado[0].Nombre_Convenio + '</td>';
+				tabla = tabla + '<td style="vertical-align:middle; text-align:center" onclick="verInformacionConvenio(\''+resultado[0].id+'\')">' + resultado[0].Nombre_Clave + '</td>';
 				tabla = tabla + '<td style="vertical-align:middle; text-align:center" onclick="verInformacionConvenio(\''+resultado[0].id+'\')">' + resultado[0].Sector + '</td>';
 				tabla = tabla + '<td style="vertical-align:middle; text-align:center" onclick="verInformacionConvenio(\''+resultado[0].id+'\')">' + resultado[0].Institucion_Organizacion + '</td>';
 				tabla = tabla + '<td style="vertical-align:middle; text-align:center" onclick="verInformacionConvenio(\''+resultado[0].id+'\')">' + resultado[0].Fecha_Conclusion + '</td>';
@@ -109,7 +109,7 @@ function busquedaConvenio() {
 			var tabla="";
 			for (let i = 0; i < longArray; i++) {
 				tabla = tabla + '<tr>';
-				tabla = tabla + '<td style="vertical-align:middle; text-align:center" onclick="verInformacionConvenio(\''+resultado[i].id+'\')">' + resultado[i].Nombre_Convenio + '</td>';
+				tabla = tabla + '<td style="vertical-align:middle; text-align:center" onclick="verInformacionConvenio(\''+resultado[i].id+'\')">' + resultado[i].Nombre_Clave + '</td>';
 				tabla = tabla + '<td style="vertical-align:middle; text-align:center" onclick="verInformacionConvenio(\''+resultado[i].id+'\')">' + resultado[i].Sector + '</td>';
 				tabla = tabla + '<td style="vertical-align:middle; text-align:center" onclick="verInformacionConvenio(\''+resultado[i].id+'\')">' + resultado[i].Institucion_Organizacion + '° Gen</td>';
 				tabla = tabla + '<td style="vertical-align:middle; text-align:center" onclick="verInformacionConvenio(\''+resultado[i].id+'\')">' + resultado[i].Fecha_Conclusion +'</td>';
@@ -144,7 +144,7 @@ function verInformacionConvenio(idConvenio){
 		success: function(resultado){
 			console.log(resultado);
 
-			$('#Nombre_Convenio').html(resultado.Nombre_Convenio);
+			$('#Nombre_Clave').html(resultado.Nombre_Clave);
 			$('#Sector').html(resultado.Sector);
 			$('#F_Comienzo').html(resultado.Fecha_Inicio);
 			$('#F_Conclusion').html(resultado.Fecha_Conclusion);
@@ -159,6 +159,22 @@ function verInformacionConvenio(idConvenio){
 				$('#EvidenciaConvenio').html(EvidenciaConvenio);
 			}else{
 				$('#EvidenciaConvenio').html("*Sin especificar*");
+			}
+
+			if(resultado.idSector==5){
+				$('#divNombreCongreso').css("display","inline-block");
+				$('#divAcronimoCongreso').css("display","inline-block");
+				$('#NombreCongreso').html(resultado.NombreCongreso);
+				$('#AcronimoCongreso').html(resultado.AcronimoCongreso);
+			}else{
+				$('#divNombreCongreso').css("display","none");
+				$('#divAcronimoCongreso').css("display","none");
+			}
+			if(resultado.idSector==4){
+				$('#divDependencia').css("display","inline-block");
+				$('#Dependencia').html(resultado.Dependencia);
+			}else{
+				$('#divDependencia').css("display","none");
 			}
 
 			

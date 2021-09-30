@@ -12,7 +12,10 @@ function initializeConvenio() {
     limpiarTMP();
 
 	getPaises();
-	getSectores();
+
+	$('#Sector').on('change', function() {
+		ControladorMovilidad();
+	});
 }
 
 //FUNCIONES DE INICIO
@@ -57,35 +60,26 @@ function autocompletePaises(arreglo) {
 	});
 }
 
-function getSectores() {
-	$.ajax({
-		headers: { "X-CSRF-TOKEN": $("meta[name='csrf-token']").attr("content") },
-		url: "/Auxiliar/Sectores",
-		type: "POST",
-		dataType: "json",
-		success: function(resultado){
-			console.log(resultado);
-			var cadena="";
-			for (let i = 0; i < resultado.length; i++) {
-				cadena+='<div class="form-check-inline">';
-					cadena+='<label class="form-check-label" for="Sector'+resultado[i].id+'">';
-						if (i==0) {
-							cadena+='<input type="radio" class="form-check-input" id="Sector'+resultado[i].id+'" name="Sector" value="'+resultado[i].id+'" checked>'+resultado[i].Sector;
-						}else{
-							cadena+='<input type="radio" class="form-check-input" id="Sector'+resultado[i].id+'" name="Sector" value="'+resultado[i].id+'">'+resultado[i].Sector;
-						}
-					cadena+='</label>';
-				cadena+='</div>';
-			}
-			$("#setSectores").html(cadena);
-		},
-		error: function(XMLHttpRequest, textStatus, errorThrown) {
-			console.log(XMLHttpRequest);
-			console.log(textStatus);
-			console.log(errorThrown);
-			location.reload();
-		}
-	});
+function ControladorMovilidad(){
+	var valor = $('#Sector').val();
+	
+	switch (valor) {
+		case "5":
+			$('#divDependencia').css("display","none");
+			$('#divNombre').css("display","block")
+			$('#divAcronimo').css("display","block")
+			break;
+		case "4":
+			$('#divNombre').css("display","none");
+			$('#divAcronimo').css("display","none");
+			$('#divDependencia').css("display","block")
+			break;
+		default:
+			$('#divNombre').css("display","none");
+			$('#divAcronimo').css("display","none");
+			$('#divDependencia').css("display","none");
+			break;
+	}
 }
 
 
@@ -160,7 +154,9 @@ function ValidarDatosG(){
 		contentType: false,
 		processData: false,
 		success: function(resultado){
-			$("#alertNombreRegistro").html("");
+			$("#alertNombreCongresoRegistro").html("");
+			$("#alertDependenciaRegistro").html("");
+			$("#alertAcronimoRegistro").html("");
 			$("#alertFechaComienzoRegistro").html("");
 			$("#alertFechaConclusionRegistro").html("");
 			$("#alertCiudadRegistro").html("");

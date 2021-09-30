@@ -16,7 +16,7 @@
                 <form id="formBusqueda">
                     <div style="display:block; margin-bottom: 9px; padding-right: 10px">
                         <div class="form-check check-buscar">
-                            <input class="form-check-input" type="radio" checked name="opcionBusqueda" id="checkNombre" value="Nombre_Convenio">
+                            <input class="form-check-input" type="radio" checked name="opcionBusqueda" id="checkNombre" value="Nombre_Clave">
                             <label class="form-check-label" for="checkNombre">Nombre</label>
                         </div>
                     </div>
@@ -30,12 +30,11 @@
                 <label for="Mostrar">Mostrar Sector: </label>
                 <select class="form-control" id="Mostrar">
                     <option value="Todos">Todos</option>
-                    <Option value="1">Evento Académico</Option>
-                    <Option value="2">Productivo</Option>
-                    <Option value="3">Social</Option>
-                    <Option value="4">Gubernamental</Option>
-                    <Option value="5">Estancia Académica</Option>
-                    <Option value="6">Congreso</Option>
+                    <Option value="1">Practica de Movilidad en el Sector Social</Option>
+                    <Option value="2">Practica de Movilidad en el Sector Productivo</Option>
+                    <Option value="3">Practica de Movilidad en el Sector Gubernamental</Option>
+                    <Option value="4">Estancia Académica</Option>
+                    <Option value="5">Congreso</Option>
                 </select>
             </div>
             <div class="opciones-btn col-md-3">
@@ -58,7 +57,7 @@
                 <tbody id="tablaConvenios">
                     @foreach($result as $convenio)
                         <tr>
-                            <td style="vertical-align:middle; text-align:center" onclick="verInformacionConvenio({{$convenio->id}})">{{$convenio->Nombre_Convenio}}</td>
+                            <td style="vertical-align:middle; text-align:center" onclick="verInformacionConvenio({{$convenio->id}})">{{$convenio->Nombre_Clave}}</td>
                             <td style="vertical-align:middle; text-align:center" onclick="verInformacionConvenio({{$convenio->id}})">{{$convenio->Sector}}</td>
                             <td style="vertical-align:middle; text-align:center" onclick="verInformacionConvenio({{$convenio->id}})">{{$convenio->Institucion_Organizacion}}</td>
                             <td style="vertical-align:middle; text-align:center" onclick="verInformacionConvenio({{$convenio->id}})">{{$convenio->Fecha_Conclusion}}</td>
@@ -86,14 +85,25 @@
                     </div>
                     <div class="modal-body" style="text-align:left">
                         <div class="tabs-container">
-
-                        <div style="display: inline-block; margin:10px 20px;">
-                                            <p style="font-size:16px;"><b>Nombre del Convenio</b></p>
-                                            <p style="font-size:16px;" style="width:800px;" id="Nombre_Convenio"></p>
+                                        <div style="display: inline-block; margin:10px 20px;">
+                                            <p style="font-size:16px;"><b>Nombre Clave del Convenio</b></p>
+                                            <p style="font-size:16px;" style="width:800px;" id="Nombre_Clave"></p>
                                         </div>
                                         <div style="display: inline-block; margin:10px 20px;">
                                             <p style="font-size:16px;"><b>Sector</b></p>
                                             <p style="font-size:16px;" id="Sector"></p>
+                                        </div>
+                                        <div id="divNombreCongreso" style="display:none">
+                                            <div style="display: inline-block; margin:10px 20px;">
+                                                <p style="font-size:16px;"><b>Nombre del Congreso</b></p>
+                                                <p style="font-size:16px;" style="width:800px;" id="NombreCongreso"></p>
+                                            </div>
+                                        </div>
+                                        <div id="divAcronimoCongreso" style="display:none">
+                                            <div style="display: inline-block; margin:10px 20px;">
+                                                <p style="font-size:16px;"><b>Acrónimo del Congreso</b></p>
+                                                <p style="font-size:16px;" style="width:800px;" id="AcronimoCongreso"></p>
+                                            </div>
                                         </div>
                                         <div style="display: inline-block; margin:10px 20px;">
                                             <p style="font-size:16px;"><b>Fecha de Comienzo</b></p>
@@ -103,9 +113,15 @@
                                             <p style="font-size:16px;"><b>Fecha de Conclusión</b></p>
                                             <p style="font-size:16px;" id="F_Conclusion"></p>
                                         </div>
-                                        <div style="display: inline-block; margin:10px 20px;">
+                                        <div style="display: inline-block; margin:10px 20px; max-width:350px">
                                             <p style="font-size:16px;"><b>Institución/Organización</b></p>
                                             <p style="font-size:16px;" id="Institucion"></p>
+                                        </div>
+                                        <div id="divDependencia" style="display:none">
+                                            <div style="display: inline-block; margin:10px 20px;">
+                                                <p style="font-size:16px;"><b>Dependencia</b></p>
+                                                <p style="font-size:16px;" id="Dependencia"></p>
+                                            </div>
                                         </div>
                                         <div style="display: inline-block; margin:10px 20px;">
                                             <p style="font-size:16px;"><b>País</b></p>
