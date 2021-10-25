@@ -64,7 +64,7 @@ class ConveniosMovilidad extends Model
         $NombreClave = "";
 
         if ($request->get('Sector')==5) {
-            $NombreClave = $request->get('Acronimo')."-".substr($Anio[0], 0, 4);
+            $NombreClave = $request->get('Acronimo')."-".substr($Anio, 0, 4);
         }else{
             $aux3=explode(" ",$NombreInstitucion);
             if(count($aux3)>1){
@@ -75,6 +75,10 @@ class ConveniosMovilidad extends Model
                 $NombreClave = substr($aux3[0], 0, 4);
             }
 
+            if($request->get('Dependencia')!=null){
+                $NombreClave = $NombreClave . $request->get('Dependencia');
+            }
+            
             $NombreClave = $NombreClave ."-". substr($Anio, 0, 4);
         }
         
@@ -231,6 +235,11 @@ class ConveniosMovilidad extends Model
                 ->select('convenios_movilidads.id', 'Nombre_Clave', 'Dependencia', 'NombreCongreso', 'AcronimoCongreso',  'sectores.Sector', 'convenios_movilidads.Sector as idSector', 'Fecha_Inicio', 'Fecha_Conclusion', 'Institucion_Organizacion', 'Ciudad', 'paises.Pais as Pais', 'Ruta_Evidencia', 'Nombre_Evidencia')
                 ->where('convenios_movilidads.id', '=', $idConvenio)->first();
         return $convenio;
+    }
+
+    public function ObtenerConvenios(){
+        $convenios = ConveniosMovilidad::select('id', 'Nombre_Clave', 'Sector', 'Institucion_Organizacion', 'Dependencia', 'Fecha_Inicio', 'Fecha_Conclusion')->get();
+        return $convenios;
     }
 
     public function FiltradoConvenios($request){

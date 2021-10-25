@@ -66,18 +66,25 @@ function ControladorMovilidad(){
 	switch (valor) {
 		case "5":
 			$('#divDependencia').css("display","none");
-			$('#divNombre').css("display","block")
-			$('#divAcronimo').css("display","block")
+			$('#divNombre').css("display","block");
+			$('#divAcronimo').css("display","block");
+			$('#Dependencia').val("");
 			break;
 		case "4":
 			$('#divNombre').css("display","none");
 			$('#divAcronimo').css("display","none");
-			$('#divDependencia').css("display","block")
+			$('#divDependencia').css("display","block");
+			$('#Acronimo').val("");
+			$('#NombreCongreso').val("");		
 			break;
 		default:
 			$('#divNombre').css("display","none");
 			$('#divAcronimo').css("display","none");
 			$('#divDependencia').css("display","none");
+			
+			$('#Dependencia').val("");
+			$('#Acronimo').val("");
+			$('#NombreCongreso').val("");			
 			break;
 	}
 }

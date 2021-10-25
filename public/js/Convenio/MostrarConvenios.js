@@ -143,7 +143,7 @@ function verInformacionConvenio(idConvenio){
 		type: "POST",
 		success: function(resultado){
 			console.log(resultado);
-
+			$('#Mtitle').html(resultado.Sector);
 			$('#Nombre_Clave').html(resultado.Nombre_Clave);
 			$('#Sector').html(resultado.Sector);
 			$('#F_Comienzo').html(resultado.Fecha_Inicio);

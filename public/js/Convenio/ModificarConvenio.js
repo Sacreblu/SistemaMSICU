@@ -159,7 +159,7 @@ function ControladorConvenio(){
 			for (let i = 0; i < result.length; i++) {
 				tabla = tabla + '<tr id="VistaArchivoConvenio">';
 				tabla = tabla + '<td style="vertical-align:middle; text-align:center"><button type="button" onclick="quitarArchivoConvenio()" class="btn btn-danger btn-xs">Quitar</button></td>';
-				tabla = tabla + '<td style="vertical-align:middle; text-align:center"><a href="'+result[i][0]+'" target="_blank" rel="noopener noreferrer">'+result[i][1]+'</a></td>';
+				tabla = tabla + '<td style="vertical-align:middle; text-align:center"><a href="../'+result[i][0]+'" target="_blank" rel="noopener noreferrer">'+result[i][1]+'</a></td>';
 				tabla = tabla + '</tr>';
 			}
 			document.getElementById('VistaPrevConvenio').innerHTML=tabla;
@@ -258,8 +258,7 @@ function ModificarDatosGenerales() {
 		processData: false,
 		success: function(resultado){
 			alert("Convenio de Movilidad Modificado");
-			
-			//location.href="/Convenios_Movilidad";
+			location.href="/Convenios_Movilidad";
 		},
 		error: function(XMLHttpRequest, textStatus, errorThrown) {
 			console.log(XMLHttpRequest);

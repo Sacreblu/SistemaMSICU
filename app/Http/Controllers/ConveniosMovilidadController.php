@@ -48,6 +48,11 @@ class ConveniosMovilidadController extends Controller
         return $DatosGenerales;
     }
 
+    public function ObtenerConvenios(){
+        $convenios = new ConveniosMovilidad();
+        return $convenios->ObtenerConvenios();
+    }
+
     public function ValidarDatosGeneralesConvenio(Request $request){
         $validator = Validator::make($request->all(), [
                 'Sector'  => 'required',

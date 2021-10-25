@@ -50,8 +50,8 @@
                         Movilidad
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#">Convenios de Movilidad</a>
-                            <a class="dropdown-item" href="#">Acciones de Movilidad</a>
+                            <a class="dropdown-item" href="{{ url('/Convenios_Movilidad') }}">Convenios de Movilidad y Congresos</a>
+                            <a class="dropdown-item" href="{{ url('/Acciones_Movilidad') }}">Movilidad y Congresos</a>
                         </div>
                     </li>
                     <li class="nav-item">

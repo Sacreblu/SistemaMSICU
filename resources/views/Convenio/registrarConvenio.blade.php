@@ -6,8 +6,8 @@
 <div class="Contenedor">
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{{url('/Convenios_Movilidad')}}">Convenios de Movilidad</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Registrar Convenios de Movilidad y Congresos</li>
+            <li class="breadcrumb-item"><a href="{{url('/Convenios_Movilidad')}}">Convenios de Movilidad y Congresos</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Registrar Convenios y Congresos</li>
         </ol>
     </nav>
     <div class="container">

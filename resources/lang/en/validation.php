@@ -357,6 +357,62 @@ return [
             'string' => 'La dependencia tiene que ser un texto',
             'max' => 'La dependencia excede el maximo de caracteres'
         ],
+        'NombreConvenio' => [
+            'required' => 'Es necesario el nombre clave del convenio',
+            'max' => 'La nombre clave excede el maximo de caracteres',
+            'string' => 'El nombre clave tiene que ser un texto'
+        ],
+        'IdConvenio' => [
+            'required' => 'El convenio debe estar registrado en la base de datos'
+        ],
+        'NombreEstudiante' => [
+            'required' => 'Es necesario el nombre del estudiante',
+            'string' => 'El nombre del estudiante que ser un texto'
+        ],
+        'IdEstudiante' => [
+            'required' => 'El estudiante debe estar registrado en la base de datos'
+        ],
+        'InstitucionDestino' => [
+            'required' => 'Es necesario el nombre de la Institución destino',
+            'string' => 'El nombre de la Institución debe ser un texto',
+            'max' => 'El nombre de la Institución excede el maximo de caracteres'
+        ],
+        'InstitucionOrigen' => [
+            'required_if' => 'Es necesario el nombre de la Institución origen',
+            'string' => 'El nombre de la Institución debe ser un texto',
+            'max' => 'El nombre de la Institución excede el maximo de caracteres'
+        ],
+        'ProgramaDestino' => [
+            'required_if' => 'Es necesario el programa educativo destino',
+            'string' => 'El programa educativo destino debe ser un texto',
+            'max' => 'El programa educativo excede el maximo de caracteres'
+        ],
+        'ProgramaOrigen' => [
+            'required_if' => 'Es necesario el programa educativo de origen',
+            'string' => 'El programa educativo destino debe ser un texto',
+            'max' => 'El programa educativo excede el maximo de caracteres'
+        ],
+        'Motivo' => [
+            'required' => 'Es necesario escribir el motivo de la movilidad',
+            'string' => 'El motivo debe ser un texto',
+            'max' => 'El motivo de la movilidad excede el maximo de caracteres'
+        ],
+        'PeriodoComienzo' => [
+            'required' => 'Es necesario definir el periodo de comienzo',
+            'before_or_equal' => 'El periodo de comienzo debe ser previo al periodo de conclusión'
+        ],
+        'PeriodoConclusion' => [
+            'required' => 'Es necesario definir el periodo de conclusión',
+            'after_or_equal' => 'El periodo de comienzo debe ser posterior al periodo de comienzo'
+        ],
+        'DependenciaDestino' => [
+            'string' => 'El programa educativo destino debe ser un texto',
+            'max' => 'El programa educativo excede el maximo de caracteres'
+        ],
+        'DependenciaOrigen' => [
+            'string' => 'El programa educativo destino debe ser un texto',
+            'max' => 'El programa educativo excede el maximo de caracteres'
+        ],
     ],
 
     /*

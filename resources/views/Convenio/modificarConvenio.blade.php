@@ -10,8 +10,8 @@
 <div class="Contenedor">
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{{url('/Convenios_Movilidad')}}">Convenios de Movilidad</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Modificar Convenio de Movilidad</li>
+            <li class="breadcrumb-item"><a href="{{url('/Convenios_Movilidad')}}">Convenios de Movilidad y Congresos</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Modificar Convenios y Congresos</li>
         </ol>
     </nav>
     <div class="container">
@@ -36,7 +36,7 @@
                     </div>
                     <div id="divNombre" class="form-group" style="text-align: left; display:none">
                         <label for="NombreCongreso">Nombre Completo del Congreso</label>
-                        <input type="text" class="form-control" id="NombreCongreso" name="NombreCongreso">
+                        <input type="text" class="form-control" id="NombreCongreso" name="NombreCongreso" value="{{$informacion->NombreCongreso}}">
                         <span class="alertError" id="alertNombreCongresoModificar"></span>
                     </div>
                     <div class="row">
@@ -72,12 +72,12 @@
                     </div>
                     <div id="divAcronimo" class="form-group" style="text-align: left; display:none">
                         <label for="Acronimo">Acrónimo del Congreso</label>
-                        <input type="text" class="form-control" id="Acronimo" name="Acronimo">
+                        <input type="text" class="form-control" id="Acronimo" name="Acronimo" value="{{$informacion->AcronimoCongreso}}">
                         <span class="alertError" id="alertAcronimoRegistro"></span>
                     </div>
                     <div id="divDependencia" class="form-group" style="text-align: left; display:none">
                         <label for="Dependencia">Dependencia de la Institución</label>
-                        <input type="text" class="form-control" id="Dependencia" name="Dependencia">
+                        <input type="text" class="form-control" id="Dependencia" name="Dependencia" value="{{$informacion->Dependencia}}">
                         <span class="alertError" id="alertDependenciaRegistro"></span>
                     </div>
                     <br>

@@ -6,7 +6,7 @@
 <div class="Contenedor">
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item active" aria-current="page">Convenios de Movilidad</li>
+            <li class="breadcrumb-item active" aria-current="page">Convenios de Movilidad y Congresos</li>
         </ol>
     </nav>
 
@@ -38,7 +38,7 @@
                 </select>
             </div>
             <div class="opciones-btn col-md-3">
-                <a class="btn btn-primary btn-sm" href="{{url('/Convenios_Movilidad/Registrar_Convenios_Movilidad')}}">Registrar Convenio</a>
+                <a class="btn btn-primary btn-sm" href="{{url('/Convenios_Movilidad/Registrar_Convenios_Movilidad')}}">Registrar Convenio/Congreso</a>
             </div>
         </div>
         <div class="col-md-12 mt-3">
@@ -78,7 +78,7 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Convenio de Movilidad</h5>
+                        <h5 class="modal-title" id="Mtitle"></h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -86,7 +86,7 @@
                     <div class="modal-body" style="text-align:left">
                         <div class="tabs-container">
                                         <div style="display: inline-block; margin:10px 20px;">
-                                            <p style="font-size:16px;"><b>Nombre Clave del Convenio</b></p>
+                                            <p style="font-size:16px;"><b>Nombre Clave</b></p>
                                             <p style="font-size:16px;" style="width:800px;" id="Nombre_Clave"></p>
                                         </div>
                                         <div style="display: inline-block; margin:10px 20px;">
@@ -133,7 +133,7 @@
                                         </div>
                                         <div class="row" style="margin:10px 5px;">
                                             <div style="display: inline-block; margin: 10px 0;" class="col-md-6">
-                                                <p style="font-size:16px;"><b>Archivo Evidencia del Convenio</b></p><br>
+                                                <p style="font-size:16px;"><b>Archivo Evidencia</b></p><br>
                                                 <table class="table table-sm">
                                                     <thead>
                                                         <tr>
