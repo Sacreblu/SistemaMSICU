@@ -3,6 +3,7 @@
 <script src="/js/PlanEstudios/Plan_Estudios.js" type="text/javascript"></script>
 <script src="/js/PlanEstudios/Generaciones.js" type="text/javascript"></script>
 <script src="/js/PlanEstudios/LGAC.js" type="text/javascript"></script>
+<script src="/js/PlanEstudios/ExperienciaEducativa.js" type="text/javascript"></script>
 
 <div class="Contenedor">
     <nav aria-label="breadcrumb">
@@ -15,13 +16,16 @@
         <!-- Nav tabs -->
         <ul class="nav nav-tabs" role="tablist">
             <li class="nav-item">
-            <a class="nav-link active" data-toggle="tab" href="#PlanEstudios">Plan de Estudios</a>
+                <a class="nav-link active" data-toggle="tab" href="#PlanEstudios">Plan de Estudios</a>
             </li>
             <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#Generaciones">Generaciones</a>
+                <a class="nav-link" data-toggle="tab" href="#Generaciones">Generaciones</a>
             </li>
             <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#LGAC">LGAC</a>
+                <a class="nav-link" data-toggle="tab" href="#LGAC">LGAC</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#EE">Experiencias Educativas</a>
             </li>
         </ul>
 
@@ -368,7 +372,7 @@
             </div>
 
             <div id="LGAC" class="container tab-pane fade"><br>
-            <div class="div-buscar">
+                <div class="div-buscar">
                     <div class="form-inline form-buscar">
                         <div class="form-check check-buscar">
                             <input class="form-check-input" type="radio" checked name="opcionLGAC" id="checkNombreLGAC" value="Nombre">
@@ -509,6 +513,212 @@
                     </div>
                 </div>
 
+            </div>
+            
+            <div id="EE" class="container tab-pane fade"><br>
+                <div class="div-buscar">
+                    <div class="form-inline form-buscar">
+                        <div class="form-check check-buscar">
+                            <input class="form-check-input" type="radio" checked name="opcionEE" id="checkNombreEE" value="NombreEE">
+                            <label class="form-check-label" for="checkNombreEE">Nombre de EE</label>
+                        </div>
+                        <input type="text"  class="form-control input-busqueda" id="busquedaEE" value="">
+                        <button type="button" class="btn btn-success btn-sm btn-buscar" onclick="busquedaEE()">Buscar</button>
+                    </div>
+                </div>
+                <div class="div-opciones row">
+                    <div class="form-group form-inline col-md-9 opciones-form">
+                        <label for="Mostrar">Mostrar: </label>
+                        <select class="form-control" id="MostrarEE">
+                            <option value="Todos">Todos</option>
+                            <option value="Disciplinar">Disciplinar</option>
+                            <option value="Integradora">Integradora</option>
+                            <option value="Optativa">Optativa</option>
+                        </select>
+                    </div>
+                    <div class="opciones-btn col-md-3">
+                        <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#EERegistro">Registrar Experiencia Educativa</button>
+                    </div>
+                </div>
+                <div class="col-md-12 mt-3">
+                    <table class="table table-hover" id="EETabla">
+                        <thead>
+                        <tr style="font-size:14;">
+                            <th style="width: 170px; vertical-align: middle;">Nombre</th>
+                            <th style="width: 100px; vertical-align: middle;">Plan de Estudios</th>
+                            <th style="width: 100px; vertical-align: middle;">Área</th>
+                            <th style="width: 50px; vertical-align: middle;">Créditos</th>
+                            <th style="width: 100px; vertical-align: middle;">Teoría con Profesor</th>
+                            <th style="width: 100px; vertical-align: middle;">Teoría sin Profesor</th>
+                            <th style="width: 100px; vertical-align: middle;">Prácticas con Profesor</th>
+                            <th style="width: 100px; vertical-align: middle;">Prácticas sin Profesor</th>
+                        </tr>
+                        </thead>
+                        <tbody id="tablaEE">
+                            @foreach($array[3] as $ee)
+                            <tr onclick="llenarModificarEE({{$ee}})" data-toggle="modal" data-target="#EEModificar" title="Modificar" style="cursor:pointer">
+                                <td style="vertical-align:middle; text-align:center">{{$ee->NombreEE}}</td>
+                                <td style="vertical-align:middle; text-align:center">{{$ee->planNombre}}</td>
+                                <td style="vertical-align:middle; text-align:center">{{$ee->Area}}</td>
+                                <td style="vertical-align:middle; text-align:center">{{$ee->Creditos}}</td>
+                                <td style="vertical-align:middle; text-align:center">{{$ee->HrsTeoriaConProfesor}} Hrs</td>
+                                <td style="vertical-align:middle; text-align:center">{{$ee->HrsTeoriaSinProfesor}} Hrs</td>
+                                <td style="vertical-align:middle; text-align:center">{{$ee->HrsPracticasConProfesor}} Hrs</td>
+                                <td style="vertical-align:middle; text-align:center">{{$ee->HrsPracticasSinProfesor}} Hrs</td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+                <!-- Modal Registrar -->
+                <div class="modal fade" id="EERegistro" tabindex="-1" role="dialog" aria-labelledby="EERegistroLabel" aria-hidden="true">
+                    <div class="modal-dialog" style="max-width:600px !important;" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="GenRegistroLabel">Registrar Experiencia Educativa</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body" style="align-text:left">
+                                <div class="formRegistro">
+                                    <form id="formularioRegistroEE" method="post">
+                                    @csrf
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <label class="formRegistrolabel" for="formularioRegistroEE">Nombre de la EE</label>
+                                                <input type="text" class="form-control" id="RegistrarNombreEE" name="NombreEE">
+                                                <span class="alertError" id="alertNombreEERegistro"></span>
+                                            </div>
+                                        
+                                            
+                                            <div class="col-md-6">
+                                                <label class="formRegistrolabel" for="RegistrarAreaEE">Área</label>
+                                                <select class="form-control" id="RegistrarAreaEE" name="Area">
+                                                    <option value="Disciplinar">Disciplinar</option>
+                                                    <option value="Integradora">Integradora</option>
+                                                    <option value="Optativa">Optativa</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="formRegistrolabel" for="RegistrarCreditosEE">Créditos</label>
+                                                <input type="number" min="1" pattern="^[0-9]+" oninput="validity.valid||(value='');" class="form-control" id="RegistrarCreditosEE" name="CreditosEE">
+                                                <span class="alertError" id="alertCreditosEERegistro"></span>
+                                            </div>
+
+
+                                            <div class="col-md-6">
+                                                <label class="formRegistrolabel" for="RegistrarTeoriaConProfesorEE">Teoría con Profesor (Hrs)</label>
+                                                <input type="number" min="1" pattern="^[0-9]+" oninput="validity.valid||(value='');" class="form-control" id="RegistrarTeoriaConProfesorEE" name="TeoriaConProfesorEE">
+                                                <span class="alertError" id="alertTeoriaConProfesorEERegistro"></span>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="formRegistrolabel" for="RegistrarTeoriaSinProfesorEE">Teoría sin Profesor (Hrs)</label>
+                                                <input type="number" min="0" pattern="^[0-9]+" oninput="validity.valid||(value='');" class="form-control" id="RegistrarTeoriaSinProfesorEE" name="TeoriaSinProfesorEE">
+                                                <span class="alertError" id="alertTeoriaSinProfesorEERegistro"></span>
+                                            </div>
+                                            
+                                            <div class="col-md-6">
+                                                <label class="formRegistrolabel" for="RegistrarPracticasConProfesorEE">Prácticas con Profesor (Hrs)</label>
+                                                <input type="number" min="1" pattern="^[0-9]+" oninput="validity.valid||(value='');" class="form-control" id="RegistrarPracticasConProfesorEE" name="PracticasConProfesorEE">
+                                                <span class="alertError" id="alertPracticasConProfesorEERegistro"></span>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="formRegistrolabel" for="RegistrarPracticasSinProfesorEE">Prácticas sin Profesor (Hrs)</label>
+                                                <input type="number" min="1" pattern="^[0-9]+" oninput="validity.valid||(value='');" class="form-control" id="RegistrarPracticasSinProfesorEE" name="PracticasSinProfesorEE">
+                                                <span class="alertError" id="alertPracticasSinProfesorEERegistro"></span>
+                                            </div>
+
+                                            <div class="col-md-12">
+                                                <label class="formRegistrolabel" for="RegistrarPlanEE">Plan de Estudios</label>
+                                                <select class="form-control" id="RegistrarPlanEE" name="Id_Plan">
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <button type="button" class="btn btn-success btn-sm" style="margin-right:10px" onclick="registrarEE()">Registrar</button>
+                                    <button type="button" class="btn btn-light btn-sm" data-dismiss="modal" style="margin-left:10px">Cancelar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modal Modificar -->
+                <div class="modal fade" id="EEModificar" tabindex="-1" role="dialog" aria-labelledby="EEModificarLabel" aria-hidden="true">
+                    <div class="modal-dialog" style="max-width:600px !important;" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="EEModificarLabel">Modificar Experiencia Educativa</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            
+                            <div class="modal-body" style="align-text:left">
+                                <div class="formModificar">
+                                    <form id="formularioModificarEE" method="post">
+                                    @csrf
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                            <input type="hidden" class="form-control" name="ID_EE" id="ModificarIDEE">
+                                                <label class="formModificarlabel" for="formularioModificarEE">Nombre de la EE</label>
+                                                <input type="text" class="form-control" id="ModificarNombreEE" name="NombreEE">
+                                                <span class="alertError" id="alertNombreEEModificar"></span>
+                                            </div>
+                                        
+                                            
+                                            <div class="col-md-6">
+                                                <label class="formModificarlabel" for="ModificarAreaEE">Área</label>
+                                                <select class="form-control" id="ModificarAreaEE" name="Area">
+                                                    <option value="Disciplinar">Disciplinar</option>
+                                                    <option value="Integradora">Integradora</option>
+                                                    <option value="Optativa">Optativa</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="formModificarlabel" for="ModificarCreditosEE">Créditos</label>
+                                                <input type="number" min="1" pattern="^[0-9]+" oninput="validity.valid||(value='');" class="form-control" id="ModificarCreditosEE" name="CreditosEE">
+                                                <span class="alertError" id="alertCreditosEEModificar"></span>
+                                            </div>
+
+
+                                            <div class="col-md-6">
+                                                <label class="formModificarlabel" for="ModificarTeoriaConProfesorEE">Teoría con Profesor (Hrs)</label>
+                                                <input type="number" min="1" pattern="^[0-9]+" oninput="validity.valid||(value='');" class="form-control" id="ModificarTeoriaConProfesorEE" name="TeoriaConProfesorEE">
+                                                <span class="alertError" id="alertTeoriaConProfesorEEModificar"></span>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="formModificarlabel" for="ModificarTeoriaSinProfesorEE">Teoría sin Profesor (Hrs)</label>
+                                                <input type="number" min="0" pattern="^[0-9]+" oninput="validity.valid||(value='');" class="form-control" id="ModificarTeoriaSinProfesorEE" name="TeoriaSinProfesorEE">
+                                                <span class="alertError" id="alertTeoriaSinProfesorEEModificar"></span>
+                                            </div>
+                                            
+                                            <div class="col-md-6">
+                                                <label class="formModificarlabel" for="ModificarPracticasConProfesorEE">Prácticas con Profesor (Hrs)</label>
+                                                <input type="number" min="1" pattern="^[0-9]+" oninput="validity.valid||(value='');" class="form-control" id="ModificarPracticasConProfesorEE" name="PracticasConProfesorEE">
+                                                <span class="alertError" id="alertPracticasConProfesorEEModificar"></span>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="formModificarlabel" for="ModificarPracticasSinProfesorEE">Prácticas sin Profesor (Hrs)</label>
+                                                <input type="number" min="1" pattern="^[0-9]+" oninput="validity.valid||(value='');" class="form-control" id="ModificarPracticasSinProfesorEE" name="PracticasSinProfesorEE">
+                                                <span class="alertError" id="alertPracticasSinProfesorEEModificar"></span>
+                                            </div>
+
+                                            <div class="col-md-12">
+                                                <label class="formModificarlabel" for="ModificarPlanEE">Plan de Estudios</label>
+                                                <select class="form-control" id="ModificarPlanEE" name="Id_Plan">
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <button type="button" class="btn btn-success btn-sm" style="margin-right:10px" onclick="modificarEE()">Guardar</button>
+                                    <button type="button" class="btn btn-light btn-sm" data-dismiss="modal" style="margin-left:10px">Cancelar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

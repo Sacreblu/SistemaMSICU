@@ -240,6 +240,7 @@
                             <button class="btn btn-sm" onclick="añadirTrayectoria()" title="Añadir un registro de Trayectoria"><i class="fas fa-plus"></i></button>
                             <button class="btn btn-sm" id="btnQuitarTrayectoria" onclick="quitarTrayectoria()" title="Restar un registro de Trayectoria" disabled><i class="fas fa-minus"></i></button>
                         </div>
+                        
                         <div id="Trayectorias">
                         </div>
                     </div>

@@ -17,11 +17,17 @@ class PlanEstudios extends Model
     //Metodo que muestra todos los planes de estudio registrados
     public function MostrarPlanes(){
         $planes= PlanEstudios::orderBy('Anio', 'DESC')->get();
+        
         $generaciones = Generaciones::join('plan_estudios', 'generaciones.Id_Plan', '=', 'plan_estudios.id')
                         ->select('generaciones.*', 'plan_estudios.Nombre')->orderBy('Generacion', 'ASC')->get();
+        
         $lgacs = LGAC::join('plan_estudios', 'l_g_a_c_s.Id_Plan', '=', 'plan_estudios.id')
                         ->select('l_g_a_c_s.*', 'plan_estudios.Nombre as planNombre')->orderBy('l_g_a_c_s.Nombre', 'DESC')->get();
-        $array=[$planes, $generaciones, $lgacs];
+        
+        $ee = ExperienciasEducativas::join('plan_estudios', 'experiencias_educativas.Id_Plan', '=', 'plan_estudios.id')
+                        ->select('experiencias_educativas.*', 'plan_estudios.Nombre as planNombre')->orderBy('experiencias_educativas.NombreEE', 'DESC')->get();
+        
+        $array=[$planes, $generaciones, $lgacs, $ee];
         return $array;
     }
 

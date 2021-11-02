@@ -177,7 +177,7 @@ function setDatosGenerales() {
 }
 
 function setPreparacionAcademica() {
-	for (let p = 0; p < informacion[0].PreparacionAcademica.length; p++) {
+	for (let p = 0; p < informacion.PreparacionAcademica.length; p++) {
 		ContadorPreparacionAcademicaGuardada += 1;
 		var cardEstudios = '<div class="Estudios-form card" id="CardPAGuardada' + ContadorPreparacionAcademicaGuardada + '">';
 			cardEstudios += '<div data-toggle="collapse" style="cursor: pointer" data-target="#ModificarEstudios'+ContadorPreparacionAcademicaGuardada+'">';

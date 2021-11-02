@@ -52,10 +52,8 @@
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="{{ url('/Convenios_Movilidad') }}">Convenios de Movilidad y Congresos</a>
                             <a class="dropdown-item" href="{{ url('/Acciones_Movilidad') }}">Movilidad y Congresos</a>
+                            <a class="dropdown-item" href="{{ url('/Trabajos_En_Sector') }}">Trabajo en Sector</a>
                         </div>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Trabajo en Sector</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url('/Plan_de_Estudios') }}">Plan de Estudios</a>

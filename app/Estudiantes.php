@@ -189,21 +189,24 @@ class Estudiantes extends Model
         if($request->get('Estado')=="Egresado"){
 
             if($archivo!=null){
-                try {
-                    $file = glob(public_path().$Estudiante->Ruta_Carta);
-                    unlink($file[0]);
-                }catch(\Throwable $th){} 
-
+                if($Estudiante->Ruta_Carta!=null){
+                    try {
+                        $file = glob(public_path().$Estudiante->Ruta_Carta);
+                        unlink($file[0]);
+                    }catch(\Throwable $th){} 
+                }
                 $extension = $archivo->getClientOriginalExtension();
                 $fileName = $inicialesEstudiante."-CARTA-LIBERACION".$extension;
                 $tmpPath = $archivo;
                 $newPath = public_path().'/storage/Documentos/Estudiantes/CartasLiberacion/'.$id.'/'.$fileName;
                 move_uploaded_file($tmpPath,$newPath);
             }else{
-                $extension = "pdf";
-                $fileName = $inicialesEstudiante."-CARTA-LIBERACION".$extension;
-                $newPath = public_path().'/storage/Documentos/Estudiantes/CartasLiberacion/'.$id.'/'.$fileName;
-                rename(public_path().$Estudiante->Ruta_Carta,$newPath);
+                if($Estudiante->Ruta_Carta!=null){
+                    $extension = "pdf";
+                    $fileName = $inicialesEstudiante."-CARTA-LIBERACION".$extension;
+                    $newPath = public_path().'/storage/Documentos/Estudiantes/CartasLiberacion/'.$id.'/'.$fileName;
+                    rename(public_path().$Estudiante->Ruta_Carta,$newPath);
+                }
             }
 
             $Estudiante->Ruta_Carta = '/storage/Documentos/Estudiantes/CartasLiberacion/'.$id.'/'.$fileName;

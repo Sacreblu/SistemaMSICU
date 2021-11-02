@@ -403,7 +403,7 @@ return [
         ],
         'PeriodoConclusion' => [
             'required' => 'Es necesario definir el periodo de conclusión',
-            'after_or_equal' => 'El periodo de comienzo debe ser posterior al periodo de comienzo'
+            'after_or_equal' => 'El periodo de conclusión debe ser posterior al periodo de comienzo'
         ],
         'DependenciaDestino' => [
             'string' => 'El programa educativo destino debe ser un texto',
@@ -412,6 +412,68 @@ return [
         'DependenciaOrigen' => [
             'string' => 'El programa educativo destino debe ser un texto',
             'max' => 'El programa educativo excede el maximo de caracteres'
+        ],
+        'NombreProyecto' => [
+            'required' => 'Es necesario el nombre del proyecto',
+            'string' => 'El nombre del proyecto debe ser un texto',
+            'max' => 'El nombre del proyecto excede el maximo de caracteres'
+        ],
+        'Institucion' => [
+            'required' => 'Es necesario el nombre de la institución',
+            'string' => 'El nombre de la institución debe ser un texto',
+            'max' => 'El nombre de la institución excede el maximo de caracteres'
+        ],
+        'ResponsableProyecto' => [
+            'required' => 'Es necesario el nombre del responsable del proyecto',
+            'string' => 'El nombre del responsable debe ser un texto',
+            'max' => 'El nombre del responsable excede el maximo de caracteres'
+        ],
+        'ProfesorResponsable' => [
+            'required' => 'Es necesario el nombre del profesor responsable'
+        ],
+        'IdProfesorResponsable' => [
+            'required' => 'El profesor responsable debe estar registrado en la base de datos'
+        ],
+        'ColabProf' => [
+            'required' => 'Es necesario el nombre del profesor colaborador'
+        ],
+        'IdColabProf' => [
+            'required' => 'El profesor debe estar registrado en la base de datos'
+        ],
+        'ColabEst' => [
+            'required' => 'Es necesario el nombre del estudiante colaborador'
+        ],
+        'IdColabEst' => [
+            'required' => 'El estudiante debe estar registrado en la base de datos'
+        ],
+        'AnioInicio' => [
+            'before_or_equal' => 'El año de inicio debe ser previo al año de conclusión'
+        ],
+        'AnioFin' => [
+            'after_or_equal' => 'El año de conclusión debe ser posterior al año de inicio'
+        ],
+        'NombreEE' => [
+            'required' => 'Es necesario el nombre de la experiencia educativa',
+            'string' => 'El nombre de la experiencia educativa debe ser un texto',
+            'max' => 'El nombre de la experiencia educativa excede el maximo de caracteres'
+        ],
+        'CreditosEE' => [
+            'required' => 'Es necesario introducir el número de créditos'
+        ],
+        'TeoriaConProfesorEE' => [
+            'required' => 'Es necesario introducir las horas dedicadas'
+        ],
+        'TeoriaSinProfesorEE' => [
+            'required' => 'Es necesario introducir las horas dedicadas'
+        ],
+        'PracticasConProfesorEE' => [
+            'required' => 'Es necesario introducir las horas dedicadas'
+        ],
+        'PracticasSinProfesorEE' => [
+            'required' => 'Es necesario introducir las horas dedicadas'
+        ],
+        'IdEE' => [
+            'required_with' => 'La experiencia educativa debe estar registrada en la base de datos'
         ],
     ],
 

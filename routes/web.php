@@ -40,6 +40,16 @@ Route::post('/Plan_de_Estudios/FiltradoTablaLGAC', 'LGACController@filtradoLGAC'
 Route::post('/Plan_de_Estudios/BusquedaLGAC', 'LGACController@busquedaLGAC');
 Route::post('/LGACs/ObtenerLGACs', 'LGACController@ObtenerLGACs');
 
+//Experencias Educativas
+Route::post('/Plan_de_Estudios/Registrar_EE', 'ExperienciasEducativasController@registrarEE');
+Route::post('/Plan_de_Estudios/Modificar_EE/{id}', 'ExperienciasEducativasController@modificarEE');
+Route::post('/Plan_de_Estudios/FiltradoTablaEE', 'ExperienciasEducativasController@filtradoEE');
+Route::post('/Plan_de_Estudios/BusquedaEE', 'ExperienciasEducativasController@busquedaEE');
+Route::post('/EE/ObtenerEE', 'ExperienciasEducativasController@ObtenerEE');
+
+
+//Route::post('/LGACs/ObtenerLGACs', 'LGACController@ObtenerLGACs');
+
 //Profesores
 Route::get('/Profesores', 'ProfesoresController@mostrarProfesores');
 Route::get('/Profesores/Registrar_Profesor', 'ProfesoresController@registrarProfesorVista');
@@ -136,6 +146,7 @@ Route::post('/Convenios_Movilidad/FiltradoTablaConvenios', 'ConveniosMovilidadCo
 Route::post('/Convenios_Movilidad/BusquedaConvenios', 'ConveniosMovilidadController@BusquedaConvenios');
 Route::post('/Convenios_Movilidad/obtenerInformacionConvenios', 'ConveniosMovilidadController@obtenerInformacionConvenio');
 Route::post('/Convenios_Movilidad/ObtenerConvenios', 'ConveniosMovilidadController@ObtenerConvenios');
+Route::post('/Convenios_Movilidad/ObtenerConveniosPorSector', 'ConveniosMovilidadController@ObtenerConveniosPorSector');
 
 Route::post('/Convenios_Movilidad/Registrar_Convenios_Movilidad/ValidarDatosGeneralesConvenio', 'ConveniosMovilidadController@ValidarDatosGeneralesConvenio');
 Route::post('/Convenios_Movilidad/Modificar_Convenios_Movilidad/ValidarDatosGeneralesConvenio/{id}', 'ConveniosMovilidadController@ValidarDatosGeneralesConvenioModificar');
@@ -160,6 +171,35 @@ Route::post('/Acciones_Movilidad/Modificar_Acciones_Movilidad/ValidarDatosGenera
 Route::post('/Acciones_Movilidad/Registrar_Acciones_Movilidad/RegistrarDG', 'AccionesMovilidadController@RegistrarDG');
 Route::post('/Acciones_Movilidad/Modificar_Acciones_Movilidad/ModificarDG/{id}', 'AccionesMovilidadController@ModificarDG');
 Route::post('/Acciones_Movilidad/EliminarMovilidad', 'AccionesMovilidadController@EliminarMovilidad');
+
+//Acciones de Movilidad
+Route::get('/Trabajos_En_Sector/Registrar_Trabajos_Sectores', 'TrabajosEnSectoresController@registrarTrabajosSector');
+Route::get('/Trabajos_En_Sector/Modificar_Trabajos_Sectores/{id}', 'TrabajosEnSectoresController@VistaModificarTrabajosSector');
+Route::get('/Trabajos_En_Sector', 'TrabajosEnSectoresController@mostrarTrabajoSector');
+
+Route::post('/Trabajos_En_Sector/FiltradoTablaTS', 'TrabajosEnSectoresController@FiltradoTS');
+Route::post('/Trabajos_En_Sector/BusquedaTrabajoEnSector', 'TrabajosEnSectoresController@BusquedaTS');
+Route::post('/Trabajos_En_Sector/obtenerInformacionTS', 'TrabajosEnSectoresController@obtenerInformacionTS');
+
+Route::post('/Trabajos_En_Sector/Registrar_Trabajos_Sectores/ValidarDatosGeneralesTrabajoSector', 'TrabajosEnSectoresController@ValidarDatosGeneralesTrabajoSector');
+Route::post('/Trabajos_En_Sector/Registrar_Trabajos_Sectores/ValidarProfesoresTrabajoSector', 'TrabajosEnSectoresController@ValidarColaboracionesProfesores');
+Route::post('/Trabajos_En_Sector/Registrar_Trabajos_Sectores/ValidarEstudiantesTrabajoSector', 'TrabajosEnSectoresController@ValidarColaboracionesEstudiantes');
+
+Route::post('/Trabajos_En_Sector/Registrar_Trabajos_Sectores/RegistrarDG', 'TrabajosEnSectoresController@RegistrarDG');
+Route::post('/Trabajos_En_Sector/Registrar_Trabajos_Sectores/RegistrarColaboracionProfesores', 'TrabajosEnSectoresController@RegistrarColaboracionProfesores');
+Route::post('/Trabajos_En_Sector/Registrar_Trabajos_Sectores/RegistrarColaboracionEstudiantes', 'TrabajosEnSectoresController@RegistrarColaboracionEstudiantes');
+
+Route::post('/Trabajos_En_Sector/Modificar_Trabajos_Sectores/ValidarDatosGeneralesTrabajoSector/{id}', 'TrabajosEnSectoresController@ValidarDatosGeneralesTrabajoSectorModificar');
+Route::post('/Trabajos_En_Sector/Modificar_Trabajos_Sectores/ValidarProfesoresTrabajoSector', 'TrabajosEnSectoresController@ValidarColaboracionesProfesoresModificar');
+Route::post('/Trabajos_En_Sector/Modificar_Trabajos_Sectores/ValidarEstudiantesTrabajoSector', 'TrabajosEnSectoresController@ValidarColaboracionesEstudiantesModificar');
+
+Route::post('/Trabajos_En_Sector/Modificar_Trabajos_Sectores/ModificarDG/{id}', 'TrabajosEnSectoresController@ModificarDG');
+Route::post('/Trabajos_En_Sector/Modificar_Trabajos_Sectores/EliminarColabProf', 'TrabajosEnSectoresController@EliminarColabProf');
+Route::post('/Trabajos_En_Sector/Modificar_Trabajos_Sectores/ModificarColabProf', 'TrabajosEnSectoresController@ModificarColabProf');
+Route::post('/Trabajos_En_Sector/Modificar_Trabajos_Sectores/EliminarColabEst', 'TrabajosEnSectoresController@EliminarColabEst');
+Route::post('/Trabajos_En_Sector/Modificar_Trabajos_Sectores/ModificarColabEst', 'TrabajosEnSectoresController@ModificarColabEst');
+
+Route::post('/Trabajos_En_Sector/Eliminar_Trabajos_Sectores', 'TrabajosEnSectoresController@EliminarTrabajoEnSector');
 
 //Controlador Auxiliar
 Route::post('/Auxiliar/TipoContratacion', 'AuxiliarController@TipoContrataciones');
