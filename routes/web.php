@@ -201,6 +201,8 @@ Route::post('/Trabajos_En_Sector/Modificar_Trabajos_Sectores/ModificarColabEst',
 
 Route::post('/Trabajos_En_Sector/Eliminar_Trabajos_Sectores', 'TrabajosEnSectoresController@EliminarTrabajoEnSector');
 
+Route::get('/Productos_LGAC/Registrar_Producto_LGAC', 'ProductoslgacController@registrarProductosLGAC');
+
 //Controlador Auxiliar
 Route::post('/Auxiliar/TipoContratacion', 'AuxiliarController@TipoContrataciones');
 Route::post('/Auxiliar/TipoColaboracion', 'AuxiliarController@TipoColaboraciones');

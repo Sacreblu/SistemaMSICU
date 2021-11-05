@@ -37,7 +37,7 @@
                         <a class="nav-link" href="{{ url('/Trabajos_Recepcionales') }}">Trabajos Recepcionales</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Productos LGAC</a>
+                        <a class="nav-link" href="{{ url('/Productos_LGAC/Registrar_Producto_LGAC') }}">Productos LGAC</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url('/Profesores') }}">Profesores</a>
