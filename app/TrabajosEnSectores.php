@@ -16,8 +16,7 @@ class TrabajosEnSectores extends Model
         'anioInicio',
         'anioFin',
         'RutaArchivoEvidencia',
-        'NombreArchivoEvidencia',
-        'EEasociada'
+        'NombreArchivoEvidencia'
     ];
 
     public function mostrarTrabajoSector(){
@@ -109,8 +108,7 @@ class TrabajosEnSectores extends Model
             'ResponsableProyecto'=> $request->get('ResponsableProyecto'),
             'ProfResponsable'=> $request->get('IdProfesorResponsable'),
             'anioInicio'=> $request->get('AnioInicio'),
-            'anioFin'=> $request->get('AnioFin'),
-            'EEasociada'=> $request->get('IdEE')
+            'anioFin'=> $request->get('AnioFin')
         ]); 
         $datos->save();
         $idTS = $datos->id;
@@ -136,7 +134,7 @@ class TrabajosEnSectores extends Model
                     $NombreClave = $NombreClave . substr($aux3[$i], 0, 1);
                 }
             }else{
-                $NombreClave = NombreInstitucion;
+                $NombreClave = $NombreInstitucion;
             }
 
             if ($request->get('AnioInicio')==$request->get('AnioFin')) {
@@ -189,7 +187,7 @@ class TrabajosEnSectores extends Model
                 $NombreClave = $NombreClave . substr($aux3[$i], 0, 1);
             }
         }else{
-            $NombreClave = NombreInstitucion;
+            $NombreClave = $NombreInstitucion;
         }
 
         if ($request->get('AnioInicio')==$request->get('AnioFin')) {

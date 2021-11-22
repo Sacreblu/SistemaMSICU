@@ -68,7 +68,7 @@ class ProfesoresController extends Controller
                 'Titulo'=>'required|string|max:100',
                 'Universidad'=>'required|string|max:80',
                 'Lugar'=>'required|string|max:100',
-                'Archivo'=>'required'
+                'Archivo'=>'nullable'
             ]);
         if($validator->fails()){
             return $validator->errors();
@@ -84,7 +84,7 @@ class ProfesoresController extends Controller
                 'Titulo'=>'required|string|max:50',
                 'Periodo'=>'required|string|max:40',
                 'Descripcion'=>'required|string|max:150',
-                'Archivo'=>'required'
+                'Archivo'=>'nullable'
             ]);
         if($validator->fails()){
             return $validator->errors();
@@ -99,7 +99,7 @@ class ProfesoresController extends Controller
                 'OpcionOtro' => 'required_if:Nombre_Distincion,==,0|string|max:20',
                 'Periodo'=>'required|string|max:40',
                 'Descripcion'=>'required|string|max:150',
-                'Archivo'=>'required'
+                'Archivo'=>'nullable'
             ]);
         if($validator->fails()){
             return $validator->errors();
@@ -115,7 +115,7 @@ class ProfesoresController extends Controller
                 'Titulo'=>'required|string|max:50',
                 'Periodo'=>'required|string|max:40',
                 'Descripcion'=>'required|string|max:150',
-                'Archivo'=>'required'
+                'Archivo'=>'nullable'
             ]);
         if($validator->fails()){
             return $validator->errors();
@@ -129,7 +129,7 @@ class ProfesoresController extends Controller
                 'Nombre_Organizacion'=>'required|string|max:40',
                 'Periodo'=>'required|string|max:40',
                 'Descripcion'=>'required|string|max:150',
-                'Archivo'=>'required'
+                'Archivo'=>'nullable'
             ]);
         if($validator->fails()){
             return $validator->errors();

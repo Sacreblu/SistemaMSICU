@@ -10,8 +10,15 @@ var ContadorEstudiantes = -1;
 var ContadorEstudiantesGuardados = 0;
 var ArregloBorrarEstudiantes = [];
 
+
+var validarContMaterias = 0;
+var ContadorMaterias = -1;
+var ContadorMateriasGuardados = 0;
+var ArregloBorrarMaterias = [];
+
 var arregloNombresEstudiantes=[];
 var arregloNombresProfesores=[];
+var arregloPlanesEstudios=[];
 
 var Profesores = "";
 var Estudiantes = "";
@@ -41,6 +48,23 @@ function initializeConvenio() {
 	});
 
 	$('#btnQuitarEstudiante').on("click",function(e){
+		e.preventDefault();
+	});
+
+	
+	$('#btnSi').on("click",function(e){
+		e.preventDefault();
+	});
+
+	$('#btnNo').on("click",function(e){
+		e.preventDefault();
+	});
+
+	$('#btnAgregarMateria').on("click",function(e){
+		e.preventDefault();
+	});
+
+	$('#btnQuitarMateria').on("click",function(e){
 		e.preventDefault();
 	});
 
@@ -132,6 +156,51 @@ function setEstudiantes() {
 	ContadorEstudiantes = ContadorEstudiantesGuardados;
 }
 
+function setMaterias() {
+	console.log(informacion.EEAsociada.length);
+	if(informacion.EEAsociada.length>0){
+		$("#AsociarMaterias").css("display", "block");
+		$("#ListaMaterias").addClass("show");
+	}
+	for (let p = 0; p < informacion.EEAsociada.length; p++) {
+		ContadorMateriasGuardados += 1;
+		var Materia = '<div class="row" id="materia'+ContadorMateriasGuardados+'" style="margin-bottom:10px !important; border: 1px solid rgb(212, 212, 212); border-radius: 5px; padding-bottom: 5px">';
+			Materia += '<div class="form-group col-md-5" style="text-align: left; padding: 0px 7px !important;">';
+				Materia += '<label>Plan de Estudios</label>';
+				Materia += '<select class="form-control" id="PlanEstudios'+ContadorMateriasGuardados+'" name="PlanEstudios" onchange="ControladorPlanEstudiosEE(\''+ContadorMateriasGuardados+'\')">';
+				Materia += '</select>';
+			Materia += '</div>';
+			Materia += '<div class="form-group col-md-7" style="text-align: left; padding: 0px 7px !important;">';
+				Materia += '<label>Experiencia Educativa Asociada</label>';
+				Materia += '<input type="text" class="form-control" onchange="ControladorEE(\''+ContadorMateriasGuardados+'\')" id="EE'+ContadorMateriasGuardados+'" name="EEModificar" value="'+informacion.EEAsociada[p].NombreEE+'">';
+				Materia += '<input type="hidden" id="IdEE'+ContadorMateriasGuardados+'" name="IdEEModificar" value="'+informacion.EEAsociada[p].idEE+'">';
+				Materia += '<input type="hidden" id="IdRegEE'+ContadorMateriasGuardados+'" name="IdRegEEModificar" value="'+informacion.EEAsociada[p].id+'">';
+			Materia += '</div>';
+			Materia += '<span class="alertError" id="alertIdEEModificar'+ContadorMateriasGuardados+'"></span>';
+			Materia += '<span class="alertError" id="alertEEModificar'+ContadorMateriasGuardados+'"></span>';
+		
+			Materia += '<div class="col-md-5" style="text-align: center; display:flex; align-items:center;"></div>';
+			Materia += '<div class="col-md-2" style="text-align: center; display:flex; align-items:center;">';
+				Materia += '<button class="btn btn-danger btn-xs" onclick="EliminarRegistroEEAsociada(\'' + ContadorMateriasGuardados + '\')">Eliminar</button>';
+			Materia += '</div>';
+			Materia += '<div class="col-md-5" style="text-align: center; display:flex; align-items:center;"></div>';
+		Materia += '</div>';
+
+		$("#ListaMaterias").append(Materia);
+		console.log("Planes: "+arregloPlanesEstudios.length);
+		for(var i = 0; i < arregloPlanesEstudios.length; i++){
+			$("#PlanEstudios"+ContadorMateriasGuardados).append(new Option(arregloPlanesEstudios[i].Nombre, arregloPlanesEstudios[i].id));
+		}
+
+		$("#PlanEstudios"+ContadorMateriasGuardados).val(informacion.EEAsociada[p].id_Plan);
+
+		$("#ListaMaterias").addClass("show");
+		
+		ControladorPlanEstudiosEE(ContadorMateriasGuardados);
+	}
+	ContadorMaterias = ContadorMateriasGuardados;
+}
+
 //Funciones Convenios
 function getConvenios(){
 	$.ajax({
@@ -190,13 +259,12 @@ function getPlanEstudios() {
 		url: '/Plan_de_Estudios/ObtenerPlanes',
 		type: "POST",
 		success: function(resultado){
-			for(var i = 0; i < resultado.length; i++){
-				$("#PlanEstudios").append(new Option(resultado[i].Nombre, resultado[i].id));
-			}
+			arregloPlanesEstudios=resultado;
+			
 			getEE();
-			if(informacion['DatosGenerales'].id_Plan!=null){
+			/*if(informacion['EEAsociadas'].length!=0){
 				$("#PlanEstudios").val(informacion['DatosGenerales'].id_Plan);
-			}
+			}*/
 			
 		},
 		error: function(XMLHttpRequest, textStatus, errorThrown) {
@@ -228,7 +296,8 @@ function getEE(){
 			Json +="]";
 			Json = JSON.parse(Json);
 			EE = Json;
-			ControladorPlanEstudiosEE();
+			setMaterias();
+			
 		},
 		error: function(XMLHttpRequest, textStatus, errorThrown) {
 			console.log(XMLHttpRequest);
@@ -240,8 +309,38 @@ function getEE(){
 	});
 }
 
-function ControladorPlanEstudiosEE() {
-	var plan = $("#PlanEstudios").val();
+
+//Funciones Materias
+function respuestaEE(respuesta){
+	if(respuesta=="si"){
+		$("#AsociarMaterias").css("display", "block");
+	}else{
+		if(informacion.EEAsociada.length>0){
+			var r = confirm("¿Desea eliminar todas las EE asociadas? \n (Se ejecutara al guardar los cambios)");
+			if (r == true) {
+				ArregloBorrarMaterias = [];
+				for (let i = 0; i < informacion.EEAsociada.length; i++) {
+					ArregloBorrarMaterias.push(informacion.EEAsociada[i].id);
+				}
+				ContadorMaterias = -1;
+				ContadorMateriasGuardados = 0;
+
+				$("#btnQuitarMateria").prop('disabled', true);
+				$("#AsociarMaterias").css("display", "none");
+				$("#ListaMaterias").html("");
+				$("#ListaMaterias").removeClass("show");
+			} else {
+				$('#FormDatosGenerales').submit(function (e) {
+					e.preventDefault();
+				});
+			}
+		}
+	}
+}
+
+function ControladorPlanEstudiosEE(contMateria) {
+	
+	var plan = $("#PlanEstudios"+contMateria).val();
 
 	eePorplan = EE.filter(function (ee) { return ee.id_Plan == plan; });
 
@@ -249,25 +348,84 @@ function ControladorPlanEstudiosEE() {
 	for (let i = 0; i < eePorplan.length; i++) {
 		arregloNombres.push(eePorplan[i].NombreEE);
 	}
-	autocompleteEE(arregloNombres);
+	autocompleteEE(arregloNombres, contMateria);
 }
 
-function autocompleteEE(arreglo) {
-	$( "#EE" ).autocomplete({
+function autocompleteEE(arreglo, contMateria) {
+	console.log("EE"+contMateria);
+	
+	$( "#EE"+contMateria ).autocomplete({
 		source: arreglo
 	});
 }
 
-function ControladorEE(){
-	var valor = $("#EE").val();
+function ControladorEE(contMateria){
+	var valor = $("#EE"+contMateria).val();
+	
+	console.log(EE);
+
 	var ee = EE.filter(function (ee) { return ee.NombreEE == valor; });
     try {
-		$("#IdEE").val(ee[0]["id"]);
+		$("#IdEE"+contMateria).val(ee[0]["id"]);
 		console.log(ee[0]["id"]);
 
 	} catch (error) {
-		$("#IdEE").val("");
+		$("#IdEE"+contMateria).val("");
 		console.log("Sin resultado");
+	}
+}
+
+function añadirMateria(){
+	$("#btnQuitarMateria").prop('disabled', false);
+	ContadorMaterias += 1;
+	
+		var Materia = '<div class="row" id="materia'+ContadorMaterias+'">';
+			Materia += '<div class="form-group col-md-5" style="text-align: left; padding: 0px 7px !important;">';
+				Materia += '<label>Plan de Estudios</label>';
+				Materia += '<select class="form-control" id="PlanEstudios'+ContadorMaterias+'" name="PlanEstudios" onchange="ControladorPlanEstudiosEE(\''+ContadorMaterias+'\')">';
+				Materia += '</select>';
+			Materia += '</div>';
+
+			Materia += '<div class="form-group col-md-7" style="text-align: left; padding: 0px 7px !important;">';
+				Materia += '<label for="EE">Experiencia Educativa Asociada</label>';
+				Materia += '<input type="text" class="form-control" onchange="ControladorEE(\''+ContadorMaterias+'\')" id="EE'+ContadorMaterias+'" name="EE">';
+				Materia += '<input type="hidden" id="IdEE'+ContadorMaterias+'" name="IdEE">';
+			Materia += '</div>';
+			Materia += '<span class="alertError" id="alertIdEERegistro'+ContadorMaterias+'"></span>';
+			Materia += '<span class="alertError" id="alertEERegistro'+ContadorMaterias+'"></span>';
+		Materia += '</div>';
+	$("#ListaMaterias").append(Materia);
+
+	for(var i = 0; i < arregloPlanesEstudios.length; i++){
+		$("#PlanEstudios"+ContadorMaterias).append(new Option(arregloPlanesEstudios[i].Nombre, arregloPlanesEstudios[i].id));
+	}
+
+	$("#ListaMaterias").addClass("show");
+	
+	ControladorPlanEstudiosEE(ContadorMaterias);
+}
+
+function quitarMateria(){
+	var idDiv="#materia"+ContadorMaterias;
+	$(idDiv).remove();
+	ContadorMaterias -= 1;
+	if(ContadorMaterias<=ContadorMateriasGuardados){
+		$("#btnQuitarMateria").prop('disabled', true);
+		if(informacion.EEAsociada.length<1){
+			$("#ListaMaterias").removeClass("show");
+		}
+	}
+}
+
+function EliminarRegistroEEAsociada(posicion) {
+	var r = confirm("¿Esta seguro de eliminar este registro? \n (Se ejecutara al guardar los cambios)");
+	if (r == true) {
+		ArregloBorrarMaterias.push($("#IdRegEE" + posicion).val());
+		$("#materia" + posicion).remove();
+	} else {
+		$('#FormDatosGenerales').submit(function (e) {
+			e.preventDefault();
+		});
 	}
 }
 
@@ -504,11 +662,12 @@ function EjecutarValidaciones() {
 	ValidarDatosG();
 	ValidarProfesores();
 	ValidarEstudiantes();
+	ValidarMaterias();
 }
 
 function validarValidaciones() {
 	
-	if(validarContDatosGenerales==0 && validarContProfesores == 0 && validarContEstudiantes==0){
+	if(validarContDatosGenerales==0 && validarContProfesores == 0 && validarContEstudiantes==0 && validarContMaterias==0){
 		if(Bandera==true){
 			console.log(Bandera);
 			ModificarDatosGenerales();
@@ -519,10 +678,6 @@ function validarValidaciones() {
 			alert("Alguno de los campos no ha sido llenado de forma correcta.");
 			Bandera = true;
 		}
-	}else{
-		console.log(validarContDatosGenerales);
-		console.log(validarContProfesores);
-		console.log(validarContEstudiantes);
 	}
 }
 
@@ -786,6 +941,114 @@ async function ValidarColabEstGuardados(parametros) {
 	});
 }
 
+function ValidarMaterias(){
+	var ArregloEEModificar = document.getElementsByName('EEModificar');
+	var ArregloIdEEModificar = document.getElementsByName('IdEEModificar');
+	var ArregloIdRegEEModificar = document.getElementsByName('IdRegEEModificar');
+
+	var ArregloEE = document.getElementsByName('EE');
+	var ArregloIdEE = document.getElementsByName('IdEE');
+
+	validarContMaterias = ArregloEEModificar.length + ArregloEE.length;
+	
+	for (let i = 0; i < ArregloEEModificar.length; i++) {
+		var EE = ArregloEEModificar[i].value;
+		var IdEE = ArregloIdEEModificar[i].value;
+		var IdRegEE = ArregloIdRegEEModificar[i].value;
+
+		var parametros = {
+			"EE" : EE,
+			"IdEE" : IdEE,
+			"IdRegEE" : IdRegEE,
+			'posicion': i+1
+		};
+		
+		ValidarMateriasGuardadas(parametros);
+	}
+
+	for (let i = 0; i < ArregloEE.length; i++) {
+		var EE = ArregloEE[i].value;
+		var IdEE = ArregloIdEE[i].value;
+
+		var parametros = {
+			"EE" : EE,
+			"IdEE" : IdEE
+		};
+
+		$.ajax({
+			headers: { "X-CSRF-TOKEN": $("meta[name='csrf-token']").attr("content") },
+			url: '/Trabajos_En_Sector/Registrar_Trabajos_Sectores/ValidarEEAsociada',
+			data: parametros,
+			type: "POST",
+			success: function(resultado){
+				$("#alertEERegistro"+parseInt(ContadorMateriasGuardados + i + 1)).html("");
+				$("#alertIdEERegistro"+parseInt(ContadorMateriasGuardados + i + 1)).html("");
+
+				console.log(resultado);
+				if(resultado!=true){
+					for (const atributo in resultado) {
+						var mensajes="";
+						for (let i = 0; i < resultado[atributo].length; i++) {
+							mensajes = mensajes + '<i class="fas fa-exclamation-circle"></i> '+resultado[atributo][i];
+							if(resultado[atributo].length-i!=1){
+								mensajes = mensajes + "<br>"
+							}
+						}
+						$("#alert"+atributo+"Registro"+parseInt(ContadorMateriasGuardados + i + 1)).html(mensajes);
+					}
+					Bandera = false;
+				}
+				validarContMaterias--;
+				validarValidaciones();
+			},
+			error: function(XMLHttpRequest, textStatus, errorThrown) {
+				console.log(XMLHttpRequest);
+				console.log(textStatus);
+				console.log(errorThrown);
+			}
+		});
+	}
+}
+
+async function ValidarMateriasGuardadas(parametros) {
+	$.ajax({
+		headers: { "X-CSRF-TOKEN": $("meta[name='csrf-token']").attr("content") },
+		url: '/Trabajos_En_Sector/Modificar_Trabajos_Sectores/ValidarEEAsociada',
+		data: parametros,
+		type: "POST",
+		success: function(resultado){
+			$("#alertEEModificar"+parametros.posicion).html("");
+			$("#alertIdEEModificar"+parametros.posicion).html("");
+
+			if(resultado!=true){
+				for (const atributo in resultado) {
+					var mensajes="";
+					for (let i = 0; i < resultado[atributo].length; i++) {
+						mensajes = mensajes + '<i class="fas fa-exclamation-circle"></i> '+resultado[atributo][i];
+						if(resultado[atributo].length-i!=1){
+							mensajes = mensajes + "<br>"
+						}
+					}
+					$("#alert"+atributo+"Modificar"+parametros.posicion).html(mensajes);
+				}
+				Bandera = false;
+			}
+			validarContMaterias--;
+			validarValidaciones();
+		},
+		error: function(XMLHttpRequest, textStatus, errorThrown) {
+			console.log(XMLHttpRequest);
+			console.log(textStatus);
+			console.log(errorThrown);
+		}
+	});
+}
+
+
+
+
+
+
 function ModificarDatosGenerales() {
 	var formDatosGenerales = new FormData(document.getElementById('FormDatosGenerales'));
 	var id = informacion.DatosGenerales.id;
@@ -801,6 +1064,7 @@ function ModificarDatosGenerales() {
 		success: function(result){
 			ModificarColaboracionesProfesor(id);
 			ModificarColaboracionesEstudiante(id);
+			ModificarMaterias(id);
 			alert("Trabajo con Sector Modificado");
 			location.reload();
 			console.log(result);
@@ -959,6 +1223,84 @@ function ModificarColaboracionesEstudianteGuardadas(idTS){
 		$.ajax({
 			headers: { "X-CSRF-TOKEN": $("meta[name='csrf-token']").attr("content") },
 			url: '/Trabajos_En_Sector/Modificar_Trabajos_Sectores/ModificarColabEst',
+			data: parametros,
+			type: "POST",
+			success: function(resultado){
+				
+			},
+			error: function(XMLHttpRequest, textStatus, errorThrown) {
+				console.log(XMLHttpRequest);
+				console.log(textStatus);
+				console.log(errorThrown);
+			}
+		});
+	}
+}
+
+function ModificarMaterias(idTS) {
+	EliminarRegistrosMaterias();
+	RegistrarMateriasAsociadas(idTS);
+	ModificarMateriasAsociadasGuardadas(idTS);
+}
+
+function EliminarRegistrosMaterias() {
+	if (ArregloBorrarMaterias.length != 0) {
+		$.ajax({
+			headers: { "X-CSRF-TOKEN": $("meta[name='csrf-token']").attr("content") },
+			url: "/Trabajos_En_Sector/Modificar_Trabajos_Sectores/EliminarEE",
+			data: { "Ids": ArregloBorrarMaterias },
+			type: "POST",
+			success: function (resultado) {
+				console.log(resultado);
+			}
+		});
+	} else {
+		console.log("nada para borrar");
+	}
+}
+
+function RegistrarMateriasAsociadas(idTS) {
+	var ArregloIdEE = document.getElementsByName('IdEE');
+	for (let i = 0; i < ArregloIdEE.length; i++) {
+		var IdEE = ArregloIdEE[0].value;
+
+		var parametros = {
+			"IdTrabajoSector" : idTS,
+			"IdEE" : IdEE
+		};
+
+		$.ajax({
+			headers: { "X-CSRF-TOKEN": $("meta[name='csrf-token']").attr("content") },
+			url: '/Trabajos_En_Sector/Registrar_Trabajos_Sectores/RegistrarEEAsociadas',
+			data: parametros,
+			type: "POST",
+			success: function(resultado){
+			},
+			error: function(XMLHttpRequest, textStatus, errorThrown) {
+				console.log(XMLHttpRequest);
+				console.log(textStatus);
+				console.log(errorThrown);
+			}
+		});
+	}
+}
+
+function ModificarMateriasAsociadasGuardadas(idTS){
+	var ArregloIdEEModificar = document.getElementsByName('IdEEModificar');
+	var ArregloIdRegEEModificar = document.getElementsByName('IdRegEEModificar');
+
+	for (let i = 0; i < ArregloIdRegEEModificar.length; i++) {
+		var IdEE = ArregloIdEEModificar[i].value;
+		var IdRegEE = ArregloIdRegEEModificar[i].value;
+
+		var parametros = {
+			"IdEE" : IdEE,
+			"IdRegEE" : IdRegEE
+		};
+
+		$.ajax({
+			headers: { "X-CSRF-TOKEN": $("meta[name='csrf-token']").attr("content") },
+			url: '/Trabajos_En_Sector/Modificar_Trabajos_Sectores/ModificarEE',
 			data: parametros,
 			type: "POST",
 			success: function(resultado){

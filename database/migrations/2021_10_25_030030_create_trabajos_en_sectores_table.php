@@ -26,12 +26,10 @@ class CreateTrabajosEnSectoresTable extends Migration
             $table->year('anioFin');
             $table->text('RutaArchivoEvidencia', 350)->nullable();
             $table->text('NombreArchivoEvidencia', 250)->nullable();
-            $table->bigInteger('EEasociada')->unsigned()->nullable();
 
             $table->foreign('IdConvenio')->references('id')->on('convenios_movilidads')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('ProfResponsable')->references('id')->on('profesores')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('EEasociada')->references('id')->on('experiencias_educativas')->onDelete('cascade')->onUpdate('cascade');
-
+            
             $table->timestamps();
         });
     }

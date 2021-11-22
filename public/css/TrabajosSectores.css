@@ -295,6 +295,25 @@ table thead{
     padding-top: 0px !important;
 }
 
+.ListaMaterias-container{
+    text-align: left !important;
+    padding: 10px 10px;
+    padding-top: 0px !important;
+}
+
+.Materias-form{
+    border: 1px solid rgb(223, 223, 223);
+    border-radius: 5px;
+    padding: 10px 30px;
+    margin-bottom: 10px;
+}
+
+.Materias-control{
+    padding: 10px 0px;
+    padding-top: 0px !important;
+}
+
+
 fieldset.scheduler-border {
     border-top: 1px groove hsla(0, 0%, 57%, 0.212) !important;
     padding: 0 1.4em 1.4em 1.4em !important;

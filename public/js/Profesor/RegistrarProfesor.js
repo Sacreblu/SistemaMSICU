@@ -1343,6 +1343,11 @@ function crearCopiasCatas() {
 				tabla = tabla + '</tr>';
 			}
 			document.getElementById('VistaPrevCartas').innerHTML=tabla;
+		},
+		error: function(XMLHttpRequest, textStatus, errorThrown) {
+			console.log(XMLHttpRequest);
+			console.log(textStatus);
+			console.log(errorThrown);
 		}
 	});
 }

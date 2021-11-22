@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\TrabajosEnSectores;
 use App\TrabSectColaboracionProf;
 use App\TrabSectColaboracionEst;
+use App\TrabSectEEAsociadas;
 
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
@@ -48,11 +49,14 @@ class TrabajosEnSectoresController extends Controller
         $ColabProf = $ColabProf -> ObtenerColaboracionByProfesor($request);
         $ColabEst = new TrabSectColaboracionEst();
         $ColabEst = $ColabEst -> ObtenerColaboracionByEstudiante($request);
-
+        $EEAsociada = new TrabSectEEAsociadas();
+        $EEAsociada = $EEAsociada -> ObtenerEEAsociadas($request);
+        
         $array = array(
             "DatosGenerales" => $DatosGenerales[0],
             "ColabProf" => $ColabProf,
-            "ColabEst" => $ColabEst
+            "ColabEst" => $ColabEst,
+            "EEAsociada" => $EEAsociada
         );
         return $array;
     }
@@ -68,9 +72,7 @@ class TrabajosEnSectoresController extends Controller
                 'ProfesorResponsable'=>'required',
                 'IdProfesorResponsable'=>'required',
                 'AnioInicio'=>'before_or_equal:AnioFin',
-                'AnioFin'=>'after_or_equal:AnioInicio',
-                'EE' => 'nullable',
-                'IdEE' => 'required_with:EE',
+                'AnioFin'=>'after_or_equal:AnioInicio'
             ]);
         if($validator->fails()){
             return $validator->errors();
@@ -103,6 +105,18 @@ class TrabajosEnSectoresController extends Controller
         }
     }
 
+    public function ValidarEEAsociada(Request $request){
+        $validator = Validator::make($request->all(), [
+                'EE'=>'required',
+                'IdEE'=>'required',
+            ]);
+        if($validator->fails()){
+            return $validator->errors();
+        }else{
+            return true;
+        }
+    }
+
     public function ValidarDatosGeneralesTrabajoSectorModificar(Request $request, $id){
         $validator = Validator::make($request->all(), [
                 'NombreConvenio'=>'required',
@@ -113,9 +127,7 @@ class TrabajosEnSectoresController extends Controller
                 'ProfesorResponsable'=>'required',
                 'IdProfesorResponsable'=>'required',
                 'AnioInicio'=>'before_or_equal:AnioFin',
-                'AnioFin'=>'after_or_equal:AnioInicio',
-                'EE' => 'nullable',
-                'IdEE' => 'required_with:EE',
+                'AnioFin'=>'after_or_equal:AnioInicio'
             ]);
         if($validator->fails()){
             return $validator->errors();
@@ -140,6 +152,18 @@ class TrabajosEnSectoresController extends Controller
         $validator = Validator::make($request->all(), [
                 'ColabEst'=>'required',
                 'IdColabEst'=>'required',
+            ]);
+        if($validator->fails()){
+            return $validator->errors();
+        }else{
+            return true;
+        }
+    }
+
+    public function ValidarEEAsociadaModificar(Request $request){
+        $validator = Validator::make($request->all(), [
+                'EE'=>'required',
+                'IdEE'=>'required',
             ]);
         if($validator->fails()){
             return $validator->errors();
@@ -193,6 +217,21 @@ class TrabajosEnSectoresController extends Controller
     public function ModificarColabEst(Request $request){
         $colaboracion = new TrabSectColaboracionEst();
         return $colaboracion->ModificarColabEst($request);
+    }
+
+    public function EliminarEE(Request $request){
+        $ee = new TrabSectEEAsociadas();
+        return $ee->EliminarEE($request);
+    }
+
+    public function RegistrarEEAsociadas(Request $request){
+        $EE = new TrabSectEEAsociadas();
+        $EE->RegistrarEEAsociadas($request);
+    }
+
+    public function ModificarEE(Request $request){
+        $ee = new TrabSectEEAsociadas();
+        return $ee->ModificarEE($request);
     }
 
     public function EliminarTrabajoEnSector(Request $request){

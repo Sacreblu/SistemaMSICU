@@ -126,18 +126,6 @@
                             <span class="alertError" id="alertIdProfesorResponsableModificar"></span>
                             <span class="alertError" id="alertProfesorResponsableModificar"></span>
                         </div>
-                        <div class="form-group" style="text-align: left;">
-                            <label>Plan de Estudios</label>
-                            <select class="form-control" id="PlanEstudios" name="PlanEstudios" onchange="ControladorPlanEstudiosEE()">
-                            </select>
-                        </div>
-                        <div class="form-group" style="text-align: left;">
-                            <label for="EE">Experiencia Educativa Asociada</label>
-                            <input type="text" class="form-control" onchange="ControladorEE()" id="EE" name="EE" value="{{$informacion['DatosGenerales']->NombreEE}}">
-                            <input type="hidden" id="IdEE" name="IdEE" value="{{$informacion['DatosGenerales']->EEasociada}}">
-                            <span class="alertError" id="alertIdEEModificar"></span>
-                            <span class="alertError" id="alertEEModificar"></span>
-                        </div>
 
                         <div class="ListaProfesores-container">
                             <div class="Profesores-control">
@@ -179,6 +167,33 @@
                             </div>
                         </div>
 
+                        <div class="Materias-control" style="text-align: left; padding: 20px 10px; ">
+                            <div class="text-control">
+                                ¿Asociar a una experiencia educativa?
+                            </div> 
+                            <button class="btn btn-sm" id="btnSi" onclick="respuestaEE('si')">Si</button>
+                            <button class="btn btn-sm" id="btnNo" onclick="respuestaEE('no')">No</button>
+                        </div>
+
+                        <div id="AsociarMaterias" class="ListaMaterias-container" style="display:none;">
+                            <div class="Materias-control">
+                                <div class="text-control">
+                                   Agregar Experiencia Educativa
+                                </div> 
+                                <button class="btn btn-sm" id="btnAgregarMateria" onclick="añadirMateria()" title="Añadir una Materia"><i class="fas fa-plus"></i></button>
+                                <button class="btn btn-sm" id="btnQuitarMateria" onclick="quitarMateria()" title="Restar una Materia" disabled><i class="fas fa-minus"></i></button>
+                            </div>
+                            <div id="Materias">
+                                <div class="Materias-form card" id="CardListaMaterias">
+                                    <div id="MateriasContainer" data-toggle="collapse" style="cursor: pointer;" data-target="#ListaMaterias">
+                                        <i class="fas fa-angle-right"></i> Lista de Materias
+                                    </div>
+                                    <div id="ListaMaterias" style="margin-top:10px;" class="collapse"> 
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </fieldset>
             </div>

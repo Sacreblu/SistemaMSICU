@@ -184,20 +184,25 @@ Route::post('/Trabajos_En_Sector/obtenerInformacionTS', 'TrabajosEnSectoresContr
 Route::post('/Trabajos_En_Sector/Registrar_Trabajos_Sectores/ValidarDatosGeneralesTrabajoSector', 'TrabajosEnSectoresController@ValidarDatosGeneralesTrabajoSector');
 Route::post('/Trabajos_En_Sector/Registrar_Trabajos_Sectores/ValidarProfesoresTrabajoSector', 'TrabajosEnSectoresController@ValidarColaboracionesProfesores');
 Route::post('/Trabajos_En_Sector/Registrar_Trabajos_Sectores/ValidarEstudiantesTrabajoSector', 'TrabajosEnSectoresController@ValidarColaboracionesEstudiantes');
+Route::post('/Trabajos_En_Sector/Registrar_Trabajos_Sectores/ValidarEEAsociada', 'TrabajosEnSectoresController@ValidarEEAsociada');
 
 Route::post('/Trabajos_En_Sector/Registrar_Trabajos_Sectores/RegistrarDG', 'TrabajosEnSectoresController@RegistrarDG');
 Route::post('/Trabajos_En_Sector/Registrar_Trabajos_Sectores/RegistrarColaboracionProfesores', 'TrabajosEnSectoresController@RegistrarColaboracionProfesores');
 Route::post('/Trabajos_En_Sector/Registrar_Trabajos_Sectores/RegistrarColaboracionEstudiantes', 'TrabajosEnSectoresController@RegistrarColaboracionEstudiantes');
+Route::post('/Trabajos_En_Sector/Registrar_Trabajos_Sectores/RegistrarEEAsociadas', 'TrabajosEnSectoresController@RegistrarEEAsociadas');
 
 Route::post('/Trabajos_En_Sector/Modificar_Trabajos_Sectores/ValidarDatosGeneralesTrabajoSector/{id}', 'TrabajosEnSectoresController@ValidarDatosGeneralesTrabajoSectorModificar');
 Route::post('/Trabajos_En_Sector/Modificar_Trabajos_Sectores/ValidarProfesoresTrabajoSector', 'TrabajosEnSectoresController@ValidarColaboracionesProfesoresModificar');
 Route::post('/Trabajos_En_Sector/Modificar_Trabajos_Sectores/ValidarEstudiantesTrabajoSector', 'TrabajosEnSectoresController@ValidarColaboracionesEstudiantesModificar');
+Route::post('/Trabajos_En_Sector/Modificar_Trabajos_Sectores/ValidarEEAsociada', 'TrabajosEnSectoresController@ValidarEEAsociadaModificar');
 
 Route::post('/Trabajos_En_Sector/Modificar_Trabajos_Sectores/ModificarDG/{id}', 'TrabajosEnSectoresController@ModificarDG');
 Route::post('/Trabajos_En_Sector/Modificar_Trabajos_Sectores/EliminarColabProf', 'TrabajosEnSectoresController@EliminarColabProf');
 Route::post('/Trabajos_En_Sector/Modificar_Trabajos_Sectores/ModificarColabProf', 'TrabajosEnSectoresController@ModificarColabProf');
 Route::post('/Trabajos_En_Sector/Modificar_Trabajos_Sectores/EliminarColabEst', 'TrabajosEnSectoresController@EliminarColabEst');
 Route::post('/Trabajos_En_Sector/Modificar_Trabajos_Sectores/ModificarColabEst', 'TrabajosEnSectoresController@ModificarColabEst');
+Route::post('/Trabajos_En_Sector/Modificar_Trabajos_Sectores/EliminarEE', 'TrabajosEnSectoresController@EliminarEE');
+Route::post('/Trabajos_En_Sector/Modificar_Trabajos_Sectores/ModificarEE', 'TrabajosEnSectoresController@ModificarEE');
 
 Route::post('/Trabajos_En_Sector/Eliminar_Trabajos_Sectores', 'TrabajosEnSectoresController@EliminarTrabajoEnSector');
 

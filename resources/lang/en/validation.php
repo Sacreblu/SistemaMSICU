@@ -472,8 +472,11 @@ return [
         'PracticasSinProfesorEE' => [
             'required' => 'Es necesario introducir las horas dedicadas'
         ],
+        'EE' => [
+            'required' => 'La experiencia educativa es requerida'
+        ],
         'IdEE' => [
-            'required_with' => 'La experiencia educativa debe estar registrada en la base de datos'
+            'required' => 'La experiencia educativa debe estar registrada en la base de datos'
         ],
     ],
 
