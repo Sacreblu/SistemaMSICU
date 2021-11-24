@@ -146,6 +146,7 @@ Route::post('/Convenios_Movilidad/FiltradoTablaConvenios', 'ConveniosMovilidadCo
 Route::post('/Convenios_Movilidad/BusquedaConvenios', 'ConveniosMovilidadController@BusquedaConvenios');
 Route::post('/Convenios_Movilidad/obtenerInformacionConvenios', 'ConveniosMovilidadController@obtenerInformacionConvenio');
 Route::post('/Convenios_Movilidad/ObtenerConvenios', 'ConveniosMovilidadController@ObtenerConvenios');
+Route::post('/Convenios_Movilidad/ObtenerEstancias', 'ConveniosMovilidadController@ObtenerEstancias');
 Route::post('/Convenios_Movilidad/ObtenerConveniosPorSector', 'ConveniosMovilidadController@ObtenerConveniosPorSector');
 
 Route::post('/Convenios_Movilidad/Registrar_Convenios_Movilidad/ValidarDatosGeneralesConvenio', 'ConveniosMovilidadController@ValidarDatosGeneralesConvenio');
@@ -156,14 +157,15 @@ Route::post('/Convenios_Movilidad/Modificar_Convenios_Movilidad/ModificarDG/{id}
 Route::post('/Convenios_Movilidad/EliminarConvenio', 'ConveniosMovilidadController@EliminarConvenio');
 
 //Acciones de Movilidad
-Route::get('/Acciones_Movilidad/Registrar_Acciones_Movilidad', 'AccionesMovilidadController@registrarAccionesVista');
-Route::get('/Acciones_Movilidad/Modificar_Acciones_Movilidad/{id}', 'AccionesMovilidadController@VistaModificarAccion');
-Route::get('/Acciones_Movilidad', 'AccionesMovilidadController@mostrarAcciones');
+Route::get('/Acciones_Movilidad/Registrar_Estancia_Academica', 'AccionesMovilidadController@registrarAccionesVista');
+Route::get('/Acciones_Movilidad/Modificar_Estancia_Academica/{id}', 'AccionesMovilidadController@VistaModificarAccion');
+Route::get('/Estancias_Academicas', 'AccionesMovilidadController@mostrarAcciones');
 
 Route::post('/Acciones_Movilidad/FiltradoTablaMovilidades', 'AccionesMovilidadController@FiltradoMovilidades');
 Route::post('/Acciones_Movilidad/BusquedaMovilidades', 'AccionesMovilidadController@BusquedaMovilidades');
 Route::post('/Acciones_Movilidad/obtenerInformacionMovilidades', 'AccionesMovilidadController@obtenerInformacionAccion');
 Route::post('/Acciones_Movilidad/ObtenerMovilidades', 'AccionesMovilidadController@ObtenerConvenios');
+
 
 Route::post('/Acciones_Movilidad/Registrar_Acciones_Movilidad/ValidarDatosGeneralesMovilidad', 'AccionesMovilidadController@ValidarDatosGeneralesMovilidad');
 Route::post('/Acciones_Movilidad/Modificar_Acciones_Movilidad/ValidarDatosGeneralesMovilidad/{id}', 'AccionesMovilidadController@ValidarDatosGeneralesMovilidadModificar');

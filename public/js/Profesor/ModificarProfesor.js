@@ -523,7 +523,7 @@ function setSuperacionAcademica(){
 		cardSuperacion += '</div>';	
 
 		$("#Cursos").append(cardSuperacion);
-		$("#AnioSuperacion" + ContadorSuperacionAcademicaGuardada).val(informacion[0].PreparacionAcademica[p].Anio);
+		$("#AnioSuperacion" + ContadorSuperacionAcademicaGuardada).val(informacion[0].SuperacionAcademica[p].Anio);
 	}
 	ContadorSuperacionAcademica = ContadorSuperacionAcademicaGuardada;
 }
@@ -875,7 +875,7 @@ function setPertenencia(){
 		cardPertenencia += '</div>';
 
 		$("#Pertenencias").append(cardPertenencia);
-		$("#AnioPertenencia" + ContadorPertenenciaGuardada).val(informacion[0].Trayectoria[p].Anio);
+		$("#AnioPertenencia" + ContadorPertenenciaGuardada).val(informacion[0].Pertenencias[p].Anio);
 	}
 	ContadorPertenencias = ContadorPertenenciaGuardada;
 }
@@ -2306,6 +2306,11 @@ function EliminarRegistrosEstudios() {
 			type: "POST",
 			success: function (resultado) {
 				console.log(resultado);
+			},
+			error: function(XMLHttpRequest, textStatus, errorThrown) {
+				console.log(XMLHttpRequest);
+				console.log(textStatus);
+				console.log(errorThrown);
 			}
 		});
 	} else {
@@ -2376,6 +2381,11 @@ function EliminarRegistrosSuperacion() {
 			type: "POST",
 			success: function (resultado) {
 				console.log(resultado);
+			},
+			error: function(XMLHttpRequest, textStatus, errorThrown) {
+				console.log(XMLHttpRequest);
+				console.log(textStatus);
+				console.log(errorThrown);
 			}
 		});
 	} else {
@@ -2446,6 +2456,11 @@ function EliminarRegistrosDistincion() {
 			type: "POST",
 			success: function (resultado) {
 				console.log(resultado);
+			},
+			error: function(XMLHttpRequest, textStatus, errorThrown) {
+				console.log(XMLHttpRequest);
+				console.log(textStatus);
+				console.log(errorThrown);
 			}
 		});
 	} else {
@@ -2516,6 +2531,11 @@ function EliminarRegistrosTrayectoria() {
 			type: "POST",
 			success: function (resultado) {
 				console.log(resultado);
+			},
+			error: function(XMLHttpRequest, textStatus, errorThrown) {
+				console.log(XMLHttpRequest);
+				console.log(textStatus);
+				console.log(errorThrown);
 			}
 		});
 	} else {
@@ -2586,6 +2606,11 @@ function EliminarRegistrosPertenencia() {
 			type: "POST",
 			success: function (resultado) {
 				console.log(resultado);
+			},
+			error: function(XMLHttpRequest, textStatus, errorThrown) {
+				console.log(XMLHttpRequest);
+				console.log(textStatus);
+				console.log(errorThrown);
 			}
 		});
 	} else {

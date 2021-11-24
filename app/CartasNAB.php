@@ -19,44 +19,53 @@ class CartasNAB extends Model
         
         $archivos = $request->file('cartas');
         $lengthArray = count($archivos);
-        
-        $profesor = new Profesores();
-        $profesor = $profesor->ObtenerNombreProfesor($request->get('idProfesor'));
-        $iniciales = "";
-        $aux=explode(" ", $profesor[0]->Nombre);
-        for ($i=0; $i < count($aux) ; $i++) { 
-            $iniciales = $iniciales . substr($aux[$i], 0, 1);
-        }
-        $iniciales = $iniciales . substr($profesor[0]->Apellido_P, 0, 1);
-        $iniciales = $iniciales . substr($profesor[0]->Apellido_M, 0, 1);
-        mkdir(public_path().'/storage/Documentos/Profesores/CartasNAB/'.$request->get('idProfesor').'/', 0700);
-
-        for ($i=0; $i < $lengthArray; $i++) {
-            $versiion = $i+1;
-            $nombreOriginal = $archivos[$i]->getClientOriginalName();
-            $extension = $archivos[$i]->getClientOriginalExtension();
-            $fileName = 'CARTA-NAB-'.$iniciales.'-v'.$versiion.'.'.$extension;
-            $tmpPath = $archivos[$i];
-            $newPath = public_path().'/storage/Documentos/Profesores/CartasNAB/'.$request->get('idProfesor').'/'.$fileName;
-            move_uploaded_file($tmpPath,$newPath);
-            $vigente = "off";
-            if ($i==$request->get('ArchivoVigente')) {
-                $vigente = "on";
+        if($lengthArray>0){
+            $profesor = new Profesores();
+            $profesor = $profesor->ObtenerNombreProfesor($request->get('idProfesor'));
+            $iniciales = "";
+            $aux=explode(" ", $profesor[0]->Nombre);
+            for ($i=0; $i < count($aux) ; $i++) { 
+                $iniciales = $iniciales . substr($aux[$i], 0, 1);
             }
-            $datos = new CartasNAB ([
-                'Id_Profesor'=> $request->get('idProfesor'),
-                'NombreArchivo'=> $fileName,
-                'Ruta_Archivo'=> '/storage/Documentos/Profesores/CartasNAB/'.$request->get('idProfesor').'/'.$fileName,
-                'Vigente'=> $vigente,
-                'Fecha_Registro'=> $request->get('fechaRegistro')
-            ]); 
-            $datos->save();
+            $iniciales = $iniciales . substr($profesor[0]->Apellido_P, 0, 1);
+            $iniciales = $iniciales . substr($profesor[0]->Apellido_M, 0, 1);
+            mkdir(public_path().'/storage/Documentos/Profesores/CartasNAB/'.$request->get('idProfesor').'/', 0700);
+
+            for ($i=0; $i < $lengthArray; $i++) {
+                $versiion = $i+1;
+                $nombreOriginal = $archivos[$i]->getClientOriginalName();
+                $extension = $archivos[$i]->getClientOriginalExtension();
+                $fileName = 'CARTA-NAB-'.$iniciales.'-v'.$versiion.'.'.$extension;
+                $tmpPath = $archivos[$i];
+                $newPath = public_path().'/storage/Documentos/Profesores/CartasNAB/'.$request->get('idProfesor').'/'.$fileName;
+                move_uploaded_file($tmpPath,$newPath);
+                $vigente = "off";
+                if ($i==$request->get('ArchivoVigente')) {
+                    $vigente = "on";
+                }
+                $datos = new CartasNAB ([
+                    'Id_Profesor'=> $request->get('idProfesor'),
+                    'NombreArchivo'=> $fileName,
+                    'Ruta_Archivo'=> '/storage/Documentos/Profesores/CartasNAB/'.$request->get('idProfesor').'/'.$fileName,
+                    'Vigente'=> $vigente,
+                    'Fecha_Registro'=> $request->get('fechaRegistro')
+                ]); 
+                $datos->save();
+            }
         }
+        
 
         return "cartas registradas";
     }
 
     public function ModificarCartasNAB($request){
+        try {
+            mkdir(public_path().'/storage/Documentos/Profesores/CartasNAB/'.$request->get('idProfesor').'/', 0700);
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
+
+        
         CartasNAB::where('Id_Profesor', "=", $request->get('idProfesor'))->delete();
 
         $files = glob(public_path().'/storage/Documentos/Profesores/CartasNAB/'.$request->get('idProfesor').'/*.pdf'); //obtenemos todos los nombres de los ficheros

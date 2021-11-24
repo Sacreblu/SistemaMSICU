@@ -39,6 +39,7 @@ class AccionesMovilidad extends Model
         $acciones = AccionesMovilidad::join('estudiantes', 'acciones_movilidads.IdEstudiante', '=', 'estudiantes.id')
                         ->join('convenios_movilidads', 'acciones_movilidads.IdConvenio', '=', 'convenios_movilidads.id')
                         ->select('acciones_movilidads.id', 'convenios_movilidads.Nombre_Clave', 'convenios_movilidads.Sector', 'estudiantes.Nombre', 'estudiantes.Apellido_P', 'estudiantes.Apellido_M', 'InstitucionDestino', 'PeriodoInicio', 'PeriodoConclusion')
+                        ->where('convenios_movilidads.Sector', '=', '4')
                         ->orderBy('convenios_movilidads.Nombre_Clave', 'DESC')->get();
         return $acciones;
     }
@@ -50,24 +51,21 @@ class AccionesMovilidad extends Model
                 $acciones = AccionesMovilidad::join('estudiantes', 'acciones_movilidads.IdEstudiante', '=', 'estudiantes.id')
                     ->join('convenios_movilidads', 'acciones_movilidads.IdConvenio', '=', 'convenios_movilidads.id')
                     ->select('acciones_movilidads.id', 'convenios_movilidads.Nombre_Clave', 'convenios_movilidads.Sector', 'estudiantes.Nombre', 'estudiantes.Apellido_P', 'estudiantes.Apellido_M', 'InstitucionDestino', 'PeriodoInicio', 'PeriodoConclusion')
-                    ->where('ProgramaDestino', '=', 'Maestría en Sistemas Interactivos Centrados en el Usuario')
-                    ->orderBy('Nombre_Clave', 'DESC')->get();
+                    ->where([['ProgramaDestino', '=', 'Maestría en Sistemas Interactivos Centrados en el Usuario'], ['convenios_movilidads.Sector', '=', '4']])
+                    ->orderBy('convenios_movilidads.Nombre_Clave', 'DESC')->get();
                 break;
             case '2':
                 $acciones = AccionesMovilidad::join('estudiantes', 'acciones_movilidads.IdEstudiante', '=', 'estudiantes.id')
                     ->join('convenios_movilidads', 'acciones_movilidads.IdConvenio', '=', 'convenios_movilidads.id')
                     ->select('acciones_movilidads.id', 'convenios_movilidads.Nombre_Clave', 'convenios_movilidads.Sector', 'estudiantes.Nombre', 'estudiantes.Apellido_P', 'estudiantes.Apellido_M', 'InstitucionDestino', 'PeriodoInicio', 'PeriodoConclusion')
-                    ->where('ProgramaOrigen', '=', 'Maestría en Sistemas Interactivos Centrados en el Usuario')
-                    ->orWhere('convenios_movilidads.Sector', '=', '1')
-                    ->orWhere('convenios_movilidads.Sector', '=', '2')
-                    ->orWhere('convenios_movilidads.Sector', '=', '3')
-                    ->orWhere('convenios_movilidads.Sector', '=', '5')
+                    ->where([['ProgramaOrigen', '=', 'Maestría en Sistemas Interactivos Centrados en el Usuario'], ['convenios_movilidads.Sector', '=', '4']])
                     ->orderBy('Nombre_Clave', 'DESC')->get();
                 break;
             default:
                 $acciones = AccionesMovilidad::join('estudiantes', 'acciones_movilidads.IdEstudiante', '=', 'estudiantes.id')
                     ->join('convenios_movilidads', 'acciones_movilidads.IdConvenio', '=', 'convenios_movilidads.id')
                     ->select('acciones_movilidads.id', 'convenios_movilidads.Nombre_Clave', 'convenios_movilidads.Sector', 'estudiantes.Nombre', 'estudiantes.Apellido_P', 'estudiantes.Apellido_M', 'InstitucionDestino', 'PeriodoInicio', 'PeriodoConclusion')
+                    ->where('convenios_movilidads.Sector', '=', '4')
                     ->orderBy('convenios_movilidads.Nombre_Clave', 'DESC')->get();
                 
                 break;
@@ -84,7 +82,7 @@ class AccionesMovilidad extends Model
                     $acciones = AccionesMovilidad::join('estudiantes', 'acciones_movilidads.IdEstudiante', '=', 'estudiantes.id')
                         ->join('convenios_movilidads', 'acciones_movilidads.IdConvenio', '=', 'convenios_movilidads.id')
                         ->select('acciones_movilidads.id', 'convenios_movilidads.Nombre_Clave', 'convenios_movilidads.Sector', 'estudiantes.Nombre', 'estudiantes.Apellido_P', 'estudiantes.Apellido_M', 'InstitucionDestino', 'PeriodoInicio', 'PeriodoConclusion')
-                        ->where('convenios_movilidads.Nombre_Clave', 'like', '%'.$text.'%')
+                        ->where([['convenios_movilidads.Nombre_Clave', 'like', '%'.$text.'%'], ['convenios_movilidads.Sector', '=', '4']])
                         ->orderBy('Nombre_Clave', 'DESC')->get();
                     break;
                 
@@ -92,9 +90,9 @@ class AccionesMovilidad extends Model
                     $acciones = AccionesMovilidad::join('estudiantes', 'acciones_movilidads.IdEstudiante', '=', 'estudiantes.id')
                         ->join('convenios_movilidads', 'acciones_movilidads.IdConvenio', '=', 'convenios_movilidads.id')
                         ->select('acciones_movilidads.id', 'convenios_movilidads.Nombre_Clave', 'convenios_movilidads.Sector', 'estudiantes.Nombre', 'estudiantes.Apellido_P', 'estudiantes.Apellido_M', 'InstitucionDestino', 'PeriodoInicio', 'PeriodoConclusion')
-                        ->where('estudiantes.Nombre', 'like', '%'.$text.'%')
-                        ->orWhere('estudiantes.Apellido_P', 'like', '%'.$text.'%')
-                        ->orWhere('estudiantes.Apellido_M', 'like', '%'.$text.'%')
+                        ->where([['estudiantes.Nombre', 'like', '%'.$text.'%'], ['convenios_movilidads.Sector', '=', '4']])
+                        ->orWhere([['estudiantes.Apellido_P', 'like', '%'.$text.'%'], ['convenios_movilidads.Sector', '=', '4']])
+                        ->orWhere([['estudiantes.Apellido_P', 'like', '%'.$text.'%'], ['convenios_movilidads.Sector', '=', '4']])
                         ->orderBy('Nombre_Clave', 'DESC')->get();
                     break;
             }
@@ -102,6 +100,7 @@ class AccionesMovilidad extends Model
             $acciones = AccionesMovilidad::join('estudiantes', 'acciones_movilidads.IdEstudiante', '=', 'estudiantes.id')
                     ->join('convenios_movilidads', 'acciones_movilidads.IdConvenio', '=', 'convenios_movilidads.id')
                     ->select('acciones_movilidads.id', 'convenios_movilidads.Nombre_Clave', 'convenios_movilidads.Sector', 'estudiantes.Nombre', 'estudiantes.Apellido_P', 'estudiantes.Apellido_M', 'InstitucionDestino', 'PeriodoInicio', 'PeriodoConclusion')
+                    ->where('convenios_movilidads.Sector', '=', '4')
                     ->orderBy('convenios_movilidads.Nombre_Clave', 'DESC')->get();
         }
             

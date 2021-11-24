@@ -1,12 +1,12 @@
 @extends('layouts.Plantilla')
 
 <link rel="stylesheet" href="/css/AccionesMovilidad.css">
-<script src="/js/AccionMovilidad/MostrarAccion.js" type="text/javascript"></script>
+<script src="/js/AccionMovilidad/MostrarEstancias.js" type="text/javascript"></script>
 
 <div class="Contenedor">
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item active" aria-current="page">Movilidad y Congresos</li>
+            <li class="breadcrumb-item active" aria-current="page">Estancias Academicas</li>
         </ol>
     </nav>
 
@@ -37,7 +37,7 @@
                 </select>
             </div>
             <div class="opciones-btn col-md-3">
-                <a class="btn btn-primary btn-sm" href="{{url('/Acciones_Movilidad/Registrar_Acciones_Movilidad')}}">Registrar Movilidad</a>
+                <a class="btn btn-primary btn-sm" href="{{url('/Acciones_Movilidad/Registrar_Estancia_Academica')}}">Registrar Estancia</a>
             </div>
         </div>
         <div class="col-md-12 mt-3">

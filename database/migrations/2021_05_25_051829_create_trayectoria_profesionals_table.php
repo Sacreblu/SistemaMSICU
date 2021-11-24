@@ -22,8 +22,8 @@ class CreateTrayectoriaProfesionalsTable extends Migration
             $table->integer('Anio');
             $table->char('Periodo', 40);
             $table->char('Descripcion', 180);
-            $table->char('Ruta_Archivo', 200);
-            $table->char('NombreArchivo', 100);
+            $table->char('Ruta_Archivo', 200)->nullable();
+            $table->char('NombreArchivo', 100)->nullable();
             $table->timestamps();
             
             $table->foreign('Id_Profesor')->references('id')->on('profesores')->onDelete('cascade')->onUpdate('cascade');

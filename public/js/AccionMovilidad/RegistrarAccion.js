@@ -67,7 +67,7 @@ function getEstudiantes(){
 function getConvenios(){
 	$.ajax({
 		headers: { "X-CSRF-TOKEN": $("meta[name='csrf-token']").attr("content") },
-		url: "/Convenios_Movilidad/ObtenerConvenios",
+		url: "/Convenios_Movilidad/ObtenerEstancias",
 		type: "POST",
 		dataType: "json",
 		success: function(resultado){
@@ -125,7 +125,7 @@ function ControladorConvenio(){
     try {
 		$("#IdConvenio").val(convenio[0]["id"]);
 		$("#IdSector").val(convenio[0]["Sector"]);
-		switch (convenio[0]["Sector"]) {
+		/*pswitch (convenio[0]["Sector"]) {
 			case "5":
 				$("#InstitucionDestino").val(convenio[0]["Institucion"]);
 				
@@ -204,7 +204,7 @@ function ControladorConvenio(){
 				quitarArchivoCongreso();
 
 				break;
-		}
+		}*/
 
 	} catch (error) {
 		$("#IdConvenio").val("");

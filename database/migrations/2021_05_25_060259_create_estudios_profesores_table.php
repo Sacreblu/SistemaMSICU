@@ -22,8 +22,8 @@ class CreateEstudiosProfesoresTable extends Migration
             $table->char('Universidad', 80)->nullable($value = false);
             $table->integer('Anio');
             $table->char('Lugar', 100)->nullable($value = false);
-            $table->char('Ruta_Archivo', 200);
-            $table->char('NombreArchivo', 100);
+            $table->char('Ruta_Archivo', 200)->nullable();
+            $table->char('NombreArchivo', 100)->nullable();
             $table->timestamps();
             
             $table->foreign('Id_Profesor')->references('id')->on('profesores')->onDelete('cascade')->onUpdate('cascade');

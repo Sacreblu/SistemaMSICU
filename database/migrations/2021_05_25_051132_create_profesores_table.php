@@ -21,8 +21,7 @@ class CreateProfesoresTable extends Migration
             $table->char('Apellido_P', 20)->nullable($value = false);
             $table->char('Apellido_M', 20)->nullable($value = false);
             $table->char('Correo', 40)->nullable($value = false)->unique();
-            $table->char('CorreoPersonal', 40)->nullable()->unique();
-            $table->bigInteger('Tipo_Contratacion')->unsigned();
+            $table->char('CorreoPersonal', 40)->nullable();
             $table->char('Institucion', 80)->nullable($value = false);
             $table->char('Mes_Ingreso', 12);
             $table->integer('Anio_Ingreso');

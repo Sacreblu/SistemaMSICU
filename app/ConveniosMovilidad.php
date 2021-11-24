@@ -242,6 +242,13 @@ class ConveniosMovilidad extends Model
         return $convenios;
     }
 
+    public function ObtenerEstancias(){
+        $convenios = ConveniosMovilidad::select('id', 'Nombre_Clave', 'Sector', 'Institucion_Organizacion', 'Dependencia', 'Fecha_Inicio', 'Fecha_Conclusion')
+            ->where('Sector','=','4')
+            ->get();
+        return $convenios;
+    }
+
     public function ObtenerConveniosPorSector(){
         $convenios = ConveniosMovilidad::select('id', 'Nombre_Clave', 'Sector', 'Institucion_Organizacion')
             ->where([['Sector','<>','4'],['Sector','<>', '5']])

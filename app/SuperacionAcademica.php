@@ -20,47 +20,58 @@ class SuperacionAcademica extends Model
 
     public function RegistrarSuperacionAcademica($request){
         $archivo = $request->file('Archivo');
-        $anio = $request->get('Anio');
-        $titulo = $request->get('Titulo');
-        $tipoId = $request->get('Tipo_Documento');
 
-        $obj = new DocumentosSuperacion();
+        $NombreArchivo="";
+        $RutaArchivo="";
 
-        if($tipoId!=0){
-            $tipoDocumento = $obj->getNombreDocumento($tipoId);
-            $tipoDocumento = $tipoDocumento[0]->Tipo;
-        }else{
-            $tipoDocumento = $request->get('OpcionOtro');
-            $tipoId = $obj->RegistrarTipo($request->get('OpcionOtro'));
+        
+            $anio = $request->get('Anio');
+            $titulo = $request->get('Titulo');
+            $tipoId = $request->get('Tipo_Documento');
+
+            $obj = new DocumentosSuperacion();
+
+            if($tipoId!=0){
+                $tipoDocumento = $obj->getNombreDocumento($tipoId);
+                $tipoDocumento = $tipoDocumento[0]->Tipo;
+            }else{
+                $tipoDocumento = $request->get('OpcionOtro');
+                $tipoId = $obj->RegistrarTipo($request->get('OpcionOtro'));
+            }
+            
+            $iniciales = "";
+            $aux=explode(" ", $titulo);
+            for ($i=0; $i < count($aux) ; $i++) { 
+                $iniciales = $iniciales . substr($aux[$i], 0, 1);
+            }
+            
+            $profesor = new Profesores();
+            $profesor = $profesor->ObtenerNombreProfesor($request->get('idProfesor'));
+            $inicialesProf = "";
+            $aux2=explode(" ", $profesor[0]->Nombre);
+            for ($i=0; $i < count($aux2) ; $i++) { 
+                $inicialesProf = $inicialesProf . substr($aux2[$i], 0, 1);
+            }
+            $inicialesProf = $inicialesProf . substr($profesor[0]->Apellido_P, 0, 1);
+            $inicialesProf = $inicialesProf . substr($profesor[0]->Apellido_M, 0, 1);
+            
+        if ($archivo != null) {
+            try {
+                mkdir(public_path().'/storage/Documentos/Profesores/SuperacionAcademica/'.$request->get('idProfesor').'/', 0700);
+            } catch (\Throwable $th) {
+                //throw $th;
+            }
+            
+            $extension = $archivo->getClientOriginalExtension();
+            $fileName = $inicialesProf."-".$tipoDocumento."-".$iniciales.'-'.$anio.'.'.$extension;
+            $tmpPath = $archivo;
+            $newPath = public_path().'/storage/Documentos/Profesores/SuperacionAcademica/'.$request->get('idProfesor').'/'.$fileName;
+            move_uploaded_file($tmpPath,$newPath);
+
+            $NombreArchivo=$fileName;
+            $RutaArchivo='/storage/Documentos/Profesores/SuperacionAcademica/'.$request->get('idProfesor').'/'.$fileName;
         }
         
-        $iniciales = "";
-        $aux=explode(" ", $titulo);
-        for ($i=0; $i < count($aux) ; $i++) { 
-            $iniciales = $iniciales . substr($aux[$i], 0, 1);
-        }
-        
-        $profesor = new Profesores();
-        $profesor = $profesor->ObtenerNombreProfesor($request->get('idProfesor'));
-        $inicialesProf = "";
-        $aux2=explode(" ", $profesor[0]->Nombre);
-        for ($i=0; $i < count($aux2) ; $i++) { 
-            $inicialesProf = $inicialesProf . substr($aux2[$i], 0, 1);
-        }
-        $inicialesProf = $inicialesProf . substr($profesor[0]->Apellido_P, 0, 1);
-        $inicialesProf = $inicialesProf . substr($profesor[0]->Apellido_M, 0, 1);
-
-        try {
-            mkdir(public_path().'/storage/Documentos/Profesores/SuperacionAcademica/'.$request->get('idProfesor').'/', 0700);
-        } catch (\Throwable $th) {
-            //throw $th;
-        }
-        
-        $extension = $archivo->getClientOriginalExtension();
-        $fileName = $inicialesProf."-".$tipoDocumento."-".$iniciales.'-'.$anio.'.'.$extension;
-        $tmpPath = $archivo;
-        $newPath = public_path().'/storage/Documentos/Profesores/SuperacionAcademica/'.$request->get('idProfesor').'/'.$fileName;
-        move_uploaded_file($tmpPath,$newPath);
 
         $datos = new SuperacionAcademica ([
             'Id_Profesor'=> $request->get('idProfesor'),
@@ -69,8 +80,8 @@ class SuperacionAcademica extends Model
             'Periodo'=> $request->get('Periodo'),
             'Anio'=> $request->get('Anio'),
             'Descripcion'=> $request->get('Descripcion'),
-            'Ruta_Archivo'=> '/storage/Documentos/Profesores/SuperacionAcademica/'.$request->get('idProfesor').'/'.$fileName,
-            'NombreArchivo'=> $fileName
+            'Ruta_Archivo'=> $RutaArchivo,
+            'NombreArchivo'=> $NombreArchivo
         ]); 
         $datos->save();
 
@@ -79,13 +90,18 @@ class SuperacionAcademica extends Model
 
     public function ModificarSuperacionAcademica($request){
         $archivo = $request->file('Archivo');
+
+        $NombreArchivo="";
+        $RutaArchivo="";
+
+        $idRegistro = $request->get('IdRegistro');
+        $Superacion = SuperacionAcademica::find($idRegistro);
+
         $anio = $request->get('Anio');
         $titulo = $request->get('Titulo');
         $tipoId = $request->get('Tipo_Documento');
-        $idRegistro = $request->get('IdRegistro');
 
         $obj = new DocumentosSuperacion();
-        $Superacion = SuperacionAcademica::find($idRegistro);
 
         if($tipoId!=0){
             $tipoDocumento = $obj->getNombreDocumento($tipoId);
@@ -111,8 +127,12 @@ class SuperacionAcademica extends Model
         $inicialesProf = $inicialesProf . substr($profesor[0]->Apellido_P, 0, 1);
         $inicialesProf = $inicialesProf . substr($profesor[0]->Apellido_M, 0, 1);
 
-        $filename="";
-        if($archivo!=null){
+        if ($archivo!=null) {
+            try {
+                mkdir(public_path().'/storage/Documentos/Profesores/SuperacionAcademica/'.$request->get('idProfesor').'/', 0700);
+            } catch (\Throwable $th) {
+                //throw $th;
+            }
             try {
                 $file = glob(public_path().$Superacion->Ruta_Archivo);
                 unlink($file[0]);
@@ -123,11 +143,19 @@ class SuperacionAcademica extends Model
             $tmpPath = $archivo;
             $newPath = public_path().'/storage/Documentos/Profesores/SuperacionAcademica/'.$request->get('idProfesor').'/'.$fileName;
             move_uploaded_file($tmpPath,$newPath);
+
+            $NombreArchivo=$fileName;
+            $RutaArchivo='/storage/Documentos/Profesores/SuperacionAcademica/'.$request->get('idProfesor').'/'.$fileName;
         }else{
-            $extension = "pdf";
-            $fileName = $inicialesProf."-".$tipoDocumento."-".$iniciales.'-'.$anio.'.'.$extension;
-            $newPath = public_path().'/storage/Documentos/Profesores/SuperacionAcademica/'.$request->get('idProfesor').'/'.$fileName;
-            rename(public_path().$Superacion->Ruta_Archivo,$newPath);
+            if ($Superacion->Ruta_Archivo!=null) {
+                $extension = "pdf";
+                $fileName = $inicialesProf."-".$tipoDocumento."-".$iniciales.'-'.$anio.'.'.$extension;
+                $newPath = public_path().'/storage/Documentos/Profesores/SuperacionAcademica/'.$request->get('idProfesor').'/'.$fileName;
+                rename(public_path().$Superacion->Ruta_Archivo,$newPath);
+
+                $NombreArchivo=$fileName;
+                $RutaArchivo='/storage/Documentos/Profesores/SuperacionAcademica/'.$request->get('idProfesor').'/'.$fileName;
+            }
         }
 
         $Superacion->Titulo = $request->get('Titulo');
@@ -136,8 +164,8 @@ class SuperacionAcademica extends Model
         $Superacion->Anio = $request->get('Anio');
         $Superacion->Periodo = $request->get('Periodo');
         $Superacion->Descripcion = $request->get('Descripcion');
-        $Superacion->Ruta_Archivo = '/storage/Documentos/Profesores/SuperacionAcademica/'.$request->get('idProfesor').'/'.$fileName;
-        $Superacion->NombreArchivo = $fileName;
+        $Superacion->Ruta_Archivo = $RutaArchivo;
+        $Superacion->NombreArchivo = $NombreArchivo;
         
         $Superacion->save();
 
@@ -148,8 +176,10 @@ class SuperacionAcademica extends Model
         $ids = $request->get('Ids');
         for ($i=0; $i < count($ids); $i++) { 
             $Superacion = SuperacionAcademica::find($ids[$i]);
-            $file = glob(public_path().$Superacion->Ruta_Archivo);
-            unlink($file[0]); 
+            if ($Superacion->Ruta_Archivo!=null) {
+                $file = glob(public_path().$Superacion->Ruta_Archivo);
+                unlink($file[0]); 
+            }
             $Superacion->delete();
         }
 

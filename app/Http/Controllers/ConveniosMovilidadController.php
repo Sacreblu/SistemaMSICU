@@ -53,6 +53,11 @@ class ConveniosMovilidadController extends Controller
         return $convenios->ObtenerConvenios();
     }
 
+    public function ObtenerEstancias(){
+        $convenios = new ConveniosMovilidad();
+        return $convenios->ObtenerEstancias();
+    }
+
     public function ObtenerConveniosPorSector(){
         $convenios = new ConveniosMovilidad();
         return $convenios->ObtenerConveniosPorSector();

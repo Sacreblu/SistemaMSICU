@@ -51,7 +51,7 @@
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="{{ url('/Convenios_Movilidad') }}">Convenios de Movilidad y Congresos</a>
-                            <a class="dropdown-item" href="{{ url('/Acciones_Movilidad') }}">Movilidad y Congresos</a>
+                            <a class="dropdown-item" href="{{ url('/Estancias_Academicas') }}">Estancias Academicas</a>
                             <a class="dropdown-item" href="{{ url('/Trabajos_En_Sector') }}">Trabajo en Sector</a>
                         </div>
                     </li>

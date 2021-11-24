@@ -6,8 +6,8 @@
 <div class="Contenedor">
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{{url('/Acciones_Movilidad')}}">Movilidad y Congresos</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Registrar Movilidad y Congresos</li>
+            <li class="breadcrumb-item"><a href="{{url('/Estancias_Academicas')}}">Estancias Academicas</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Registrar Estancias Academicas</li>
         </ol>
     </nav>
     <div class="container">
@@ -22,7 +22,7 @@
                 <div class="col-md-6">
                     
                     <div class="form-group" style="text-align: left;">
-                        <label for="NombreConvenio">Convenio de Movilidad o Congreso Asociado</label>
+                        <label for="NombreConvenio">Convenio de Movilidad Asociado</label>
                         <input type="text" class="form-control" onchange="ControladorConvenio()" id="NombreConvenio" name="NombreConvenio">
                         <input type="hidden" id="IdConvenio" name="IdConvenio">
                         <input type="hidden" id="IdSector" name="IdSector">
@@ -44,19 +44,19 @@
                         <span class="alertError" id="alertInstitucionDestinoRegistro"></span>
                     </div>
 
-                    <div id="divInstOrigen" class="form-group" style="text-align: left; display:none;">
+                    <div id="divInstOrigen" class="form-group" style="text-align: left;">
                         <label for="InstitucionOrigen">Institución Origen</label>
                         <input type="text" class="form-control" id="InstitucionOrigen" name="InstitucionOrigen">
                         <span class="alertError" id="alertInstitucionOrigenRegistro"></span>
                     </div>
 
-                    <div id="divProgDestino" class="form-group" style="text-align: left; display:none;">
+                    <div id="divProgDestino" class="form-group" style="text-align: left;">
                         <label for="ProgramaDestino">Programa Educativo Destino</label>
                         <input type="text" class="form-control" id="ProgramaDestino" name="ProgramaDestino">
                         <span class="alertError" id="alertProgramaDestinoRegistro"></span>
                     </div>
 
-                    <div id="divProgOrigen" class="form-group" style="text-align: left; display:none;">
+                    <div id="divProgOrigen" class="form-group" style="text-align: left;">
                         <label for="ProgramaOrigen">Programa Educativo Origen</label>
                         <input type="text" class="form-control" id="ProgramaOrigen" name="ProgramaOrigen">
                         <span class="alertError" id="alertProgramaOrigenRegistro"></span>
@@ -64,7 +64,7 @@
                 </div>
                 <div class="col-md-6">
                     
-                    <div id="divSelectTipo" class="form-group" style="text-align: left; display:none;">
+                    <div id="divSelectTipo" class="form-group" style="text-align: left; ">
                         <label for="tipoM">Tipo de Movilidad</label>
                         <select class="form-control" id="tipoM" name="tipoM" onchange="ControladorTipoMov()">
                             <Option value="1">Estancia desde la MSICU</Option>
@@ -72,7 +72,7 @@
                         </select>
                     </div>
                     
-                    <div id="divPeriodos" class="row" style="display:none;">
+                    <div id="divPeriodos" class="row" >
                         <div class="form-group col-md-6" style="text-align: left;">
                             <label for="PeriodoComienzo">Periodo de Comienzo</label>
                             <input type="month" class="form-control" id="PeriodoComienzo" name="PeriodoComienzo">
@@ -85,13 +85,13 @@
                         </div>
                     </div>
 
-                    <div id="divDependDestino" class="form-group" style="text-align: left; display:none;">
+                    <div id="divDependDestino" class="form-group" style="text-align: left; ">
                         <label for="DependenciaDestino">Dependencia Destino</label>
                         <input type="text" class="form-control" id="DependenciaDestino" name="DependenciaDestino">
                         <span class="alertError" id="alertDependenciaDestinoRegistro"></span>
                     </div>
 
-                    <div id="divDependOrigen" class="form-group" style="text-align: left; display:none;">
+                    <div id="divDependOrigen" class="form-group" style="text-align: left; ">
                         <label for="DependenciaOrigen">Dependencia Origen</label>
                         <input type="text" class="form-control" id="DependenciaOrigen" name="DependenciaOrigen">
                         <span class="alertError" id="alertDependenciaOrigenRegistro"></span>
@@ -99,49 +99,13 @@
                     
                     <div class="form-group" style="text-align: left;">
                         <label for="Motivo">Motivo</label>
-                        <textarea class="form-control" id="Motivo" name="Motivo" rows=4"></textarea>
+                        <textarea class="form-control" id="Motivo" name="Motivo" rows="4"></textarea>
                         <span class="alertError" id="alertMotivoRegistro"></span>
                     </div>
-                                    <div class="container" id="divArchivoCongreso" style="display:none">
-                                        <div class="form-group" style="text-align: left;">
-                                            <label for="">Producto de Congreso</label>
-                                        </div>
-                                        <ul class="nav nav-tabs" id="ArchivoCongreso-tab" role="tablist">
-                                            <li class="nav-item">
-                                                <a class="nav-link active" id="CargarArchivoCongreso-tab" data-toggle="tab" href="#CargarArchivoCongreso" role="tab" aria-controls="" aria-selected="true">Cargar Archivo</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" id="VistaArchivoCongreso-tab" data-toggle="tab" href="#VistaArchivoCongreso" role="tab" aria-controls="" aria-selected="false">Vista Previa</a>
-                                            </li>
-                                        </ul>
-                                        <div class="tab-content" id="ArchivoArchivoCongreso-content">
-                                            <div class="tab-pane fade show active" id="CargarArchivoCongreso" role="tabpanel" aria-labelledby="">
-                                                <br>
-                                                <div style="text-align:center" class="containerInputfile container p-y-1 col-md-9">
-                                                    <div class="row m-b-1">
-                                                        <div class="col-sm-12">
-                                                            <div class="form-group inputDnD">
-                                                                <label class="sr-only" for="inputFile">File Upload</label>
-                                                                <input type="file" name="ArchivoCongreso" class="form-control-file text-primary font-weight-bold" id="ArchivoCongreso" accept="application/pdf" onchange="ControladorArchivoCongreso()" data-title="Arrastre y suelte el archivo">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="tab-pane fade" id="VistaArchivoCongreso" role="tabpanel" aria-labelledby="">
-                                                <table class="table table-sm">
-                                                    <thead>
-                                                        <tr><th colspan="2">Archivos</th></tr>
-                                                    </thead>
-                                                    <tbody id="VistaPrevArchivoCongreso">
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    
                 </div>
             </div>
-            <div id="divArchivos" class="form-row" style="padding: 0 30px; display:none">
+            <div id="divArchivos" class="form-row" style="padding: 0 30px;">
             
                     <div class="container">
                         <ul class="nav nav-tabs" id="MovilidadEvidencias" role="tablist">
