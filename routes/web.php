@@ -208,7 +208,8 @@ Route::post('/Trabajos_En_Sector/Modificar_Trabajos_Sectores/ModificarEE', 'Trab
 
 Route::post('/Trabajos_En_Sector/Eliminar_Trabajos_Sectores', 'TrabajosEnSectoresController@EliminarTrabajoEnSector');
 
-Route::get('/Productos_LGAC/Registrar_Producto_LGAC', 'ProductoslgacController@registrarProductosLGAC');
+
+Route::get('/ProductosLGAC_Movilidad/Registrar_ProductoLGACdeMovilidad', 'ProductoslgacController@registrarProductosLGACporMovilidad');
 
 //Controlador Auxiliar
 Route::post('/Auxiliar/TipoContratacion', 'AuxiliarController@TipoContrataciones');

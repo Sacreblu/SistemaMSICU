@@ -13,7 +13,6 @@ function initializeConvenio() {
 	console.log(informacion);
 	
 	getPaises();
-	getSectores();
 	setInformacion();
 
 }
@@ -36,6 +35,8 @@ function limpiarTMP() {
 
 function setInformacion() {
 	var valor = informacion.idSector;
+
+	console.log(informacion);
 	
 	switch (valor) {
 		case 5:
@@ -83,36 +84,6 @@ function getPaises() {
 function autocompletePaises(arreglo) {
 	$( "#Pais" ).autocomplete({
 		source: arreglo
-	});
-}
-
-function getSectores() {
-	$.ajax({
-		headers: { "X-CSRF-TOKEN": $("meta[name='csrf-token']").attr("content") },
-		url: "/Auxiliar/Sectores",
-		type: "POST",
-		dataType: "json",
-		success: function(resultado){
-			var cadena="";
-			for (let i = 0; i < resultado.length; i++) {
-				cadena+='<div class="form-check-inline">';
-					cadena+='<label class="form-check-label" for="Sector'+resultado[i].id+'">';
-						if (i+1==informacion.idSector) {
-							cadena+='<input type="radio" class="form-check-input" id="Sector'+resultado[i].id+'" name="Sector" value="'+resultado[i].id+'" checked>'+resultado[i].Sector;
-						}else{
-							cadena+='<input type="radio" class="form-check-input" id="Sector'+resultado[i].id+'" name="Sector" value="'+resultado[i].id+'">'+resultado[i].Sector;
-						}
-					cadena+='</label>';
-				cadena+='</div>';
-			}
-			$("#setSectores").html(cadena);
-		},
-		error: function(XMLHttpRequest, textStatus, errorThrown) {
-			console.log(XMLHttpRequest);
-			console.log(textStatus);
-			console.log(errorThrown);
-			location.reload();
-		}
 	});
 }
 
@@ -217,6 +188,7 @@ function ValidarDatosG(){
 					$("#alert"+atributo+"Modificar").html(mensajes);
 				}
 				Bandera = false;
+				console.log(resultado); 
 			}
 
 			validarContDatosGenerales --;

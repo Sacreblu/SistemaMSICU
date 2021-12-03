@@ -123,88 +123,17 @@ function ControladorConvenio(){
 	var valor = $("#NombreConvenio").val();
 	var convenio = Convenios.filter(function (convenio) { return convenio.NombreClave == valor; });
     try {
+		console.log(convenio);
 		$("#IdConvenio").val(convenio[0]["id"]);
 		$("#IdSector").val(convenio[0]["Sector"]);
-		/*pswitch (convenio[0]["Sector"]) {
-			case "5":
-				$("#InstitucionDestino").val(convenio[0]["Institucion"]);
-				
-				$("#PeriodoComienzo").val(convenio[0]["FechaI"].substr(0, 7));
-				$("#PeriodoConclusion").val(convenio[0]["FechaC"].substr(0, 7));
-
-				$('#divInstOrigen').css("display","none");
-				$('#divProgDestino').css("display","none");
-				$('#divProgOrigen').css("display","none");
-				$('#divSelectTipo').css("display","none");
-				$('#divPeriodos').css("display","none");
-				$('#divDependDestino').css("display","none");
-				$('#divDependOrigen').css("display","none");
-				$('#divArchivos').css("display","none");
-				$('#divArchivoCongreso').css("display","block");
-
-				
-				$("#InstitucionOrigen").val("");
-				$("#ProgramaDestino").val("");
-				$("#ProgramaOrigen").val("");
-				$("#DependenciaDestino").val("");
-				$("#DependenciaOrigen").val("");
-				$("#InstitucionOrigen").val("");
-
-				quitarArchivoCartaAceptacion();
-				quitarArchivoDocumentacionComp();
-				quitarArchivoCartaSolicitud();
-				quitarArchivoCartaLiberacion();
-				quitarArchivoFormato();
-				quitarArchivoReporteActividades();
-				break;
-			case "4":
-				
-				$("#PeriodoComienzo").val("");
-				$("#PeriodoConclusion").val("");
-
-				$("#InstitucionDestino").val(convenio[0]["Institucion"]);
-				$("#DependenciaDestino").val(convenio[0]["Dependencia"]);
-
-				$("#InstitucionOrigen").val("Universidad Veracruzana");
-				$("#DependenciaOrigen").val("Facultad de Estadística e Informática");
-				$("#ProgramaOrigen").val("Maestría en Sistemas Interactivos Centrados en el Usuario");
-
-				$('#InstitucionOrigen').attr('readonly', true);
-				$('#DependenciaOrigen').attr('readonly', true);
-				$('#ProgramaOrigen').attr('readonly', true);
-
-				$('#divPeriodos').css("display","flex");
-				$('#divInstOrigen').css("display","block");
-				$('#divProgDestino').css("display","block");
-				$('#divProgOrigen').css("display","block");
-				$('#divSelectTipo').css("display","block");
-				$('#divDependDestino').css("display","block");
-				$('#divDependOrigen').css("display","block");
-				$('#divArchivos').css("display","flex");
-				$('#divArchivoCongreso').css("display","none");
-
-				quitarArchivoCongreso();
-
-				break;
-			default:
-				
-				$("#PeriodoComienzo").val("");
-				$("#PeriodoConclusion").val("");
-
-				$("#InstitucionDestino").val(convenio[0]["Institucion"]);
-				$('#divPeriodos').css("display","flex");
-				$('#divInstOrigen').css("display","none");
-				$('#divProgDestino').css("display","none");
-				$('#divProgOrigen').css("display","none");
-				$('#divSelectTipo').css("display","none");
-				$('#divDependDestino').css("display","none");
-				$('#divDependOrigen').css("display","none");
-				$('#divArchivos').css("display","flex");
-				$('#divArchivoCongreso').css("display","none");
-				quitarArchivoCongreso();
-
-				break;
-		}*/
+		$("#InstitucionDestino").val(convenio[0]["Institucion"]);
+		
+		if(convenio[0]["Dependencia"]!=null){	
+			$("#DependenciaDestino").val(convenio[0]["Dependencia"]);
+		}
+		
+		$('#InstitucionDestino').attr('readonly', true);
+		$('#DependenciaDestino').attr('readonly', true);
 
 	} catch (error) {
 		$("#IdConvenio").val("");
@@ -215,40 +144,40 @@ function ControladorTipoMov() {
 	var tipo = $('#tipoM').val();
 	var valor = $("#NombreConvenio").val();
 	var convenio = Convenios.filter(function (convenio) { return convenio.NombreClave == valor; });
-	
+
 	if(tipo == 1){
-		console.log(tipo);
 		$("#InstitucionOrigen").val("Universidad Veracruzana");
 		$("#DependenciaOrigen").val("Facultad de Estadística e Informática");
 		$("#ProgramaOrigen").val("Maestría en Sistemas Interactivos Centrados en el Usuario");
 
-		$("#InstitucionDestino").val(convenio[0]["Institucion"]);
-		$("#DependenciaDestino").val(convenio[0]["Dependencia"]);
-		$("#ProgramaDestino").val("");
+		if(convenio[0]!=undefined){
+			$("#InstitucionDestino").val(convenio[0]["Institucion"]);
+			$("#DependenciaDestino").val(convenio[0]["Dependencia"]);
+			$("#ProgramaDestino").val("");
+		}else{
+			$("#InstitucionDestino").val("");
+			$("#DependenciaDestino").val("");
+			$("#ProgramaDestino").val("");
+		}
 
-		$('#InstitucionOrigen').attr('readonly', true);
-		$('#DependenciaOrigen').attr('readonly', true);
 		$('#ProgramaOrigen').attr('readonly', true);
-
-		$('#InstitucionDestino').removeAttr('readonly');
-		$('#DependenciaDestino').removeAttr('readonly');
 		$('#ProgramaDestino').removeAttr('readonly');
 	}else{
-		console.log(tipo);
 		$("#InstitucionDestino").val("Universidad Veracruzana");
 		$("#DependenciaDestino").val("Facultad de Estadística e Informática");
 		$("#ProgramaDestino").val("Maestría en Sistemas Interactivos Centrados en el Usuario");
 	
-		$("#InstitucionOrigen").val(convenio[0]["Institucion"]);
-		$("#DependenciaOrigen").val(convenio[0]["Dependencia"]);
-		$("#ProgramaOrigen").val("");
+		if(convenio[0]!=undefined){
+			$("#InstitucionOrigen").val(convenio[0]["Institucion"]);
+			$("#DependenciaOrigen").val(convenio[0]["Dependencia"]);
+			$("#ProgramaOrigen").val("");
+		}else{
+			$("#InstitucionOrigen").val("");
+			$("#DependenciaOrigen").val("");
+			$("#ProgramaOrigen").val("");
+		}
 
-		$('#InstitucionDestino').attr('readonly', true);
-		$('#DependenciaDestino').attr('readonly', true);
 		$('#ProgramaDestino').attr('readonly', true);
-
-		$('#InstitucionOrigen').removeAttr('readonly');
-		$('#DependenciaOrigen').removeAttr('readonly');
 		$('#ProgramaOrigen').removeAttr('readonly');
 	}
 }

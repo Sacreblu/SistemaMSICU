@@ -51,7 +51,7 @@ class AccionesMovilidadController extends Controller
     public function ValidarDatosGeneralesMovilidad(Request $request){
         $validator = Validator::make($request->all(), [
                 'IdSector'  => 'required',
-                'NombreConvenio'=>'required|string|max:30',
+                'NombreConvenio'=>'required|string|max:80',
                 'IdConvenio'=>'required',
                 'NombreEstudiante'=>'required|string',
                 'IdEstudiante'=>'required',

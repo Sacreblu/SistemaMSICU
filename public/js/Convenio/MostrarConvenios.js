@@ -70,14 +70,14 @@ function filtradoConvenio(){
 			var tabla="";
 			for (let i = 0; i < longArray; i++) {
 				tabla = tabla + '<tr>';
-				tabla = tabla + '<td style="vertical-align:middle; text-align:center" onclick="verInformacionConvenio(\''+resultado[0].id+'\')">' + resultado[0].Nombre_Clave + '</td>';
-				tabla = tabla + '<td style="vertical-align:middle; text-align:center" onclick="verInformacionConvenio(\''+resultado[0].id+'\')">' + resultado[0].Sector + '</td>';
-				tabla = tabla + '<td style="vertical-align:middle; text-align:center" onclick="verInformacionConvenio(\''+resultado[0].id+'\')">' + resultado[0].Institucion_Organizacion + '</td>';
-				tabla = tabla + '<td style="vertical-align:middle; text-align:center" onclick="verInformacionConvenio(\''+resultado[0].id+'\')">' + resultado[0].Fecha_Conclusion + '</td>';
-				tabla = tabla + '<td style="vertical-align:middle; text-align:center" onclick="verInformacionConvenio(\''+resultado[0].id+'\')">' + resultado[0].Pais + '</td>';
+				tabla = tabla + '<td style="vertical-align:middle; text-align:center" onclick="verInformacionConvenio(\''+resultado[i].id+'\')">' + resultado[i].Nombre_Clave + '</td>';
+				tabla = tabla + '<td style="vertical-align:middle; text-align:center" onclick="verInformacionConvenio(\''+resultado[i].id+'\')">' + resultado[i].Sector + '</td>';
+				tabla = tabla + '<td style="vertical-align:middle; text-align:center" onclick="verInformacionConvenio(\''+resultado[i].id+'\')">' + resultado[i].Institucion_Organizacion + '</td>';
+				tabla = tabla + '<td style="vertical-align:middle; text-align:center" onclick="verInformacionConvenio(\''+resultado[i].id+'\')">' + resultado[i].Fecha_Conclusion + '</td>';
+				tabla = tabla + '<td style="vertical-align:middle; text-align:center" onclick="verInformacionConvenio(\''+resultado[i].id+'\')">' + resultado[i].Pais + '</td>';
 				tabla = tabla + '<td  style=\'vertical-align:middle;  text-align:center\'>';
-				tabla = tabla + '<button type=\'button\' class=\'btn btn-primary btn-xs\' onclick=\'ModificarConvenio(\"'+resultado[0].id+'\")\'>Modificar</button>';
-				tabla = tabla + '<button type=\'button\' class=\'btn btn-danger btn-xs btn-deshab\' onclick=\'EliminarConvenio(\"'+resultado[0].id+'\")\'>Eliminar</button>';
+				tabla = tabla + '<button type=\'button\' class=\'btn btn-primary btn-xs\' onclick=\'ModificarConvenio(\"'+resultado[i].id+'\")\'>Modificar</button>';
+				tabla = tabla + '<button type=\'button\' class=\'btn btn-danger btn-xs btn-deshab\' onclick=\'EliminarConvenio(\"'+resultado[i].id+'\")\'>Eliminar</button>';
 				tabla = tabla + '</td>';
 				tabla = tabla + '</tr>';
 			}

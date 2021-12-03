@@ -25,14 +25,10 @@
             <div class="form-row" style="padding: 0 30px">
                 <div class="col-md-6">
                     <div class="form-group" style="text-align: left;">
-                        <label for="Sector">Tipo de Movilidad</label>
-                        <select class="form-control" id="Sector" name="Sector">
-                            <Option value="1">Practica de Movilidad en el Sector Social</Option>
-                            <Option value="2">Practica de Movilidad en el Sector Productivo</Option>
-                            <Option value="3">Practica de Movilidad en el Sector Gubernamental</Option>
-                            <Option value="4">Estancia Académica</Option>
-                            <Option value="5">Congreso</Option>
-                        </select>
+                        <label for="NombreSector">Tipo de Movilidad</label>
+                        <input type="text" class="form-control" id="NombreSector" name="NombreSector" value="{{$informacion->Sector}}" readonly>
+                        <input type="hidden" class="form-control" id="Sector" name="Sector" value="{{$informacion->idSector}}">
+                        
                     </div>
                     <div id="divNombre" class="form-group" style="text-align: left; display:none">
                         <label for="NombreCongreso">Nombre Completo del Congreso</label>

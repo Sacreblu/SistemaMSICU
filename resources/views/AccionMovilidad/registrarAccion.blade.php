@@ -40,13 +40,13 @@
 
                     <div class="form-group" style="text-align: left;">
                         <label for="InstitucionDestino">Institución Destino</label>
-                        <input type="text" class="form-control" id="InstitucionDestino" name="InstitucionDestino">
+                        <input type="text" class="form-control" id="InstitucionDestino" name="InstitucionDestino" readonly>
                         <span class="alertError" id="alertInstitucionDestinoRegistro"></span>
                     </div>
 
                     <div id="divInstOrigen" class="form-group" style="text-align: left;">
                         <label for="InstitucionOrigen">Institución Origen</label>
-                        <input type="text" class="form-control" id="InstitucionOrigen" name="InstitucionOrigen">
+                        <input type="text" class="form-control" id="InstitucionOrigen" name="InstitucionOrigen" readonly value="Universidad Veracruzana">
                         <span class="alertError" id="alertInstitucionOrigenRegistro"></span>
                     </div>
 
@@ -58,7 +58,7 @@
 
                     <div id="divProgOrigen" class="form-group" style="text-align: left;">
                         <label for="ProgramaOrigen">Programa Educativo Origen</label>
-                        <input type="text" class="form-control" id="ProgramaOrigen" name="ProgramaOrigen">
+                        <input type="text" class="form-control" id="ProgramaOrigen" name="ProgramaOrigen" readonly value="Maestría en Sistemas Interactivos Centrados en el Usuario">
                         <span class="alertError" id="alertProgramaOrigenRegistro"></span>
                     </div>
                 </div>
@@ -87,13 +87,13 @@
 
                     <div id="divDependDestino" class="form-group" style="text-align: left; ">
                         <label for="DependenciaDestino">Dependencia Destino</label>
-                        <input type="text" class="form-control" id="DependenciaDestino" name="DependenciaDestino">
+                        <input type="text" class="form-control" id="DependenciaDestino" name="DependenciaDestino" readonly>
                         <span class="alertError" id="alertDependenciaDestinoRegistro"></span>
                     </div>
 
                     <div id="divDependOrigen" class="form-group" style="text-align: left; ">
                         <label for="DependenciaOrigen">Dependencia Origen</label>
-                        <input type="text" class="form-control" id="DependenciaOrigen" name="DependenciaOrigen">
+                        <input type="text" class="form-control" id="DependenciaOrigen" name="DependenciaOrigen" readonly value="Facultad de Estadístuca e Informática">
                         <span class="alertError" id="alertDependenciaOrigenRegistro"></span>
                     </div>
                     

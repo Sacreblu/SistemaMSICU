@@ -8,7 +8,7 @@ use Illuminate\Http\Response;
 
 class ProductoslgacController extends Controller
 {
-    public function registrarProductosLGAC(){
-        return view('ProductosLGAC.registrarProductosLGAC');
+    public function registrarProductosLGACporMovilidad(){
+        return view('ProductosLGAC.PorMovilidad.registrarProductosLGACMovilidad');
     }
 }

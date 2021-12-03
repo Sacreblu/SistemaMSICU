@@ -76,7 +76,7 @@ class ConveniosMovilidad extends Model
             }
 
             if($request->get('Dependencia')!=null){
-                $NombreClave = $NombreClave . $request->get('Dependencia');
+                $NombreClave = $NombreClave ."-". $request->get('Dependencia');
             }
             
             $NombreClave = $NombreClave ."-". substr($Anio, 0, 4);
@@ -143,7 +143,7 @@ class ConveniosMovilidad extends Model
         $NombreInstitucion = $request->get('Institucion');
 
         $NombreClave = "";
-
+        
         if ($request->get('Sector')==5) {
             $NombreClave = $request->get('Acronimo')."-".substr($Anio, 0, 4);
         }else{
@@ -156,15 +156,28 @@ class ConveniosMovilidad extends Model
                 $NombreClave = substr($aux3[0], 0, 4);
             }
 
+            if($request->get('Dependencia')!=null){
+                $NombreClave = $NombreClave ."-". $request->get('Dependencia');
+            }
+            
             $NombreClave = $NombreClave ."-". substr($Anio, 0, 4);
         }
         
-        
+
+
         $convenio->Nombre_Clave = $NombreClave;
 
         if ($request->file('ArchivoConvenio')!=null) {
 
             $archivoConvenio = $request->file('ArchivoConvenio');
+
+            if($convenio->Ruta_Evidencia!=null){
+                try {
+                    $file = glob(public_path().$convenio->RutaArchivo);
+                    unlink($file[0]);
+                }catch(\Throwable $th){} 
+            }
+            
 
             try {
                 mkdir(public_path().'/storage/Documentos/ConveniosMovilidad/'.$id.'/', 0700);
@@ -184,33 +197,7 @@ class ConveniosMovilidad extends Model
             $NombreArchivo = $fileName;
         }else{
             if ($convenio->Ruta_Evidencia!=null) {
-                
-                $Anio = $request->get('FechaComienzo');
-                $NombreInstitucion = $request->get('Institucion');
-
-                $NombreClave = "";
-
-                if ($request->get('Sector')==5) {
-                    $NombreClave = $request->get('Acronimo')."-".substr($Anio, 0, 4);
-                }else{
-                    $aux3=explode(" ",$NombreInstitucion);
-                    if(count($aux3)>2){
-                        for ($i=0; $i < count($aux3) ; $i++) { 
-                            $NombreClave = $NombreClave . substr($aux3[$i], 0, 1);
-                        }
-                    }else{
-                        if (count($aux3)==2) {
-                            for ($i=0; $i < count($aux3) ; $i++) { 
-                                $NombreClave = $NombreClave . substr($aux3[$i], 0, 2);
-                            }
-                        }else{
-                            $NombreClave = substr($aux3[0], 0, 4);
-                        }
-                    }
-
-                    $NombreClave = $NombreClave ."-". substr($Anio[0], 0, 4);
-                }
-
+                $NombreArchivo = $NombreClave.'-'.$sectores[$request->get('Sector')-1].'-'.$request->get('FechaConclusion').'.';
                 $extension = "pdf";
                 $fileName = $NombreArchivo.$extension;
                 $newPath = public_path().'/storage/Documentos/ConveniosMovilidad/'.$id.'/'.$fileName;
@@ -251,7 +238,7 @@ class ConveniosMovilidad extends Model
 
     public function ObtenerConveniosPorSector(){
         $convenios = ConveniosMovilidad::select('id', 'Nombre_Clave', 'Sector', 'Institucion_Organizacion')
-            ->where([['Sector','<>','4'],['Sector','<>', '5']])
+            ->where([['Sector','<>','4']])
             ->get();
         return $convenios;
     }
@@ -262,9 +249,9 @@ class ConveniosMovilidad extends Model
         switch ($mostrar) {
             case 'Todos':
                 $convenios = ConveniosMovilidad::join('sectores', 'convenios_movilidads.Sector', '=', 'sectores.id')
-                    ->join('paises', 'convenios_movilidads.Pais', '=', 'paises.id')
-                    ->select('convenios_movilidads.id', 'Nombre_Clave', 'sectores.Sector', 'convenios_movilidads.Sector as idSector', 'Fecha_Conclusion', 'Institucion_Organizacion', 'paises.Pais as Pais')
-                    ->orderBy('Nombre_Clave', 'DESC')->get();
+                        ->join('paises', 'convenios_movilidads.Pais', '=', 'paises.id')
+                        ->select('convenios_movilidads.id', 'Nombre_Clave', 'sectores.Sector', 'convenios_movilidads.Sector as idSector', 'Fecha_Inicio', 'Fecha_Conclusion', 'Institucion_Organizacion', 'Ciudad', 'paises.Pais as Pais', 'Ruta_Evidencia', 'Nombre_Evidencia')
+                        ->orderBy('Nombre_Clave', 'DESC')->get();
                 break;
             default:
                 $convenios = ConveniosMovilidad::join('sectores', 'convenios_movilidads.Sector', '=', 'sectores.id')

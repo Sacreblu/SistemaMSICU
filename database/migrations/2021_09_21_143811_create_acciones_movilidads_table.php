@@ -17,7 +17,7 @@ class CreateAccionesMovilidadsTable extends Migration
             $table->engine = 'InnoDB';
             $table->id('id');
             $table->bigInteger('IdConvenio')->unsigned();
-            $table->bigInteger('IdEstudiante')->unsigned();
+            $table->bigInteger('IdEstudiante')->unsigned()->nullable();
             $table->date('PeriodoInicio')->nullable();
             $table->date('PeriodoConclusion')->nullable();
             $table->char('InstitucionOrigen', 100)->nullable();
